@@ -1,0 +1,10 @@
+14:49:35 **** Incremental Build of configuration Debug for project BLUEPILL ****
+make -j7 all 
+arm-none-eabi-size  BLUEPILL.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5912	     12	   1788	   7712	   1e20	BLUEPILL.elf
+Finished building: default.size.stdout
+ 
+
+14:49:35 Build Finished. 0 errors, 0 warnings. (took 427ms)
+

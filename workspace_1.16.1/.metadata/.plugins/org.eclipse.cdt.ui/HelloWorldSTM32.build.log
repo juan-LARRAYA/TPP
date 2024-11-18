@@ -1,0 +1,31 @@
+01:01:36 **** Incremental Build of configuration Debug for project HelloWorldSTM32 ****
+make -j7 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F1 -DSTM32F103C8Tx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/main.c: In function 'main':
+../Src/main.c:29:3: warning: implicit declaration of function 'HAL_Init' [-Wimplicit-function-declaration]
+   29 |   HAL_Init();  // Inicializar HAL
+      |   ^~~~~~~~
+../Src/main.c:31:3: warning: implicit declaration of function 'SystemClock_Congfig' [-Wimplicit-function-declaration]
+   31 |   SystemClock_Congfig();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Src/main.c:33:3: warning: implicit declaration of function 'MX_GPIO_Init' [-Wimplicit-function-declaration]
+   33 |   MX_GPIO_Init();
+      |   ^~~~~~~~~~~~
+../Src/main.c:39:11: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+   39 |           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);
+      |           ^~~~~~~~~~~~~~~~~
+../Src/main.c:39:29: error: 'GPIOC' undeclared (first use in this function)
+   39 |           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);
+      |                             ^~~~~
+../Src/main.c:39:29: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:39:36: error: 'GPIO_PIN_13' undeclared (first use in this function)
+   39 |           HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);
+      |                                    ^~~~~~~~~~~
+../Src/main.c:40:11: warning: implicit declaration of function 'HAL_DELAY' [-Wimplicit-function-declaration]
+   40 |           HAL_DELAY(1000);
+      |           ^~~~~~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+
+01:01:37 Build Failed. 3 errors, 5 warnings. (took 786ms)
+
