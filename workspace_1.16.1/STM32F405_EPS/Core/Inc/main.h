@@ -99,8 +99,8 @@ void Error_Handler(void);
 #define Enable3_3V_GPIO_Port GPIOB
 #define Enable5VBis_Pin GPIO_PIN_12
 #define Enable5VBis_GPIO_Port GPIOB
-#define EnableVbat_Pin GPIO_PIN_14
-#define EnableVbat_GPIO_Port GPIOB
+#define EnableCalefactor_Pin GPIO_PIN_14
+#define EnableCalefactor_GPIO_Port GPIOB
 #define SDA_Sat_Pin GPIO_PIN_9
 #define SDA_Sat_GPIO_Port GPIOC
 #define SCL_Sat_Pin GPIO_PIN_8

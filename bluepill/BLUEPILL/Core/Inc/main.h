@@ -57,6 +57,14 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define activador_Pin GPIO_PIN_13
+#define activador_GPIO_Port GPIOC
+#define Vpanel_Pin GPIO_PIN_1
+#define Vpanel_GPIO_Port GPIOA
+#define Ipanel_Pin GPIO_PIN_6
+#define Ipanel_GPIO_Port GPIOA
+#define PwmMppt_Pin GPIO_PIN_8
+#define PwmMppt_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

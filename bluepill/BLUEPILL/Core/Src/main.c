@@ -18,21 +18,34 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+//Aquí defines nuevos tipos de datos (typedef)
 
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//definir macros #define
+#define ACTIVADOR_PIN GPIO_PIN_13
+#define ACTIVADOR_PORT GPIOC
+
+#define VPANEL_CHANNEL ADC_CHANNEL_1
+#define IPANEL_CHANNEL ADC_CHANNEL_6
+
+#define PWM_TIMER &htim1
+
 
 /* USER CODE END PD */
 
@@ -44,17 +57,72 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+//defini aca las varaibles privadas
+const int pwmPin = PwmMppt_Pin;    // Cambia por el pin que estés usando
+const int pinVoltageInput = Vpanel_Pin;  // Entrada analógica para medir el voltaje de entrada A0
+const int pinCurrentInput = Ipanel_Pin;  // Entrada analógica para medir la corriente de entrada A1
+
+
+// Variables globales
+float V_in = 0;
+float I_in = 0;
+float power = 0;
+float previousPower = 0;
+int dutyCycle = 255 * 0.5;  // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
+const int deltaDuty = 1;    // Incremento o decremento del Duty Cycle
+
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
 
+void mppt(int *dutyCycle, float *power, float *previousPower);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
+    ADC_ChannelConfTypeDef sConfig = {0};
+
+    // Configurar el canal que se desea leer
+    sConfig.Channel = channel;
+    sConfig.Rank = ADC_REGULAR_RANK_1;
+    sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+
+    if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
+        Error_Handler(); // Maneja errores de configuración
+    }
+
+    // Inicia la conversión del ADC
+    HAL_ADC_Start(hadc);
+
+    // Espera hasta que la conversión termine
+    if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
+        // Retorna el valor convertido
+        return HAL_ADC_GetValue(hadc);
+    }
+
+    return 0; // Retorna 0 en caso de error
+}
+
+void mppt(int *dutyCycle, float *power, float *previousPower) {
+    if (*power > *previousPower) {
+        if (*dutyCycle < 255) *dutyCycle += deltaDuty;  // Si la potencia ha aumentado, continuar ajustando en la misma dirección
+    } else {
+        if (*dutyCycle > 0) *dutyCycle -= deltaDuty;    // Si la potencia ha disminuido, invertir la dirección del ajuste
+    }
+
+    if (*dutyCycle < 0) *dutyCycle = 0;                 // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
+    if (*dutyCycle > 255) *dutyCycle = 255;
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
+
+    *previousPower = *power;                            // Actualizar `previousPower` con el valor actual de `power`
+}
 
 /* USER CODE END 0 */
 
@@ -66,7 +134,10 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+    SystemClock_Config();
 
+    // Iniciar PWM
+    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -88,8 +159,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
-  MX_USART2_UART_Init();
-  MX_USART3_UART_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -98,9 +169,33 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+      // Leer voltaje y corriente usando ADC
+      //V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
+      //I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
+
+      // Calcular potencia
+      power = V_in * I_in;
+
+      // Algoritmo MPPT
+      mppt(&dutyCycle, &power, &previousPower);
+
+      // Ajustar ciclo de trabajo del PWM
+      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
+
+      // Imprimir datos al puerto serie
+      char buffer[100];
+      sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in, I_in, power); // @suppress("Float formatting support")
+      HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+      // Guardar la potencia anterior
+      previousPower = power;
+
+      HAL_Delay(1000); // 1 segundo de delay
+
+
     /* USER CODE END WHILE */
-	  HAL_GPIO_TogglePin (GPIOA, GPIO_PIN_13);
-	  HAL_Delay (100);   /* Insert delay 100 ms */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -114,6 +209,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -140,6 +236,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
