@@ -1,0 +1,7 @@
+connectionTypeId=org.eclipse.remote.JSch
+connections/org.eclipse.remote.serial.core.connectionType/Bluepill/serial.baudRate=11
+connections/org.eclipse.remote.serial.core.connectionType/Bluepill/serial.byteSize=3
+connections/org.eclipse.remote.serial.core.connectionType/Bluepill/serial.parity=0
+connections/org.eclipse.remote.serial.core.connectionType/Bluepill/serial.portName=/dev/cu.usbserial-140
+connections/org.eclipse.remote.serial.core.connectionType/Bluepill/serial.stopBits=0
+eclipse.preferences.version=1

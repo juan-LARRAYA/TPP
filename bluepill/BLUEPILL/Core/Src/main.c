@@ -1,21 +1,4 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -26,6 +9,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include <string.h>
 
 /* USER CODE END Includes */
 
@@ -134,10 +118,10 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-    SystemClock_Config();
+  SystemClock_Config();
 
     // Iniciar PWM
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -171,8 +155,8 @@ int main(void)
   {
 
       // Leer voltaje y corriente usando ADC
-      //V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
-      //I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
+      V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
+      I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
 
       // Calcular potencia
       power = V_in * I_in;
@@ -188,12 +172,17 @@ int main(void)
       sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in, I_in, power); // @suppress("Float formatting support")
       HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
 
+      mppt(&dutyCycle,&power,&previousPower);
       // Guardar la potencia anterior
       previousPower = power;
 
+
+
+//		Para prender y apagar el led que viene en la bluepil
+//      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
+//      HAL_Delay(1000); // 1 segundo de delay
+//      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
       HAL_Delay(1000); // 1 segundo de delay
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
