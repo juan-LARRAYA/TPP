@@ -1704,3 +1704,1298 @@ Binding(COMMAND+INSERT,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.tm.terminal.EditContext,,,system)
+!SESSION 2024-12-10 15:08:29.669 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-10 15:10:36.420
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/bluepill/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-10 15:10:49.422
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.urischeme 4 0 2024-12-10 15:10:52.000
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY org.eclipse.jface 2 0 2024-12-10 17:51:09.256
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 17:51:09.259
+!MESSAGE A conflict occurred for COMMAND+INSERT:
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.copy,Copy,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.copy"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(AnsiConsole.command.copy_without_escapes,Copy Text Without ANSI Escapes,
+		Copy the console content to clipboard, removing the escape sequences,
+		Category(AnsiConsole.command.categoryid,ANSI Support Commands,null,true),
+		WorkbenchHandlerServiceHandler("AnsiConsole.command.copy_without_escapes"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.console.ConsoleView,,,system)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-10 19:10:23.752
+!MESSAGE Indexed 'BLUEPILL' (26 sources, 119 headers) in 8.65 sec: 10,238 declarations; 56,619 references; 2 unresolved inclusions; 36 syntax errors; 188 unresolved names (0.28%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-10 19:10:29.574
+!MESSAGE Indexed 'BLUEPILL' (26 sources, 119 headers) in 4.55 sec: 10,238 declarations; 56,619 references; 2 unresolved inclusions; 36 syntax errors; 188 unresolved names (0.28%)
+
+!ENTRY org.eclipse.remote.console 4 0 2024-12-10 19:27:24.991
+!MESSAGE Error opening /dev/cu.usbserial-140: Resource busy
+!STACK 0
+java.io.IOException: Error opening /dev/cu.usbserial-140: Resource busy
+	at org.eclipse.cdt.serial.SerialPort.open0(Native Method)
+	at org.eclipse.cdt.serial.SerialPort.open(SerialPort.java:316)
+	at org.eclipse.remote.serial.core.SerialPortCommandShell.<init>(SerialPortCommandShell.java:34)
+	at org.eclipse.remote.serial.core.SerialPortConnection.getCommandShell(SerialPortConnection.java:97)
+	at org.eclipse.remote.internal.console.TerminalConsoleConnector$1.run(TerminalConsoleConnector.java:140)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2024-12-10 19:45:25.240 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-12-10 19:45:33.917
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-10 19:45:41.385
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/bluepill/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-10 19:45:56.657
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.urischeme 4 0 2024-12-10 19:46:00.687
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY org.eclipse.jface 2 0 2024-12-10 20:08:03.369
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 20:08:03.371
+!MESSAGE A conflict occurred for COMMAND+INSERT:
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.copy,Copy,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.copy"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(AnsiConsole.command.copy_without_escapes,Copy Text Without ANSI Escapes,
+		Copy the console content to clipboard, removing the escape sequences,
+		Category(AnsiConsole.command.categoryid,ANSI Support Commands,null,true),
+		WorkbenchHandlerServiceHandler("AnsiConsole.command.copy_without_escapes"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.console.ConsoleView,,,system)
+
+!ENTRY org.eclipse.remote.console 4 0 2024-12-10 20:08:04.518
+!MESSAGE Error opening /dev/cu.usbserial-140: Resource busy
+!STACK 0
+java.io.IOException: Error opening /dev/cu.usbserial-140: Resource busy
+	at org.eclipse.cdt.serial.SerialPort.open0(Native Method)
+	at org.eclipse.cdt.serial.SerialPort.open(SerialPort.java:316)
+	at org.eclipse.remote.serial.core.SerialPortCommandShell.<init>(SerialPortCommandShell.java:34)
+	at org.eclipse.remote.serial.core.SerialPortConnection.getCommandShell(SerialPortConnection.java:97)
+	at org.eclipse.remote.internal.console.TerminalConsoleConnector$1.run(TerminalConsoleConnector.java:140)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jface 2 0 2024-12-10 20:12:29.654
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 20:12:29.655
+!MESSAGE A conflict occurred for ALT+C:
+Binding(ALT+C,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.refactor.extract.constant,Extract Constant - Refactoring ,
+		Extracts a constant for the selected expression,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.cdt.ui.refactor.extract.constant"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+C,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.command1,Terminal view insert,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.command1"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.TerminalContext,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2024-12-10 20:12:29.686
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 20:12:29.686
+!MESSAGE A conflict occurred for COMMAND+SHIFT+C:
+Binding(COMMAND+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.c.toggle.comment,Toggle Comment,
+		Toggle comment the selected lines,
+		Category(org.eclipse.cdt.ui.category.source,C/C++ Source,C/C++ Source Actions,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.cdt.ui.edit.text.c.toggle.comment"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(COMMAND+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.copy,Copy,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.copy"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 20:12:29.686
+!MESSAGE A conflict occurred for ALT+ARROW_UP:
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.maximize,Maximize Active View or Editor,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.maximize"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineUp,Move Lines Up,
+		Moves the selected lines up,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.ui.edit.text.moveLineUp"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-10 20:12:29.686
+!MESSAGE A conflict occurred for ALT+ARROW_RIGHT:
+Binding(ALT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.quickaccess,Quick Access,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.quickaccess"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(ALT+ARROW_RIGHT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.goto.wordNext,Next Word,
+		Go to the next word,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.ui.edit.text.goto.wordNext"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,cocoa,system)
+
+!ENTRY org.eclipse.ui 4 4 2024-12-10 20:12:35.959
+!MESSAGE To avoid deadlock while executing Display.syncExec() with argument: com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate$$Lambda$2209/0x00000000276b85f0@40accf2e, thread Worker-30: Launching BLUEPILL Debug will interrupt UI thread.
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-10 20:12:35.962
+!MESSAGE Worker-30: Launching BLUEPILL Debug thread is an instance of Worker or owns an ILock
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread Worker-30: Launching BLUEPILL Debug
+	at java.management@17.0.11/sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at java.management@17.0.11/sun.management.ThreadImpl.getThreadInfo(ThreadImpl.java:492)
+	at org.eclipse.ui.internal.UILockListener.reportInterruption(UILockListener.java:214)
+	at org.eclipse.ui.internal.UILockListener.interruptUI(UILockListener.java:180)
+	at org.eclipse.ui.internal.PendingSyncExec.waitUntilExecuted(PendingSyncExec.java:92)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:142)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:5249)
+	at com.st.stm32cube.ide.common.utils.ThreadHelper.runInUiThreadSync(ThreadHelper.java:36)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.showError(DSFDelegate.java:347)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.preLaunchCheck(DSFDelegate.java:126)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:769)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-10 20:12:35.964
+!MESSAGE UI thread waiting on a job or lock.
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread main
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend_bool(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSRunLoop.runMode(NSRunLoop.java:40)
+	at org.eclipse.swt.widgets.Display.sleep(Display.java:5208)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:824)
+	at org.eclipse.jface.window.Window.open(Window.java:799)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:609)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:405)
+	at org.eclipse.jface.dialogs.MessageDialog.openError(MessageDialog.java:491)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.lambda$4(DSFDelegate.java:347)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate$$Lambda$2209/0x00000000276b85f0.run(Unknown Source)
+	at org.eclipse.ui.internal.PendingSyncExec.run(PendingSyncExec.java:68)
+	at org.eclipse.ui.internal.UILockListener.doPendingWork(UILockListener.java:172)
+	at org.eclipse.ui.internal.UILockListener.aboutToWait(UILockListener.java:140)
+	at org.eclipse.core.internal.jobs.LockManager.aboutToWait(LockManager.java:105)
+	at org.eclipse.core.internal.jobs.JobManager.join(JobManager.java:990)
+	at org.eclipse.core.internal.jobs.InternalJob.join(InternalJob.java:355)
+	at org.eclipse.core.runtime.jobs.Job.join(Job.java:531)
+	at org.eclipse.tm.internal.terminal.emulator.VT100TerminalControl.disconnectTerminal(VT100TerminalControl.java:469)
+	at org.eclipse.tm.internal.terminal.emulator.VT100TerminalControl.disposeTerminal(VT100TerminalControl.java:415)
+	at org.eclipse.remote.internal.console.TerminalConsolePage.dispose(TerminalConsolePage.java:158)
+	at org.eclipse.ui.internal.console.ConsoleView.doDestroyPage(ConsoleView.java:296)
+	at org.eclipse.ui.part.PageBookView.removePage(PageBookView.java:810)
+	at org.eclipse.ui.part.PageBookView.lambda$3(PageBookView.java:476)
+	at org.eclipse.ui.part.PageBookView$$Lambda$2210/0x0000000027556708.accept(Unknown Source)
+	at java.base@17.0.11/java.util.HashMap$Values.forEach(HashMap.java:1065)
+	at org.eclipse.ui.part.PageBookView.dispose(PageBookView.java:476)
+	at org.eclipse.ui.internal.console.ConsoleView.dispose(ConsoleView.java:368)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.invalidate(CompatibilityPart.java:264)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.destroy(CompatibilityPart.java:421)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:976)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:938)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.uninject(InjectorImpl.java:181)
+	at org.eclipse.e4.core.internal.di.Requestor.uninject(Requestor.java:177)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:89)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:103)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.removeListenersTo(EclipseContext.java:487)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.uninject(ContextInjectionFactory.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:947)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:861)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:845)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.disposeWidget(ElementReferenceRenderer.java:113)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:938)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:861)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:845)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.subscribeTopicToBeRendered(PartRenderingEngine.java:185)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.di.internal.extensions.EventObjectSupplier$DIEventHandler.handleEvent(EventObjectSupplier.java:92)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:208)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:206)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:151)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:133)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:75)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:44)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:55)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:63)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:424)
+	at org.eclipse.e4.ui.model.application.ui.impl.UIElementImpl.setToBeRendered(UIElementImpl.java:314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.hidePart(PartServiceImpl.java:1410)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.hidePart(PartServiceImpl.java:1340)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.closePart(StackRenderer.java:1337)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer$3.close(StackRenderer.java:1197)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1969)
+	at org.eclipse.swt.custom.CTabFolder.lambda$0(CTabFolder.java:337)
+	at org.eclipse.swt.custom.CTabFolder$$Lambda$407/0x0000000026558cf8.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4645)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1524)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1547)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1532)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1325)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4412)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3988)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.ui.internal.Workbench$$Lambda$231/0x000000002633ee90.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at app//org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at app//org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at app//org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.ui 4 0 2024-12-10 20:12:36.590
+!MESSAGE Could not create the view: org.eclipse.ui.console.ConsoleView
+
+!ENTRY org.eclipse.ui 4 4 2024-12-10 20:12:37.256
+!MESSAGE To avoid deadlock while executing Display.syncExec() with argument: com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate$$Lambda$2209/0x00000000276b85f0@40accf2e, thread Worker-30: Launching BLUEPILL Debug will interrupt UI thread.
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-10 20:12:37.256
+!MESSAGE Worker-30: Launching BLUEPILL Debug thread is an instance of Worker or owns an ILock
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread Worker-30: Launching BLUEPILL Debug
+	at java.management@17.0.11/sun.management.ThreadImpl.dumpThreads0(Native Method)
+	at java.management@17.0.11/sun.management.ThreadImpl.getThreadInfo(ThreadImpl.java:492)
+	at org.eclipse.ui.internal.UILockListener.reportInterruption(UILockListener.java:214)
+	at org.eclipse.ui.internal.UILockListener.interruptUI(UILockListener.java:180)
+	at org.eclipse.ui.internal.PendingSyncExec.waitUntilExecuted(PendingSyncExec.java:92)
+	at org.eclipse.ui.internal.UISynchronizer.syncExec(UISynchronizer.java:142)
+	at org.eclipse.swt.widgets.Display.syncExec(Display.java:5249)
+	at com.st.stm32cube.ide.common.utils.ThreadHelper.runInUiThreadSync(ThreadHelper.java:36)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.showError(DSFDelegate.java:347)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.preLaunchCheck(DSFDelegate.java:126)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:769)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.ui 4 4 2024-12-10 20:12:37.257
+!MESSAGE UI thread waiting on a job or lock.
+!STACK 0
+java.lang.IllegalStateException: Call stack for thread main
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper(Native Method)
+	at org.eclipse.swt.widgets.Display.applicationNextEventMatchingMask(Display.java:5564)
+	at org.eclipse.swt.widgets.Display.applicationProc(Display.java:5965)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper(Native Method)
+	at org.eclipse.swt.widgets.Widget.callSuper(Widget.java:236)
+	at org.eclipse.swt.widgets.Widget.mouseDownSuper(Widget.java:1147)
+	at org.eclipse.swt.widgets.Widget.mouseDown(Widget.java:1139)
+	at org.eclipse.swt.widgets.Control.mouseDown(Control.java:2642)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:6320)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper(Native Method)
+	at org.eclipse.swt.widgets.Widget.callSuper(Widget.java:236)
+	at org.eclipse.swt.widgets.Widget.windowSendEvent(Widget.java:2264)
+	at org.eclipse.swt.widgets.Shell.windowSendEvent(Shell.java:2510)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:6444)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSendSuper(Native Method)
+	at org.eclipse.swt.widgets.Display.applicationSendEvent(Display.java:5691)
+	at org.eclipse.swt.widgets.Display.applicationProc(Display.java:5831)
+	at org.eclipse.swt.internal.cocoa.OS.objc_msgSend(Native Method)
+	at org.eclipse.swt.internal.cocoa.NSApplication.sendEvent(NSApplication.java:117)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3985)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:823)
+	at org.eclipse.jface.window.Window.open(Window.java:799)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:609)
+	at org.eclipse.jface.dialogs.MessageDialog.open(MessageDialog.java:405)
+	at org.eclipse.jface.dialogs.MessageDialog.openError(MessageDialog.java:491)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.lambda$4(DSFDelegate.java:347)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate$$Lambda$2209/0x00000000276b85f0.run(Unknown Source)
+	at org.eclipse.ui.internal.PendingSyncExec.run(PendingSyncExec.java:68)
+	at org.eclipse.ui.internal.UILockListener.doPendingWork(UILockListener.java:172)
+	at org.eclipse.ui.internal.UILockListener.aboutToWait(UILockListener.java:140)
+	at org.eclipse.core.internal.jobs.LockManager.aboutToWait(LockManager.java:105)
+	at org.eclipse.core.internal.jobs.JobManager.join(JobManager.java:990)
+	at org.eclipse.core.internal.jobs.InternalJob.join(InternalJob.java:355)
+	at org.eclipse.core.runtime.jobs.Job.join(Job.java:531)
+	at org.eclipse.tm.internal.terminal.emulator.VT100TerminalControl.disconnectTerminal(VT100TerminalControl.java:469)
+	at org.eclipse.tm.internal.terminal.emulator.VT100TerminalControl.disposeTerminal(VT100TerminalControl.java:415)
+	at org.eclipse.remote.internal.console.TerminalConsolePage.dispose(TerminalConsolePage.java:158)
+	at org.eclipse.ui.internal.console.ConsoleView.doDestroyPage(ConsoleView.java:296)
+	at org.eclipse.ui.part.PageBookView.removePage(PageBookView.java:810)
+	at org.eclipse.ui.part.PageBookView.lambda$3(PageBookView.java:476)
+	at org.eclipse.ui.part.PageBookView$$Lambda$2210/0x0000000027556708.accept(Unknown Source)
+	at java.base@17.0.11/java.util.HashMap$Values.forEach(HashMap.java:1065)
+	at org.eclipse.ui.part.PageBookView.dispose(PageBookView.java:476)
+	at org.eclipse.ui.internal.console.ConsoleView.dispose(ConsoleView.java:368)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.invalidate(CompatibilityPart.java:264)
+	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.destroy(CompatibilityPart.java:421)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:976)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:938)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.uninject(InjectorImpl.java:181)
+	at org.eclipse.e4.core.internal.di.Requestor.uninject(Requestor.java:177)
+	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:89)
+	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:103)
+	at org.eclipse.e4.core.internal.contexts.EclipseContext.removeListenersTo(EclipseContext.java:487)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.uninject(ContextInjectionFactory.java:185)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:947)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:861)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:845)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.disposeWidget(ElementReferenceRenderer.java:113)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:938)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:861)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:845)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.subscribeTopicToBeRendered(PartRenderingEngine.java:185)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.di.internal.extensions.EventObjectSupplier$DIEventHandler.handleEvent(EventObjectSupplier.java:92)
+	at org.eclipse.equinox.internal.event.EventHandlerWrapper.handleEvent(EventHandlerWrapper.java:208)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:206)
+	at org.eclipse.equinox.internal.event.EventHandlerTracker.dispatchEvent(EventHandlerTracker.java:1)
+	at org.eclipse.osgi.framework.eventmgr.EventManager.dispatchEvent(EventManager.java:234)
+	at org.eclipse.osgi.framework.eventmgr.ListenerQueue.dispatchEventSynchronous(ListenerQueue.java:151)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.dispatchEvent(EventAdminImpl.java:133)
+	at org.eclipse.equinox.internal.event.EventAdminImpl.sendEvent(EventAdminImpl.java:75)
+	at org.eclipse.equinox.internal.event.EventComponent.sendEvent(EventComponent.java:44)
+	at org.eclipse.e4.ui.services.internal.events.EventBroker.send(EventBroker.java:55)
+	at org.eclipse.e4.ui.internal.workbench.UIEventPublisher.notifyChanged(UIEventPublisher.java:63)
+	at org.eclipse.emf.common.notify.impl.BasicNotifierImpl.eNotify(BasicNotifierImpl.java:424)
+	at org.eclipse.e4.ui.model.application.ui.impl.UIElementImpl.setToBeRendered(UIElementImpl.java:314)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.hidePart(PartServiceImpl.java:1410)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.hidePart(PartServiceImpl.java:1340)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer.closePart(StackRenderer.java:1337)
+	at org.eclipse.e4.ui.workbench.renderers.swt.StackRenderer$3.close(StackRenderer.java:1197)
+	at org.eclipse.swt.custom.CTabFolder.onMouse(CTabFolder.java:1969)
+	at org.eclipse.swt.custom.CTabFolder.lambda$0(CTabFolder.java:337)
+	at org.eclipse.swt.custom.CTabFolder$$Lambda$407/0x0000000026558cf8.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4645)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1524)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1547)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1532)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1325)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4412)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3988)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.ui.internal.Workbench$$Lambda$231/0x000000002633ee90.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base@17.0.11/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base@17.0.11/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base@17.0.11/java.lang.reflect.Method.invoke(Method.java:568)
+	at app//org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at app//org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at app//org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-12-10 20:24:47.288
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-12-10 20:24:47.289
+!MESSAGE /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-12-10 20:25:00.559
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-12-10 20:25:00.560
+!MESSAGE /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2024-12-12 18:01:22.569 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-12-12 20:01:31.270
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/bluepill/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-12-12 20:01:43.635
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.urischeme 4 0 2024-12-12 20:01:47.604
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY org.eclipse.jface 2 0 2024-12-12 20:19:24.571
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2024-12-12 20:19:24.572
+!MESSAGE A conflict occurred for COMMAND+INSERT:
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.copy,Copy,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm.terminal.copy"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(COMMAND+INSERT,
+	ParameterizedCommand(Command(AnsiConsole.command.copy_without_escapes,Copy Text Without ANSI Escapes,
+		Copy the console content to clipboard, removing the escape sequences,
+		Category(AnsiConsole.command.categoryid,ANSI Support Commands,null,true),
+		WorkbenchHandlerServiceHandler("AnsiConsole.command.copy_without_escapes"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.console.ConsoleView,,,system)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-12-12 20:19:47.231
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-12-12 20:19:47.233
+!MESSAGE /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2024-12-12 20:28:09.952
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2024-12-12 20:28:09.953
+!MESSAGE /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/bluepill/BLUEPILL/Debug/BLUEPILL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 20:54:04.618
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 8 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 20:54:04.620
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 20:54:04.621
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 8 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 20:54:04.621
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 20:55:50.346
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.initialReconcile(CReconcilingStrategy.java:123)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:119)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.initialReconcile(CCompositeReconcilingStrategy.java:108)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.initialProcess(CReconciler.java:335)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 20:55:58.558
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.initialReconcile(CReconcilingStrategy.java:123)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:119)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.initialReconcile(CCompositeReconcilingStrategy.java:108)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.initialProcess(CReconciler.java:335)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 20:56:22.839
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 20:59:18.824
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:10:50.957
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 10 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:10:50.958
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:10:50.958
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 10 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:10:50.959
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:17:24.099
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 13 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:17:24.100
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:17:24.100
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 13 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:17:24.101
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-12-12 21:30:50.352
+!MESSAGE Indexed 'BLUEPILL' (26 sources, 119 headers) in 7.81 sec: 10,237 declarations; 56,641 references; 2 unresolved inclusions; 36 syntax errors; 188 unresolved names (0.28%)
+
+!ENTRY org.eclipse.cdt.ui 4 4 2024-12-12 21:30:51.745
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/BLUEPILL/Core/Src/main.c)[376]: java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.cdt.internal.ui.text.correction.MarkerResolutionProposal.getAdditionalProposalInfo(MarkerResolutionProposal.java:62)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$4.lambda$0(AdditionalInfoController.java:183)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4367)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3990)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+!SUBENTRY 1 org.eclipse.core.resources 4 376 2024-12-12 21:30:51.781
+!MESSAGE Marker id 842 not found.
+!STACK 0
+java.lang.IllegalStateException
+	at org.eclipse.core.internal.resources.Marker.checkInfo(Marker.java:63)
+	at org.eclipse.core.internal.resources.Marker.getAttribute(Marker.java:108)
+	at org.eclipse.cdt.internal.ui.text.correction.MarkerResolutionProposal.getAdditionalProposalInfo(MarkerResolutionProposal.java:62)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$Timer$4.lambda$0(AdditionalInfoController.java:183)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:132)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4367)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3990)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:648)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:342)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:555)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:36:10.707
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 19 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:36:10.709
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:36:10.712
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 19 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 21:36:10.712
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:23:36.728
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.initialReconcile(CReconcilingStrategy.java:123)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.initialReconcile(CompositeReconcilingStrategy.java:119)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.initialReconcile(CCompositeReconcilingStrategy.java:108)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.initialProcess(MonoReconciler.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.initialProcess(CReconciler.java:335)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:177)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:26:03.539
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:39:47.487
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:42:46.939
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 26 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:42:46.942
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:42:46.946
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 26 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:42:46.946
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:45:48.887
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:46:09.409
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 27 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:46:09.411
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:46:09.412
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 27 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:46:09.412
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:47:59.802
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:55:29.073
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 22:56:10.154
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:57:01.346
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 29 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:57:01.348
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:57:01.349
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 29 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 22:57:01.349
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:06:30.657
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:08:52.947
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:12:50.534
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:14:00.852
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:14:48.017
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:15:38.957
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:15:56.732
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:16:29.277
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 36 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:16:29.279
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:16:29.279
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 36 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:16:29.279
+!MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:17:28.026
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY org.eclipse.cdt.codan.core 4 1 2024-12-12 23:20:55.241
+!MESSAGE Internal Error
+!STACK 0
+java.lang.NullPointerException: Cannot invoke "org.eclipse.cdt.core.dom.ast.IScope.getKind()" because "scope" is null
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker$VariableDeclarationVisitor.visit(SymbolShadowingChecker.java:140)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:144)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTParameterDeclaration.accept(CASTParameterDeclaration.java:102)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTFunctionDeclarator.postAccept(CASTFunctionDeclarator.java:94)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTDeclarator.accept(CASTDeclarator.java:179)
+	at org.eclipse.cdt.internal.core.dom.parser.c.CASTSimpleDeclaration.accept(CASTSimpleDeclaration.java:111)
+	at org.eclipse.cdt.internal.core.dom.parser.ASTTranslationUnit.accept(ASTTranslationUnit.java:289)
+	at org.eclipse.cdt.codan.internal.checkers.SymbolShadowingChecker.processAst(SymbolShadowingChecker.java:68)
+	at org.eclipse.cdt.codan.core.cxx.model.AbstractIndexAstChecker.processModel(AbstractIndexAstChecker.java:116)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.processResource(CodanRunner.java:95)
+	at org.eclipse.cdt.codan.internal.core.CodanRunner.runInEditor(CodanRunner.java:50)
+	at org.eclipse.cdt.codan.internal.core.CodanBuilder.processResource(CodanBuilder.java:130)
+	at org.eclipse.cdt.codan.core.cxx.internal.model.CxxCodanReconciler.reconciledAst(CxxCodanReconciler.java:40)
+	at org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler.reconciled(CodanCReconciler.java:60)
+	at org.eclipse.cdt.internal.ui.editor.CEditor.reconciled(CEditor.java:3107)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:100)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:25:12.643
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 39 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:25:12.645
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:25:12.646
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 39 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:25:12.646
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:26:05.011
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 40 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:26:05.013
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:26:05.013
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 40 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-12-12 23:26:05.013
+!MESSAGE Existing sessions are:

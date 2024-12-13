@@ -1,46 +1,52 @@
-21:31:04 **** Incremental Build of configuration Debug for project BLUEPILL ****
+23:25:56 **** Incremental Build of configuration Debug for project BLUEPILL ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 In file included from ../Core/Inc/stm32f1xx_hal_conf.h:334,
                  from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:3:
+                 from ../Core/Src/main.c:20:
 ../Core/Src/main.c: In function 'mppt':
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:1395:69: warning: assignment to 'uint32_t' {aka 'long unsigned int'} from 'int *' makes integer from pointer without a cast [-Wint-conversion]
  1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
       |                                                                     ^
-../Core/Src/main.c:106:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
-  106 |     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
-      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:123:9: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  123 |         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
+      |         ^~~~~~~~~~~~~~~~~~~~~
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:1396:69: warning: assignment to 'uint32_t' {aka 'long unsigned int'} from 'int *' makes integer from pointer without a cast [-Wint-conversion]
  1396 |    ((__CHANNEL__) == TIM_CHANNEL_2) ? ((__HANDLE__)->Instance->CCR2 = (__COMPARE__)) :\
       |                                                                     ^
-../Core/Src/main.c:106:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
-  106 |     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
-      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:123:9: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  123 |         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
+      |         ^~~~~~~~~~~~~~~~~~~~~
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:1397:69: warning: assignment to 'uint32_t' {aka 'long unsigned int'} from 'int *' makes integer from pointer without a cast [-Wint-conversion]
  1397 |    ((__CHANNEL__) == TIM_CHANNEL_3) ? ((__HANDLE__)->Instance->CCR3 = (__COMPARE__)) :\
       |                                                                     ^
-../Core/Src/main.c:106:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
-  106 |     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
-      |     ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:123:9: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  123 |         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
+      |         ^~~~~~~~~~~~~~~~~~~~~
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:1398:34: warning: assignment to 'uint32_t' {aka 'long unsigned int'} from 'int *' makes integer from pointer without a cast [-Wint-conversion]
  1398 |    ((__HANDLE__)->Instance->CCR4 = (__COMPARE__)))
       |                                  ^
-../Core/Src/main.c:106:5: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
-  106 |     __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
-      |     ^~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "BLUEPILL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/bluepill/BLUEPILL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/main.c:123:9: note: in expansion of macro '__HAL_TIM_SET_COMPARE'
+  123 |         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
+      |         ^~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "BLUEPILL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/bluepill/BLUEPILL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: BLUEPILL.elf
  
 arm-none-eabi-size  BLUEPILL.elf 
 arm-none-eabi-objdump -h -S BLUEPILL.elf  > "BLUEPILL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL.elf  "BLUEPILL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL.elf  "BLUEPILL.bin"
    text	   data	    bss	    dec	    hex	filename
-  17292	     96	   2112	  19500	   4c2c	BLUEPILL.elf
+  35760	    472	   2184	  38416	   9610	BLUEPILL.elf
 Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL.hex
+Finished building: BLUEPILL.bin
+ 
  
 Finished building: BLUEPILL.list
  
 
-21:31:06 Build Finished. 0 errors, 4 warnings. (took 1s.66ms)
+23:25:57 Build Finished. 0 errors, 4 warnings. (took 1s.147ms)
 

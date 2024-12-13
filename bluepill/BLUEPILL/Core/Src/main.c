@@ -1,4 +1,21 @@
-
+/* USER CODE BEGIN Header */
+/**
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -8,15 +25,14 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
-#include <string.h>
+#include "stdio.h"
+#include "string.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 //Aquí defines nuevos tipos de datos (typedef)
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -30,7 +46,6 @@
 
 #define PWM_TIMER &htim1
 
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -43,19 +58,16 @@
 /* USER CODE BEGIN PV */
 //defini aca las varaibles privadas
 const int pwmPin = PwmMppt_Pin;    // Cambia por el pin que estés usando
-const int pinVoltageInput = Vpanel_Pin;  // Entrada analógica para medir el voltaje de entrada A0
-const int pinCurrentInput = Ipanel_Pin;  // Entrada analógica para medir la corriente de entrada A1
-
+const int pinVoltageInput = Vpanel_Pin; // Entrada analógica para medir el voltaje de entrada A0
+const int pinCurrentInput = Ipanel_Pin; // Entrada analógica para medir la corriente de entrada A1
 
 // Variables globales
 float V_in = 0;
 float I_in = 0;
 float power = 0;
 float previousPower = 0;
-int dutyCycle = 255 * 0.5;  // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
+int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
 const int deltaDuty = 1;    // Incremento o decremento del Duty Cycle
-
-
 
 /* USER CODE END PV */
 
@@ -71,41 +83,46 @@ void mppt(int *dutyCycle, float *power, float *previousPower);
 /* USER CODE BEGIN 0 */
 
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
-    ADC_ChannelConfTypeDef sConfig = {0};
+	ADC_ChannelConfTypeDef sConfig = { 0 };
 
-    // Configurar el canal que se desea leer
-    sConfig.Channel = channel;
-    sConfig.Rank = ADC_REGULAR_RANK_1;
-    sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+	// Configurar el canal que se desea leer
+	sConfig.Channel = channel;
+	sConfig.Rank = ADC_REGULAR_RANK_1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
 
-    if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
-        Error_Handler(); // Maneja errores de configuración
-    }
+	if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
+		Error_Handler(); // Maneja errores de configuración
+	}
 
-    // Inicia la conversión del ADC
-    HAL_ADC_Start(hadc);
+	// Inicia la conversión del ADC
+	HAL_ADC_Start(hadc);
 
-    // Espera hasta que la conversión termine
-    if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
-        // Retorna el valor convertido
-        return HAL_ADC_GetValue(hadc);
-    }
+	// Espera hasta que la conversión termine
+	if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
+		// Retorna el valor convertido
+		return HAL_ADC_GetValue(hadc);
+	}
 
-    return 0; // Retorna 0 en caso de error
+	return 0; // Retorna 0 en caso de error
 }
 
 void mppt(int *dutyCycle, float *power, float *previousPower) {
-    if (*power > *previousPower) {
-        if (*dutyCycle < 255) *dutyCycle += deltaDuty;  // Si la potencia ha aumentado, continuar ajustando en la misma dirección
-    } else {
-        if (*dutyCycle > 0) *dutyCycle -= deltaDuty;    // Si la potencia ha disminuido, invertir la dirección del ajuste
-    }
+	if (*power > *previousPower) {
+		if (*dutyCycle < 255)
+			*dutyCycle += deltaDuty; // Si la potencia ha aumentado, continuar ajustando en la misma dirección
+	} else {
+		if (*dutyCycle > 0)
+			*dutyCycle -= deltaDuty; // Si la potencia ha disminuido, invertir la dirección del ajuste
+	}
 
-    if (*dutyCycle < 0) *dutyCycle = 0;                 // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
-    if (*dutyCycle > 255) *dutyCycle = 255;
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);                  // Actualizar el PWM con el nuevo Duty Cycle
+	if (*dutyCycle < 0)
+		*dutyCycle = 0; // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
+	if (*dutyCycle > 255)
+		*dutyCycle = 255;
 
-    *previousPower = *power;                            // Actualizar `previousPower` con el valor actual de `power`
+	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
+
+	*previousPower = *power; // Actualizar `previousPower` con el valor actual de `power`
 }
 
 /* USER CODE END 0 */
@@ -118,10 +135,9 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  SystemClock_Config();
+	SystemClock_Config();
 
-    // Iniciar PWM
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -145,48 +161,59 @@ int main(void)
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   MX_TIM1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-
+	// Iniciar PWM
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+	//HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	int i =0;
+	printf("sistem up and working \n \r");
+	while (1) {
+		// Leer voltaje y corriente usando ADC
+		V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
+		I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
 
-      // Leer voltaje y corriente usando ADC
-      V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
-      I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
+		// Calcular potencia
+		power = V_in * I_in;
 
-      // Calcular potencia
-      power = V_in * I_in;
+		// Algoritmo MPPT
+		if(i==0) power = 0.5;
+		if(i==10) power = 1.5;
+		if(i>10) i = 0;
+		i++;
+		mppt(&dutyCycle, &power, &previousPower); //no anda no modifica el duty revisar
 
-      // Algoritmo MPPT
-      mppt(&dutyCycle, &power, &previousPower);
+		// Ajustar ciclo de trabajo del PWM
+		//dutyCycle = 150;
+		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
+		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, dutyCycle);
+		// Imprimir datos al puerto serie
+		char buffer[100];
+		sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in,
+				I_in, power); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart1, (uint8_t*) buffer, strlen(buffer),
+				HAL_MAX_DELAY);
 
-      // Ajustar ciclo de trabajo del PWM
-      __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
+		// Guardar la potencia anterior
+		previousPower = power;
 
-      // Imprimir datos al puerto serie
-      char buffer[100];
-      sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in, I_in, power); // @suppress("Float formatting support")
-      HAL_UART_Transmit(&huart1, (uint8_t *)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-      mppt(&dutyCycle,&power,&previousPower);
-      // Guardar la potencia anterior
-      previousPower = power;
-
-
-
-//		Para prender y apagar el led que viene en la bluepil
+		//char prueba[27]="welcome to the jungle! \n\r";
+		//HAL_UART_Transmit(&huart1, (uint8_t *)prueba, 27, 1000);
+//
+////		Para prender y apagar el led que viene en la bluepil
 //      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
 //      HAL_Delay(1000); // 1 segundo de delay
 //      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-      HAL_Delay(1000); // 1 segundo de delay
+      HAL_Delay(500); // 1 segundo de delay
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+	}
   /* USER CODE END 3 */
 }
 
@@ -247,11 +274,10 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 
