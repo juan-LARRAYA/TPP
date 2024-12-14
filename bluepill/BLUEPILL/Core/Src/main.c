@@ -67,7 +67,6 @@ float I_in = 0;
 float power = 0;
 float previousPower = 0;
 int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
-const int deltaDuty = 1;    // Incremento o decremento del Duty Cycle
 
 /* USER CODE END PV */
 
@@ -107,6 +106,7 @@ uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
 }
 
 void mppt(int *dutyCycle, float *power, float *previousPower) {
+	const int deltaDuty = 15;    // Incremento o decremento del Duty Cycle
 	if (*power > *previousPower) {
 		if (*dutyCycle < 255)
 			*dutyCycle += deltaDuty; // Si la potencia ha aumentado, continuar ajustando en la misma dirección
@@ -119,8 +119,6 @@ void mppt(int *dutyCycle, float *power, float *previousPower) {
 		*dutyCycle = 0; // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
 	if (*dutyCycle > 255)
 		*dutyCycle = 255;
-
-	__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle); // Actualizar el PWM con el nuevo Duty Cycle
 
 	*previousPower = *power; // Actualizar `previousPower` con el valor actual de `power`
 }
@@ -171,8 +169,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	int i =0;
-	printf("sistem up and working \n \r");
 	while (1) {
 		// Leer voltaje y corriente usando ADC
 		V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
@@ -182,11 +178,14 @@ int main(void)
 		power = V_in * I_in;
 
 		// Algoritmo MPPT
+		int i =0;
 		if(i==0) power = 0.5;
 		if(i==10) power = 1.5;
 		if(i>10) i = 0;
 		i++;
-		mppt(&dutyCycle, &power, &previousPower); //no anda no modifica el duty revisar
+
+		mppt(&dutyCycle, &power, &previousPower);
+
 
 		// Ajustar ciclo de trabajo del PWM
 		//dutyCycle = 150;
