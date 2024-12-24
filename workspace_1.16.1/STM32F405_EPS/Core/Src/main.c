@@ -22,6 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
+#include "string.h"
 
 /* USER CODE END Includes */
 
@@ -56,6 +58,12 @@ UART_HandleTypeDef huart4;
 
 /* USER CODE BEGIN PV */
 
+float VX_in = 0, VY_in = 0, VZ_in = 0;
+float IX_in = 0, IY_in = 0, IZ_in = 0;
+float powerX = 0, powerY = 0, powerZ = 0;
+float prevPowerX = 0, prevPowerY = 0, prevPowerZ = 0;
+int dutyCycleX = 255 * 0.5, dutyCycleY = 255 * 0.5, dutyCycleZ = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,8 +80,52 @@ static void MX_TIM5_Init(void);
 static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
+uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
+void mppt(int *dutyCycle, float *power, float *prevPower);
 
+/* USER CODE END PFP */
+uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
+    ADC_ChannelConfTypeDef sConfig = { 0 };
+
+    // Configurar el canal que se desea leer
+    sConfig.Channel = channel;
+    sConfig.Rank = 0x00000001U; // Reemplazado con el valor correcto
+    sConfig.SamplingTime = 0x00000000U; // Reemplazado con el valor correcto
+
+    if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
+        Error_Handler(); // Maneja errores de configuración
+    }
+
+    // Inicia la conversión del ADC
+    HAL_ADC_Start(hadc);
+
+    // Espera hasta que la conversión termine
+    if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
+        // Retorna el valor convertido
+        return HAL_ADC_GetValue(hadc);
+    }
+
+    return 0; // Retorna 0 en caso de error
+}
+
+
+void mppt(int *dutyCycle, float *power, float *prevPower) {
+	const int deltaDuty = 10;    // Incremento o decremento del Duty Cycle
+	if (*power > *prevPower) {
+		if (*dutyCycle < 255)
+			*dutyCycle += deltaDuty; // Si la potencia ha aumentado, continuar ajustando en la misma dirección
+	} else {
+		if (*dutyCycle > 0)
+			*dutyCycle -= deltaDuty; // Si la potencia ha disminuido, invertir la dirección del ajuste
+	}
+
+	if (*dutyCycle < 0)
+		*dutyCycle = 0; // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
+	if (*dutyCycle > 255)
+		*dutyCycle = 255;
+
+	*prevPower = *power; // Actualizar `prevPower` con el valor actual de `power`
+}
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
@@ -120,12 +172,64 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	  	//MPPT
+		VX_in = readADC(&hadc2, ADC_CHANNEL_11) * (3.3 / 4095.0);
+		IX_in = readADC(&hadc2, ADC_CHANNEL_10) * (3.3 / 4095.0);
+		powerX = VX_in * IX_in;
+
+		VY_in = readADC(&hadc1, ADC_CHANNEL_13) * (3.3 / 4095.0);
+		IY_in = readADC(&hadc1, ADC_CHANNEL_12) * (3.3 / 4095.0);
+		powerY = VY_in * IY_in;
+
+		VZ_in = readADC(&hadc3, ADC_CHANNEL_2) * (3.3 / 4095.0);
+		IZ_in = readADC(&hadc3, ADC_CHANNEL_1) * (3.3 / 4095.0);
+		powerZ = VZ_in * IZ_in;
+
+
+		mppt(&dutyCycleX, &powerX, &prevPowerX);
+		mppt(&dutyCycleY, &powerY, &prevPowerY);
+		mppt(&dutyCycleZ, &powerZ, &prevPowerZ);
+
+		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, dutyCycleX);
+		__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, dutyCycleY);
+		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, dutyCycleZ);
+
+
+		// Imprimir datos al puerto serie
+		char buffer[100];
+		sprintf(buffer, "VX_in: %.2f V, IX_in: %.2f A, PowerX: %.2f W\n", VX_in, IX_in, powerX); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+		sprintf(buffer, "VY_in: %.2f V, IY_in: %.2f A, PowerY: %.2f W\n", VY_in, IY_in, powerY); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		//PDU
+
+		//COMUNICACION BQ76905
+
+		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
+
+		//COMUNICACION ENTRE PLACAS
+
+		//MODO BAJO CONSUMO
+
+		//ALMACENAMIENTO EN FLASH DE VARIBLES
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

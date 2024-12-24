@@ -1,23 +1,10 @@
-23:34:06 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
+17:16:25 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
 make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "BLUEPILL_CHINA_128k.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/BLUEPILL_CHINA_128k/STM32F103CBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL_CHINA_128k.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: BLUEPILL_CHINA_128k.elf
- 
 arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-arm-none-eabi-objdump -h -S BLUEPILL_CHINA_128k.elf  > "BLUEPILL_CHINA_128k.list"
-arm-none-eabi-objcopy  -O ihex BLUEPILL_CHINA_128k.elf  "BLUEPILL_CHINA_128k.hex"
-arm-none-eabi-objcopy  -O binary BLUEPILL_CHINA_128k.elf  "BLUEPILL_CHINA_128k.bin"
    text	   data	    bss	    dec	    hex	filename
   35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
 Finished building: default.size.stdout
  
-Finished building: BLUEPILL_CHINA_128k.hex
-Finished building: BLUEPILL_CHINA_128k.bin
- 
- 
-Finished building: BLUEPILL_CHINA_128k.list
- 
 
-23:34:07 Build Finished. 0 errors, 0 warnings. (took 1s.231ms)
+17:16:25 Build Finished. 0 errors, 0 warnings. (took 342ms)
 

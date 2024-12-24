@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00018fef  00000000  00000000  0001a260  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000ea2e  00000000  00000000  0003324f  2**0
+ 17 .debug_line   0000ea2d  00000000  00000000  0003324f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00090ff3  00000000  00000000  00041c7d  2**0
+ 18 .debug_str    00090ff3  00000000  00000000  00041c7c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000d2c70  2**0
+ 19 .comment      00000043  00000000  00000000  000d2c6f  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00004d94  00000000  00000000  000d2cb4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -1374,200 +1374,197 @@ int main(void)
  8000f08:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
  8000f0c:	b09e      	sub	sp, #120	@ 0x78
  8000f0e:	af04      	add	r7, sp, #16
-
-  /* USER CODE BEGIN 1 */
-	SystemClock_Config();
- 8000f10:	f000 f8b4 	bl	800107c <SystemClock_Config>
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
- 8000f14:	f000 fc64 	bl	80017e0 <HAL_Init>
+ 8000f10:	f000 fc66 	bl	80017e0 <HAL_Init>
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
- 8000f18:	f000 f8b0 	bl	800107c <SystemClock_Config>
+ 8000f14:	f000 f8b2 	bl	800107c <SystemClock_Config>
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
- 8000f1c:	f000 f9e8 	bl	80012f0 <MX_GPIO_Init>
+ 8000f18:	f000 f9ea 	bl	80012f0 <MX_GPIO_Init>
   MX_ADC1_Init();
- 8000f20:	f000 f8fc 	bl	800111c <MX_ADC1_Init>
+ 8000f1c:	f000 f8fe 	bl	800111c <MX_ADC1_Init>
   MX_TIM1_Init();
- 8000f24:	f000 f938 	bl	8001198 <MX_TIM1_Init>
+ 8000f20:	f000 f93a 	bl	8001198 <MX_TIM1_Init>
   MX_USART1_UART_Init();
- 8000f28:	f000 f9b8 	bl	800129c <MX_USART1_UART_Init>
+ 8000f24:	f000 f9ba 	bl	800129c <MX_USART1_UART_Init>
   /* USER CODE BEGIN 2 */
 	// Iniciar PWM
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
- 8000f2c:	2100      	movs	r1, #0
- 8000f2e:	484a      	ldr	r0, [pc, #296]	@ (8001058 <main+0x150>)
- 8000f30:	f002 f954 	bl	80031dc <HAL_TIM_PWM_Start>
+ 8000f28:	2100      	movs	r1, #0
+ 8000f2a:	484b      	ldr	r0, [pc, #300]	@ (8001058 <main+0x150>)
+ 8000f2c:	f002 f956 	bl	80031dc <HAL_TIM_PWM_Start>
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
 		// Leer voltaje y corriente usando ADC
 		V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
- 8000f34:	2101      	movs	r1, #1
- 8000f36:	4849      	ldr	r0, [pc, #292]	@ (800105c <main+0x154>)
- 8000f38:	f7ff ff76 	bl	8000e28 <readADC>
- 8000f3c:	4603      	mov	r3, r0
- 8000f3e:	4618      	mov	r0, r3
- 8000f40:	f7ff fb04 	bl	800054c <__aeabi_ui2d>
- 8000f44:	a342      	add	r3, pc, #264	@ (adr r3, 8001050 <main+0x148>)
- 8000f46:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000f4a:	f7ff fb79 	bl	8000640 <__aeabi_dmul>
- 8000f4e:	4602      	mov	r2, r0
- 8000f50:	460b      	mov	r3, r1
- 8000f52:	4610      	mov	r0, r2
- 8000f54:	4619      	mov	r1, r3
- 8000f56:	f7ff fe6b 	bl	8000c30 <__aeabi_d2f>
- 8000f5a:	4603      	mov	r3, r0
- 8000f5c:	4a40      	ldr	r2, [pc, #256]	@ (8001060 <main+0x158>)
- 8000f5e:	6013      	str	r3, [r2, #0]
+ 8000f30:	2101      	movs	r1, #1
+ 8000f32:	484a      	ldr	r0, [pc, #296]	@ (800105c <main+0x154>)
+ 8000f34:	f7ff ff78 	bl	8000e28 <readADC>
+ 8000f38:	4603      	mov	r3, r0
+ 8000f3a:	4618      	mov	r0, r3
+ 8000f3c:	f7ff fb06 	bl	800054c <__aeabi_ui2d>
+ 8000f40:	a343      	add	r3, pc, #268	@ (adr r3, 8001050 <main+0x148>)
+ 8000f42:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000f46:	f7ff fb7b 	bl	8000640 <__aeabi_dmul>
+ 8000f4a:	4602      	mov	r2, r0
+ 8000f4c:	460b      	mov	r3, r1
+ 8000f4e:	4610      	mov	r0, r2
+ 8000f50:	4619      	mov	r1, r3
+ 8000f52:	f7ff fe6d 	bl	8000c30 <__aeabi_d2f>
+ 8000f56:	4603      	mov	r3, r0
+ 8000f58:	4a41      	ldr	r2, [pc, #260]	@ (8001060 <main+0x158>)
+ 8000f5a:	6013      	str	r3, [r2, #0]
 		I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
- 8000f60:	2106      	movs	r1, #6
- 8000f62:	483e      	ldr	r0, [pc, #248]	@ (800105c <main+0x154>)
- 8000f64:	f7ff ff60 	bl	8000e28 <readADC>
- 8000f68:	4603      	mov	r3, r0
- 8000f6a:	4618      	mov	r0, r3
- 8000f6c:	f7ff faee 	bl	800054c <__aeabi_ui2d>
- 8000f70:	a337      	add	r3, pc, #220	@ (adr r3, 8001050 <main+0x148>)
- 8000f72:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8000f76:	f7ff fb63 	bl	8000640 <__aeabi_dmul>
- 8000f7a:	4602      	mov	r2, r0
- 8000f7c:	460b      	mov	r3, r1
- 8000f7e:	4610      	mov	r0, r2
- 8000f80:	4619      	mov	r1, r3
- 8000f82:	f7ff fe55 	bl	8000c30 <__aeabi_d2f>
- 8000f86:	4603      	mov	r3, r0
- 8000f88:	4a36      	ldr	r2, [pc, #216]	@ (8001064 <main+0x15c>)
- 8000f8a:	6013      	str	r3, [r2, #0]
+ 8000f5c:	2106      	movs	r1, #6
+ 8000f5e:	483f      	ldr	r0, [pc, #252]	@ (800105c <main+0x154>)
+ 8000f60:	f7ff ff62 	bl	8000e28 <readADC>
+ 8000f64:	4603      	mov	r3, r0
+ 8000f66:	4618      	mov	r0, r3
+ 8000f68:	f7ff faf0 	bl	800054c <__aeabi_ui2d>
+ 8000f6c:	a338      	add	r3, pc, #224	@ (adr r3, 8001050 <main+0x148>)
+ 8000f6e:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8000f72:	f7ff fb65 	bl	8000640 <__aeabi_dmul>
+ 8000f76:	4602      	mov	r2, r0
+ 8000f78:	460b      	mov	r3, r1
+ 8000f7a:	4610      	mov	r0, r2
+ 8000f7c:	4619      	mov	r1, r3
+ 8000f7e:	f7ff fe57 	bl	8000c30 <__aeabi_d2f>
+ 8000f82:	4603      	mov	r3, r0
+ 8000f84:	4a37      	ldr	r2, [pc, #220]	@ (8001064 <main+0x15c>)
+ 8000f86:	6013      	str	r3, [r2, #0]
 
 		// Calcular potencia
 		power = V_in * I_in;
- 8000f8c:	4b34      	ldr	r3, [pc, #208]	@ (8001060 <main+0x158>)
- 8000f8e:	681b      	ldr	r3, [r3, #0]
- 8000f90:	4a34      	ldr	r2, [pc, #208]	@ (8001064 <main+0x15c>)
- 8000f92:	6812      	ldr	r2, [r2, #0]
- 8000f94:	4611      	mov	r1, r2
- 8000f96:	4618      	mov	r0, r3
- 8000f98:	f7ff f8e2 	bl	8000160 <__aeabi_fmul>
- 8000f9c:	4603      	mov	r3, r0
- 8000f9e:	461a      	mov	r2, r3
- 8000fa0:	4b31      	ldr	r3, [pc, #196]	@ (8001068 <main+0x160>)
- 8000fa2:	601a      	str	r2, [r3, #0]
+ 8000f88:	4b35      	ldr	r3, [pc, #212]	@ (8001060 <main+0x158>)
+ 8000f8a:	681b      	ldr	r3, [r3, #0]
+ 8000f8c:	4a35      	ldr	r2, [pc, #212]	@ (8001064 <main+0x15c>)
+ 8000f8e:	6812      	ldr	r2, [r2, #0]
+ 8000f90:	4611      	mov	r1, r2
+ 8000f92:	4618      	mov	r0, r3
+ 8000f94:	f7ff f8e4 	bl	8000160 <__aeabi_fmul>
+ 8000f98:	4603      	mov	r3, r0
+ 8000f9a:	461a      	mov	r2, r3
+ 8000f9c:	4b32      	ldr	r3, [pc, #200]	@ (8001068 <main+0x160>)
+ 8000f9e:	601a      	str	r2, [r3, #0]
 
 		// Algoritmo MPPT
 		int i =0;
- 8000fa4:	2300      	movs	r3, #0
- 8000fa6:	667b      	str	r3, [r7, #100]	@ 0x64
+ 8000fa0:	2300      	movs	r3, #0
+ 8000fa2:	667b      	str	r3, [r7, #100]	@ 0x64
 		if(i==0) power = 0.5;
- 8000fa8:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
- 8000faa:	2b00      	cmp	r3, #0
- 8000fac:	d103      	bne.n	8000fb6 <main+0xae>
- 8000fae:	4b2e      	ldr	r3, [pc, #184]	@ (8001068 <main+0x160>)
- 8000fb0:	f04f 527c 	mov.w	r2, #1056964608	@ 0x3f000000
- 8000fb4:	601a      	str	r2, [r3, #0]
+ 8000fa4:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
+ 8000fa6:	2b00      	cmp	r3, #0
+ 8000fa8:	d103      	bne.n	8000fb2 <main+0xaa>
+ 8000faa:	4b2f      	ldr	r3, [pc, #188]	@ (8001068 <main+0x160>)
+ 8000fac:	f04f 527c 	mov.w	r2, #1056964608	@ 0x3f000000
+ 8000fb0:	601a      	str	r2, [r3, #0]
 		if(i==10) power = 1.5;
- 8000fb6:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
- 8000fb8:	2b0a      	cmp	r3, #10
- 8000fba:	d103      	bne.n	8000fc4 <main+0xbc>
- 8000fbc:	4b2a      	ldr	r3, [pc, #168]	@ (8001068 <main+0x160>)
- 8000fbe:	f04f 527f 	mov.w	r2, #1069547520	@ 0x3fc00000
- 8000fc2:	601a      	str	r2, [r3, #0]
+ 8000fb2:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
+ 8000fb4:	2b0a      	cmp	r3, #10
+ 8000fb6:	d103      	bne.n	8000fc0 <main+0xb8>
+ 8000fb8:	4b2b      	ldr	r3, [pc, #172]	@ (8001068 <main+0x160>)
+ 8000fba:	f04f 527f 	mov.w	r2, #1069547520	@ 0x3fc00000
+ 8000fbe:	601a      	str	r2, [r3, #0]
 		if(i>10) i = 0;
- 8000fc4:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
- 8000fc6:	2b0a      	cmp	r3, #10
- 8000fc8:	dd01      	ble.n	8000fce <main+0xc6>
- 8000fca:	2300      	movs	r3, #0
- 8000fcc:	667b      	str	r3, [r7, #100]	@ 0x64
+ 8000fc0:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
+ 8000fc2:	2b0a      	cmp	r3, #10
+ 8000fc4:	dd01      	ble.n	8000fca <main+0xc2>
+ 8000fc6:	2300      	movs	r3, #0
+ 8000fc8:	667b      	str	r3, [r7, #100]	@ 0x64
 		i++;
- 8000fce:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
- 8000fd0:	3301      	adds	r3, #1
- 8000fd2:	667b      	str	r3, [r7, #100]	@ 0x64
+ 8000fca:	6e7b      	ldr	r3, [r7, #100]	@ 0x64
+ 8000fcc:	3301      	adds	r3, #1
+ 8000fce:	667b      	str	r3, [r7, #100]	@ 0x64
 
 		mppt(&dutyCycle, &power, &previousPower);
- 8000fd4:	4a25      	ldr	r2, [pc, #148]	@ (800106c <main+0x164>)
- 8000fd6:	4924      	ldr	r1, [pc, #144]	@ (8001068 <main+0x160>)
- 8000fd8:	4825      	ldr	r0, [pc, #148]	@ (8001070 <main+0x168>)
- 8000fda:	f7ff ff56 	bl	8000e8a <mppt>
+ 8000fd0:	4a26      	ldr	r2, [pc, #152]	@ (800106c <main+0x164>)
+ 8000fd2:	4925      	ldr	r1, [pc, #148]	@ (8001068 <main+0x160>)
+ 8000fd4:	4826      	ldr	r0, [pc, #152]	@ (8001070 <main+0x168>)
+ 8000fd6:	f7ff ff58 	bl	8000e8a <mppt>
 
 
 		// Ajustar ciclo de trabajo del PWM
 		//dutyCycle = 150;
 		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
- 8000fde:	4b24      	ldr	r3, [pc, #144]	@ (8001070 <main+0x168>)
- 8000fe0:	681a      	ldr	r2, [r3, #0]
- 8000fe2:	4b1d      	ldr	r3, [pc, #116]	@ (8001058 <main+0x150>)
- 8000fe4:	681b      	ldr	r3, [r3, #0]
- 8000fe6:	635a      	str	r2, [r3, #52]	@ 0x34
+ 8000fda:	4b25      	ldr	r3, [pc, #148]	@ (8001070 <main+0x168>)
+ 8000fdc:	681a      	ldr	r2, [r3, #0]
+ 8000fde:	4b1e      	ldr	r3, [pc, #120]	@ (8001058 <main+0x150>)
+ 8000fe0:	681b      	ldr	r3, [r3, #0]
+ 8000fe2:	635a      	str	r2, [r3, #52]	@ 0x34
 		// Imprimir datos al puerto serie
 		char buffer[100];
 		sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in,
- 8000fe8:	4b1d      	ldr	r3, [pc, #116]	@ (8001060 <main+0x158>)
- 8000fea:	681b      	ldr	r3, [r3, #0]
- 8000fec:	4618      	mov	r0, r3
- 8000fee:	f7ff facf 	bl	8000590 <__aeabi_f2d>
- 8000ff2:	4680      	mov	r8, r0
- 8000ff4:	4689      	mov	r9, r1
- 8000ff6:	4b1b      	ldr	r3, [pc, #108]	@ (8001064 <main+0x15c>)
- 8000ff8:	681b      	ldr	r3, [r3, #0]
- 8000ffa:	4618      	mov	r0, r3
- 8000ffc:	f7ff fac8 	bl	8000590 <__aeabi_f2d>
- 8001000:	4604      	mov	r4, r0
- 8001002:	460d      	mov	r5, r1
- 8001004:	4b18      	ldr	r3, [pc, #96]	@ (8001068 <main+0x160>)
- 8001006:	681b      	ldr	r3, [r3, #0]
- 8001008:	4618      	mov	r0, r3
- 800100a:	f7ff fac1 	bl	8000590 <__aeabi_f2d>
- 800100e:	4602      	mov	r2, r0
- 8001010:	460b      	mov	r3, r1
- 8001012:	4638      	mov	r0, r7
- 8001014:	e9cd 2302 	strd	r2, r3, [sp, #8]
- 8001018:	e9cd 4500 	strd	r4, r5, [sp]
- 800101c:	4642      	mov	r2, r8
- 800101e:	464b      	mov	r3, r9
- 8001020:	4914      	ldr	r1, [pc, #80]	@ (8001074 <main+0x16c>)
- 8001022:	f003 fd99 	bl	8004b58 <siprintf>
+ 8000fe4:	4b1e      	ldr	r3, [pc, #120]	@ (8001060 <main+0x158>)
+ 8000fe6:	681b      	ldr	r3, [r3, #0]
+ 8000fe8:	4618      	mov	r0, r3
+ 8000fea:	f7ff fad1 	bl	8000590 <__aeabi_f2d>
+ 8000fee:	4680      	mov	r8, r0
+ 8000ff0:	4689      	mov	r9, r1
+ 8000ff2:	4b1c      	ldr	r3, [pc, #112]	@ (8001064 <main+0x15c>)
+ 8000ff4:	681b      	ldr	r3, [r3, #0]
+ 8000ff6:	4618      	mov	r0, r3
+ 8000ff8:	f7ff faca 	bl	8000590 <__aeabi_f2d>
+ 8000ffc:	4604      	mov	r4, r0
+ 8000ffe:	460d      	mov	r5, r1
+ 8001000:	4b19      	ldr	r3, [pc, #100]	@ (8001068 <main+0x160>)
+ 8001002:	681b      	ldr	r3, [r3, #0]
+ 8001004:	4618      	mov	r0, r3
+ 8001006:	f7ff fac3 	bl	8000590 <__aeabi_f2d>
+ 800100a:	4602      	mov	r2, r0
+ 800100c:	460b      	mov	r3, r1
+ 800100e:	4638      	mov	r0, r7
+ 8001010:	e9cd 2302 	strd	r2, r3, [sp, #8]
+ 8001014:	e9cd 4500 	strd	r4, r5, [sp]
+ 8001018:	4642      	mov	r2, r8
+ 800101a:	464b      	mov	r3, r9
+ 800101c:	4915      	ldr	r1, [pc, #84]	@ (8001074 <main+0x16c>)
+ 800101e:	f003 fd9b 	bl	8004b58 <siprintf>
 				I_in, power); // @suppress("Float formatting support")
 		HAL_UART_Transmit(&huart1, (uint8_t*) buffer, strlen(buffer),
- 8001026:	463b      	mov	r3, r7
- 8001028:	4618      	mov	r0, r3
- 800102a:	f7ff f891 	bl	8000150 <strlen>
- 800102e:	4603      	mov	r3, r0
- 8001030:	b29a      	uxth	r2, r3
- 8001032:	4639      	mov	r1, r7
- 8001034:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
- 8001038:	480f      	ldr	r0, [pc, #60]	@ (8001078 <main+0x170>)
- 800103a:	f002 fd4c 	bl	8003ad6 <HAL_UART_Transmit>
+ 8001022:	463b      	mov	r3, r7
+ 8001024:	4618      	mov	r0, r3
+ 8001026:	f7ff f893 	bl	8000150 <strlen>
+ 800102a:	4603      	mov	r3, r0
+ 800102c:	b29a      	uxth	r2, r3
+ 800102e:	4639      	mov	r1, r7
+ 8001030:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
+ 8001034:	4810      	ldr	r0, [pc, #64]	@ (8001078 <main+0x170>)
+ 8001036:	f002 fd4e 	bl	8003ad6 <HAL_UART_Transmit>
 				HAL_MAX_DELAY);
 
 		// Guardar la potencia anterior
 		previousPower = power;
- 800103e:	4b0a      	ldr	r3, [pc, #40]	@ (8001068 <main+0x160>)
- 8001040:	681b      	ldr	r3, [r3, #0]
- 8001042:	4a0a      	ldr	r2, [pc, #40]	@ (800106c <main+0x164>)
- 8001044:	6013      	str	r3, [r2, #0]
+ 800103a:	4b0b      	ldr	r3, [pc, #44]	@ (8001068 <main+0x160>)
+ 800103c:	681b      	ldr	r3, [r3, #0]
+ 800103e:	4a0b      	ldr	r2, [pc, #44]	@ (800106c <main+0x164>)
+ 8001040:	6013      	str	r3, [r2, #0]
 //
 ////		Para prender y apagar el led que viene en la bluepil
 //      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
 //      HAL_Delay(1000); // 1 segundo de delay
 //      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
       HAL_Delay(500); // 1 segundo de delay
- 8001046:	f44f 70fa 	mov.w	r0, #500	@ 0x1f4
- 800104a:	f000 fc2b 	bl	80018a4 <HAL_Delay>
+ 8001042:	f44f 70fa 	mov.w	r0, #500	@ 0x1f4
+ 8001046:	f000 fc2d 	bl	80018a4 <HAL_Delay>
 	while (1) {
- 800104e:	e771      	b.n	8000f34 <main+0x2c>
+ 800104a:	e771      	b.n	8000f30 <main+0x28>
+ 800104c:	f3af 8000 	nop.w
  8001050:	e734d9b4 	.word	0xe734d9b4
  8001054:	3f4a680c 	.word	0x3f4a680c
  8001058:	20000224 	.word	0x20000224

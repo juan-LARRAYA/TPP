@@ -63,13 +63,14 @@ const int pinVoltageInput = V_panel_Pin; // Entrada analógica para medir el vol
 const int pinCurrentInput = I_panel_Pin; // Entrada analógica para medir la corriente de entrada A1
 
 // Variables globales
+
+/* USER CODE END PV */
 float V_in = 0;
 float I_in = 0;
 float power = 0;
 float previousPower = 0;
 int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
 
-/* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -138,7 +139,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	SystemClock_Config();
 
 
   /* USER CODE END 1 */
