@@ -25,6 +25,8 @@
 #include "stdio.h"
 #include "string.h"
 
+#define BQ76905_ADDR (0x08 << 1) // Dirección del BQ76905 desplazada a la izquierda para I2C
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,13 +58,28 @@ TIM_HandleTypeDef htim5;
 
 UART_HandleTypeDef huart4;
 
-/* USER CODE BEGIN PV */
 
+/* USER CODE BEGIN PV */
+//MPPT VARS
 float VX_in = 0, VY_in = 0, VZ_in = 0;
 float IX_in = 0, IY_in = 0, IZ_in = 0;
 float powerX = 0, powerY = 0, powerZ = 0;
 float prevPowerX = 0, prevPowerY = 0, prevPowerZ = 0;
 int dutyCycleX = 255 * 0.5, dutyCycleY = 255 * 0.5, dutyCycleZ = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
+
+//PDU VARS
+float V5, I5, V5bis, I5bis, V3, I3, V3bis, I3bis;
+
+//BMS
+typedef struct {
+    uint16_t cell1_voltage;        // Voltaje de la celda 1 (mV)
+    uint16_t cell2_voltage;        // Voltaje de la celda 2 (mV)
+    uint8_t alert_status_A;        // Registro de alertas A
+    uint8_t fault_status_A;        // Registro de fallas A
+    uint8_t alert_status_B;        // Registro de alertas B
+    uint8_t fault_status_B;        // Registro de fallas B
+    uint16_t battery_status;       // Registro de estado de la batería
+} BatteryData;
 
 /* USER CODE END PV */
 
@@ -83,7 +100,13 @@ static void MX_UART4_Init(void);
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
 void mppt(int *dutyCycle, float *power, float *prevPower);
 
+HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len);
+BatteryData ReadBatteryData(void);
+
 /* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
     ADC_ChannelConfTypeDef sConfig = { 0 };
 
@@ -102,7 +125,7 @@ uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
     // Espera hasta que la conversión termine
     if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
         // Retorna el valor convertido
-        return HAL_ADC_GetValue(hadc);
+        return HAL_ADC_GetValue(hadc) * (3.3 / 4095.0);
     }
 
     return 0; // Retorna 0 en caso de error
@@ -126,8 +149,70 @@ void mppt(int *dutyCycle, float *power, float *prevPower) {
 
 	*prevPower = *power; // Actualizar `prevPower` con el valor actual de `power`
 }
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+
+
+// Función para leer un registro específico del BQ76905
+HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len) {
+    HAL_StatusTypeDef status;
+
+    // Enviar el registro desde el cual leeremos
+    status = HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
+    if (status != HAL_OK) {
+        return status; // Retorna el error si no se pudo enviar el registro
+    }
+
+    // Leer los datos del registro
+    return HAL_I2C_Master_Receive(&hi2c1, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
+}
+
+// Función para leer los datos de la batería y almacenarlos en la estructura BatteryData
+BatteryData ReadBatteryData(void) {
+    BatteryData data; // Estructura para almacenar los datos
+    uint8_t buffer[2]; // Buffer para leer datos de 16 bits
+
+    // Leer el voltaje de la celda 1
+    if (BQ76905_ReadRegister(0x14, buffer, 2) == HAL_OK) {
+        data.cell1_voltage = (buffer[0] << 8) | buffer[1];
+    } else {
+        data.cell1_voltage = 0; // Manejo básico de error
+    }
+
+    // Leer el voltaje de la celda 2
+    if (BQ76905_ReadRegister(0x16, buffer, 2) == HAL_OK) {
+        data.cell2_voltage = (buffer[0] << 8) | buffer[1];
+    } else {
+        data.cell2_voltage = 0; // Manejo básico de error
+    }
+
+    // Leer el registro de alertas A
+    if (BQ76905_ReadRegister(0x02, &data.alert_status_A, 1) != HAL_OK) {
+        data.alert_status_A = 0; // Manejo básico de error
+    }
+
+    // Leer el registro de fallas A
+    if (BQ76905_ReadRegister(0x03, &data.fault_status_A, 1) != HAL_OK) {
+        data.fault_status_A = 0; // Manejo básico de error
+    }
+
+    // Leer el registro de alertas B
+    if (BQ76905_ReadRegister(0x04, &data.alert_status_B, 1) != HAL_OK) {
+        data.alert_status_B = 0; // Manejo básico de error
+    }
+
+    // Leer el registro de fallas B
+    if (BQ76905_ReadRegister(0x05, &data.fault_status_B, 1) != HAL_OK) {
+        data.fault_status_B = 0; // Manejo básico de error
+    }
+
+    // Leer el registro de estado de la batería
+    if (BQ76905_ReadRegister(0x12, buffer, 2) == HAL_OK) {
+        data.battery_status = (buffer[0] << 8) | buffer[1];
+    } else {
+        data.battery_status = 0; // Manejo básico de error
+    }
+
+    return data;
+}
 
 /* USER CODE END 0 */
 
@@ -186,16 +271,16 @@ int main(void)
   {
 
 	  	//MPPT
-		VX_in = readADC(&hadc2, ADC_CHANNEL_11) * (3.3 / 4095.0);
-		IX_in = readADC(&hadc2, ADC_CHANNEL_10) * (3.3 / 4095.0);
+		VX_in = readADC(&hadc2, ADC_CHANNEL_11);
+		IX_in = readADC(&hadc2, ADC_CHANNEL_10);
 		powerX = VX_in * IX_in;
 
-		VY_in = readADC(&hadc1, ADC_CHANNEL_13) * (3.3 / 4095.0);
-		IY_in = readADC(&hadc1, ADC_CHANNEL_12) * (3.3 / 4095.0);
+		VY_in = readADC(&hadc1, ADC_CHANNEL_13);
+		IY_in = readADC(&hadc1, ADC_CHANNEL_12);
 		powerY = VY_in * IY_in;
 
-		VZ_in = readADC(&hadc3, ADC_CHANNEL_2) * (3.3 / 4095.0);
-		IZ_in = readADC(&hadc3, ADC_CHANNEL_1) * (3.3 / 4095.0);
+		VZ_in = readADC(&hadc3, ADC_CHANNEL_2);
+		IZ_in = readADC(&hadc3, ADC_CHANNEL_1);
 		powerZ = VZ_in * IZ_in;
 
 
@@ -212,24 +297,41 @@ int main(void)
 		char buffer[100];
 		sprintf(buffer, "VX_in: %.2f V, IX_in: %.2f A, PowerX: %.2f W\n", VX_in, IX_in, powerX); // @suppress("Float formatting support")
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-		sprintf(buffer, "VY_in: %.2f V, IY_in: %.2f A, PowerY: %.2f W\n", VY_in, IY_in, powerY); // @suppress("Float formatting support")
+		sprintf(buffer, "VY_in: %.2f V, IY_in: %.2f A, PowerY: %.2f W\n", VY_in, IY_in, powerY);
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ); // @suppress("Float formatting support")
+		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ);
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
 		//PDU
+		V5 = readADC(&hadc2, ADC_CHANNEL_11);
+		I5 = readADC(&hadc2, ADC_CHANNEL_10);
+
+		V5bis = readADC(&hadc2, ADC_CHANNEL_11);
+		I5bis = readADC(&hadc2, ADC_CHANNEL_10);
+
+		V3 = readADC(&hadc2, ADC_CHANNEL_11);
+		I3 = readADC(&hadc2, ADC_CHANNEL_10);
+
+		V3bis = readADC(&hadc2, ADC_CHANNEL_11);
+		I3bis = readADC(&hadc2, ADC_CHANNEL_10);
+
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);	//3.3V BIS
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);	//3.3V
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);	//5V BIS
 
 		//COMUNICACION BQ76905
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
 
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);	// CALEFACTOR
 		//COMUNICACION ENTRE PLACAS
 
 		//MODO BAJO CONSUMO
 
 		//ALMACENAMIENTO EN FLASH DE VARIBLES
 
-
+		HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -447,6 +549,7 @@ static void MX_I2C1_Init(void)
 {
 
   /* USER CODE BEGIN I2C1_Init 0 */
+
 
   /* USER CODE END I2C1_Init 0 */
 

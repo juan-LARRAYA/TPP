@@ -1,171 +1,25 @@
-17:01:22 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+11:54:46 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:24: error: 'IS_ADC_REGULAR_RANK' undeclared (first use in this function)
-   92 |         sConfig.Rank = IS_ADC_REGULAR_RANK;
-      |                        ^~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:92:24: note: each undeclared identifier is reported only once for each function it appears in
-In file included from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:27,
-                 from ../Core/Inc/stm32f4xx_hal_conf.h:275,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:92:41: error: 'ADC_SAMPLETIME_2CYCLES_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   92 | #define ADC_SAMPLETIME_2CYCLE_5         ADC_SAMPLETIME_2CYCLES_5
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:93:32: note: in expansion of macro 'ADC_SAMPLETIME_2CYCLE_5'
-   93 |         sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLE_5;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:564:13: error: redefinition of 'MX_I2C1_Init'
+  564 | static void MX_I2C1_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:154:6: note: previous definition of 'MX_I2C1_Init' with type 'void(void)'
+  154 | void MX_I2C1_Init(void) {
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:564:13: warning: 'MX_I2C1_Init' defined but not used [-Wunused-function]
+  564 | static void MX_I2C1_Init(void)
+      |             ^~~~~~~~~~~~
 make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
 "make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:04:11 **** Build of configuration Debug for project BLUEPILL_CHINA_128k ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "BLUEPILL_CHINA_128k.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/BLUEPILL_CHINA_128k/STM32F103CBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL_CHINA_128k.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: BLUEPILL_CHINA_128k.elf
- 
-arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-arm-none-eabi-objdump -h -S BLUEPILL_CHINA_128k.elf  > "BLUEPILL_CHINA_128k.list"
-arm-none-eabi-objcopy  -O ihex BLUEPILL_CHINA_128k.elf  "BLUEPILL_CHINA_128k.hex"
-arm-none-eabi-objcopy  -O binary BLUEPILL_CHINA_128k.elf  "BLUEPILL_CHINA_128k.bin"
-   text	   data	    bss	    dec	    hex	filename
-  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
-Finished building: default.size.stdout
- 
-Finished building: BLUEPILL_CHINA_128k.hex
-Finished building: BLUEPILL_CHINA_128k.bin
- 
- 
-Finished building: BLUEPILL_CHINA_128k.list
- 
-17:04:13 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:24: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function); did you mean 'IS_ADC_REGULAR_RANK'?
-   92 |         sConfig.Rank = ADC_REGULAR_RANK_1;
-      |                        ^~~~~~~~~~~~~~~~~~
-      |                        IS_ADC_REGULAR_RANK
-../Core/Src/main.c:92:24: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:93:32: error: 'ADC_SAMPLETIME_1CYCLE_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   93 |         sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~
-      |                                ADC_SAMPLETIME_2CYCLE_5
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:04:50 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
+11:55:52 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
 make -j7 all 
 arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
    text	   data	    bss	    dec	    hex	filename
   35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
 Finished building: default.size.stdout
  
-17:04:51 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:24: error: 'IS_ADC_REGULAR_RANK' undeclared (first use in this function)
-   92 |         sConfig.Rank = IS_ADC_REGULAR_RANK;
-      |                        ^~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:92:24: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:93:32: error: 'ADC_SAMPLETIME_1CYCLE_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   93 |         sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~
-      |                                ADC_SAMPLETIME_2CYCLE_5
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:08:06 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
-make -j7 all 
-arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-   text	   data	    bss	    dec	    hex	filename
-  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
-Finished building: default.size.stdout
- 
-17:08:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:24: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function); did you mean 'IS_ADC_REGULAR_RANK'?
-   92 |         sConfig.Rank = ADC_REGULAR_RANK_1;
-      |                        ^~~~~~~~~~~~~~~~~~
-      |                        IS_ADC_REGULAR_RANK
-../Core/Src/main.c:92:24: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:93:32: error: 'ADC_SAMPLETIME_1CYCLE_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   93 |         sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-      |                                ^~~~~~~~~~~~~~~~~~~~~~~
-      |                                ADC_SAMPLETIME_2CYCLE_5
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:08:31 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
-make -j7 all 
-arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-   text	   data	    bss	    dec	    hex	filename
-  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
-Finished building: default.size.stdout
- 
-17:08:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:24: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function); did you mean 'IS_ADC_REGULAR_RANK'?
-   92 |         sConfig.Rank = ADC_REGULAR_RANK_1; // Reemplazado con el valor correcto
-      |                        ^~~~~~~~~~~~~~~~~~
-      |                        IS_ADC_REGULAR_RANK
-../Core/Src/main.c:92:24: note: each undeclared identifier is reported only once for each function it appears in
-In file included from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:27,
-                 from ../Core/Inc/stm32f4xx_hal_conf.h:275,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:92:41: error: 'ADC_SAMPLETIME_2CYCLES_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   92 | #define ADC_SAMPLETIME_2CYCLE_5         ADC_SAMPLETIME_2CYCLES_5
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:93:28: note: in expansion of macro 'ADC_SAMPLETIME_2CYCLE_5'
-   93 |     sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLE_5; // Reemplazado con el valor correcto
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:09:11 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
-make -j7 all 
-arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-   text	   data	    bss	    dec	    hex	filename
-  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
-Finished building: default.size.stdout
- 
-17:09:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
-make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'readADC':
-../Core/Src/main.c:92:20: error: 'ADC_REGULAR_RANK_1' undeclared (first use in this function); did you mean 'IS_ADC_REGULAR_RANK'?
-   92 |     sConfig.Rank = ADC_REGULAR_RANK_1; // Reemplazado con el valor correcto
-      |                    ^~~~~~~~~~~~~~~~~~
-      |                    IS_ADC_REGULAR_RANK
-../Core/Src/main.c:92:20: note: each undeclared identifier is reported only once for each function it appears in
-In file included from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:30,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:27,
-                 from ../Core/Inc/stm32f4xx_hal_conf.h:275,
-                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:92:41: error: 'ADC_SAMPLETIME_2CYCLES_5' undeclared (first use in this function); did you mean 'ADC_SAMPLETIME_2CYCLE_5'?
-   92 | #define ADC_SAMPLETIME_2CYCLE_5         ADC_SAMPLETIME_2CYCLES_5
-      |                                         ^~~~~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:93:28: note: in expansion of macro 'ADC_SAMPLETIME_2CYCLE_5'
-   93 |     sConfig.SamplingTime = ADC_SAMPLETIME_2CYCLE_5; // Reemplazado con el valor correcto
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
-"make -j7 all" terminated with exit code 2. Build might be incomplete.
-17:16:25 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
-make -j7 all 
-arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
-   text	   data	    bss	    dec	    hex	filename
-  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
-Finished building: default.size.stdout
- 
-17:16:26 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+11:55:53 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
@@ -174,7 +28,7 @@ Finished building target: STM32F405_EPS.elf
 arm-none-eabi-size  STM32F405_EPS.elf 
 arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
    text	   data	    bss	    dec	    hex	filename
-  54148	    720	   9768	  64636	   fc7c	STM32F405_EPS.elf
+  54236	    720	   9800	  64756	   fcf4	STM32F405_EPS.elf
 Finished building: default.size.stdout
  
 Finished building: STM32F405_EPS.list
