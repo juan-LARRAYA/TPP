@@ -26,6 +26,13 @@
 #include "string.h"
 
 #define BQ76905_ADDR (0x08 << 1) // Dirección del BQ76905 desplazada a la izquierda para I2C
+#define UTD (1 << 5)	//Undertemperature in Discharge Safety Alert
+#define UTC (1 << 4) 	//Undertemperature in Charge Safety Alert
+#define OTINT (1 << 3)	//Internal Overtemperature Safety Alert
+
+
+
+
 
 /* USER CODE END Includes */
 
@@ -51,13 +58,14 @@ ADC_HandleTypeDef hadc3;
 
 I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c3;
+DMA_HandleTypeDef hdma_i2c3_tx;
+DMA_HandleTypeDef hdma_i2c3_rx;
 
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 
 UART_HandleTypeDef huart4;
-
 
 /* USER CODE BEGIN PV */
 //MPPT VARS
@@ -81,11 +89,24 @@ typedef struct {
     uint16_t battery_status;       // Registro de estado de la batería
 } BatteryData;
 
+//comunication other boards
+
+
+uint8_t i2c_rx_buffer[10]; // Buffer para datos recibidos
+uint8_t i2c_tx_buffer[10] = "ACK"; // Respuesta para el maestro
+
+
+
+
+
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_ADC3_Init(void);
@@ -149,6 +170,19 @@ void mppt(int *dutyCycle, float *power, float *prevPower) {
 
 	*prevPower = *power; // Actualizar `prevPower` con el valor actual de `power`
 }
+
+HAL_StatusTypeDef BQ76905_WriteRegister(uint8_t reg, uint8_t* data, uint16_t len) {
+	HAL_StatusTypeDef status;
+    status = HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
+    if (status != HAL_OK) {
+        return status; // Retorna el error si no se pudo enviar el registro
+    }
+
+    // Leer los datos del registro
+    return HAL_I2C_Master_Receive(&hi2c1, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
+}
+
+
 
 
 // Función para leer un registro específico del BQ76905
@@ -214,6 +248,31 @@ BatteryData ReadBatteryData(void) {
     return data;
 }
 
+void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *hi2c) {
+    if (hi2c->Instance == I2C1) {
+        // Procesar datos recibidos si el maestro envió algo
+        HAL_I2C_Slave_Receive_IT(&hi2c1, i2c_rx_buffer, sizeof(i2c_rx_buffer)); // Reiniciar recepción
+    }
+}
+
+void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, uint16_t AddrMatchCode) {
+    if (hi2c->Instance == I2C1) {
+        if (TransferDirection == I2C_DIRECTION_TRANSMIT) {
+            // El maestro está enviando datos
+            HAL_I2C_Slave_Receive_IT(&hi2c1, i2c_rx_buffer, sizeof(i2c_rx_buffer));
+        } else if (TransferDirection == I2C_DIRECTION_RECEIVE) {
+            // El maestro solicita datos del esclavo
+            HAL_I2C_Slave_Transmit_IT(&hi2c1, i2c_tx_buffer, strlen((char*)i2c_tx_buffer));
+        }
+    }
+}
+
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c) {
+    if (hi2c->Instance == I2C1) {
+        // Manejo de errores
+    }
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -245,6 +304,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_ADC3_Init();
@@ -258,11 +318,25 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
-	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+  //COMUNICACION ENTRE PLACAS
+  HAL_I2C_EnableListen_IT(&hi2c1); // Habilitar escucha en modo esclavo
 
-	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
+  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+
+  BatteryData battery_data; // Estructura para almacenar los datos de la batería
+
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);	//3.3V BIS
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	//3.3V
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);	//5V BIS
+  //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -270,6 +344,7 @@ int main(void)
   while (1)
   {
 
+	  /*
 	  	//MPPT
 		VX_in = readADC(&hadc2, ADC_CHANNEL_11);
 		IX_in = readADC(&hadc2, ADC_CHANNEL_10);
@@ -302,6 +377,8 @@ int main(void)
 		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ);
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
+*/
+	    printf("hola mundo");
 		//PDU
 		V5 = readADC(&hadc2, ADC_CHANNEL_11);
 		I5 = readADC(&hadc2, ADC_CHANNEL_10);
@@ -314,22 +391,43 @@ int main(void)
 
 		V3bis = readADC(&hadc2, ADC_CHANNEL_11);
 		I3bis = readADC(&hadc2, ADC_CHANNEL_10);
+		// Imprimir datos al puerto serie
+		char buffer[100];
+		sprintf(buffer, "V5: %.2f V, I5: %.2f A", V5, I5); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_RESET);	//3.3V BIS
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_RESET);	//3.3V
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);	//5V BIS
+		sprintf(buffer, "V5bis: %.2f V, I5bis: %.2f A", V5bis, I5bis); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		sprintf(buffer, "V3: %.2f V, I3: %.2f A", V3, I3); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		sprintf(buffer, "V3bis: %.2f V, I3bis: %.2f A", V3bis, I3bis); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
 		//COMUNICACION BQ76905
 
+        battery_data = ReadBatteryData();
+
+
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
 
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);	// CALEFACTOR
-		//COMUNICACION ENTRE PLACAS
+        if ((battery_data.alert_status_B & UTD) || (battery_data.alert_status_B & UTC) || (battery_data.alert_status_B & OTINT)) {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);  // Activar calefactor
+            HAL_UART_Transmit(&huart4, (uint8_t*)"Calefactor encendido. Alarma activa. \n",50, HAL_MAX_DELAY);
+
+        } else {
+            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);  // Apagar calefactor
+            HAL_UART_Transmit(&huart4, (uint8_t*)"Calefactor apagado. Todas las alarmas inactivas.\n",50, HAL_MAX_DELAY);
+        }
 
 		//MODO BAJO CONSUMO
 
 		//ALMACENAMIENTO EN FLASH DE VARIBLES
+
+	  	if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_2) == GPIO_PIN_SET){
+	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+	  	}
 
 		HAL_Delay(500);
     /* USER CODE END WHILE */
@@ -361,9 +459,9 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 168;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
+  RCC_OscInitStruct.PLL.PLLN = 96;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV6;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -374,11 +472,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV8;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -790,6 +888,25 @@ static void MX_UART4_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Stream2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream2_IRQn);
+  /* DMA1_Stream4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream4_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -810,6 +927,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, Enable5V_Pin|Enable3_3VBis_Pin|Enable3_3V_Pin|Enable5VBis_Pin
                           |EnableCalefactor_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(EnableBatOut_GPIO_Port, EnableBatOut_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pins : Enable5V_Pin Enable3_3VBis_Pin Enable3_3V_Pin Enable5VBis_Pin
                            EnableCalefactor_Pin */
   GPIO_InitStruct.Pin = Enable5V_Pin|Enable3_3VBis_Pin|Enable3_3V_Pin|Enable5VBis_Pin
@@ -818,6 +938,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : EnableBatOut_Pin */
+  GPIO_InitStruct.Pin = EnableBatOut_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(EnableBatOut_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : BMS_Alert_Pin */
   GPIO_InitStruct.Pin = BMS_Alert_Pin;

@@ -55,6 +55,12 @@ default.size.stdout \
 OBJDUMP_LIST += \
 STM32F405_EPS.list \
 
+OBJCOPY_HEX += \
+STM32F405_EPS.hex \
+
+OBJCOPY_BIN += \
+STM32F405_EPS.bin \
+
 
 # All Target
 all: main-build
@@ -78,12 +84,22 @@ STM32F405_EPS.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+STM32F405_EPS.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "STM32F405_EPS.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
+STM32F405_EPS.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "STM32F405_EPS.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) STM32F405_EPS.elf STM32F405_EPS.list STM32F405_EPS.map default.size.stdout
+	-$(RM) STM32F405_EPS.bin STM32F405_EPS.elf STM32F405_EPS.hex STM32F405_EPS.list STM32F405_EPS.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

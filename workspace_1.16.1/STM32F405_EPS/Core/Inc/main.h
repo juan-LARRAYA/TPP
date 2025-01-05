@@ -105,6 +105,8 @@ void Error_Handler(void);
 #define SDA_Sat_GPIO_Port GPIOC
 #define SCL_Sat_Pin GPIO_PIN_8
 #define SCL_Sat_GPIO_Port GPIOA
+#define EnableBatOut_Pin GPIO_PIN_9
+#define EnableBatOut_GPIO_Port GPIOA
 #define USB_D__Pin GPIO_PIN_11
 #define USB_D__GPIO_Port GPIOA
 #define USB_D_A12_Pin GPIO_PIN_12
