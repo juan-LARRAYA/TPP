@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2025 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,21 +18,17 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "usb_device.h"
+#include "adc.h"
+#include "i2c.h"
+#include "tim.h"
+#include "usart.h"
+#include "usb_otg.h"
+#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
-
-#define BQ76905_ADDR (0x08 << 1) // Dirección del BQ76905 desplazada a la izquierda para I2C
-#define UTD (1 << 5)	//Undertemperature in Discharge Safety Alert
-#define UTC (1 << 4) 	//Undertemperature in Charge Safety Alert
-#define OTINT (1 << 3)	//Internal Overtemperature Safety Alert
-
-
-
-
 
 /* USER CODE END Includes */
 
@@ -44,6 +40,9 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
+#define SYS_CTRL1_REG 0x03
+#define DEVICE_ID_REG 0x00
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -52,20 +51,6 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
-ADC_HandleTypeDef hadc2;
-ADC_HandleTypeDef hadc3;
-
-I2C_HandleTypeDef hi2c1;
-I2C_HandleTypeDef hi2c3;
-DMA_HandleTypeDef hdma_i2c3_tx;
-DMA_HandleTypeDef hdma_i2c3_rx;
-
-TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim4;
-TIM_HandleTypeDef htim5;
-
-UART_HandleTypeDef huart4;
 
 /* USER CODE BEGIN PV */
 //MPPT VARS
@@ -79,6 +64,7 @@ int dutyCycleX = 255 * 0.5, dutyCycleY = 255 * 0.5, dutyCycleZ = 255 * 0.5; // V
 float V5, I5, V5bis, I5bis, V3, I3, V3bis, I3bis;
 
 //BMS
+
 typedef struct {
     uint16_t cell1_voltage;        // Voltaje de la celda 1 (mV)
     uint16_t cell2_voltage;        // Voltaje de la celda 2 (mV)
@@ -89,68 +75,23 @@ typedef struct {
     uint16_t battery_status;       // Registro de estado de la batería
 } BatteryData;
 
-//comunication other boards
-
-
-uint8_t i2c_rx_buffer[10]; // Buffer para datos recibidos
-uint8_t i2c_tx_buffer[10] = "ACK"; // Respuesta para el maestro
-
-
-
-
-
-
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
-static void MX_ADC1_Init(void);
-static void MX_ADC2_Init(void);
-static void MX_ADC3_Init(void);
-static void MX_I2C1_Init(void);
-static void MX_I2C3_Init(void);
-static void MX_TIM2_Init(void);
-static void MX_TIM4_Init(void);
-static void MX_TIM5_Init(void);
-static void MX_UART4_Init(void);
 /* USER CODE BEGIN PFP */
-
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
-void mppt(int *dutyCycle, float *power, float *prevPower);
 
+HAL_StatusTypeDef BQ76905_WriteRegister(uint8_t reg, uint8_t* data, uint16_t len);
 HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len);
-BatteryData ReadBatteryData(void);
+HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size);
+void ReadCellVoltage(I2C_HandleTypeDef *hi2c, uint8_t cell);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
-    ADC_ChannelConfTypeDef sConfig = { 0 };
-
-    // Configurar el canal que se desea leer
-    sConfig.Channel = channel;
-    sConfig.Rank = 0x00000001U; // Reemplazado con el valor correcto
-    sConfig.SamplingTime = 0x00000000U; // Reemplazado con el valor correcto
-
-    if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
-        Error_Handler(); // Maneja errores de configuración
-    }
-
-    // Inicia la conversión del ADC
-    HAL_ADC_Start(hadc);
-
-    // Espera hasta que la conversión termine
-    if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
-        // Retorna el valor convertido
-        return HAL_ADC_GetValue(hadc) * (3.3 / 4095.0);
-    }
-
-    return 0; // Retorna 0 en caso de error
-}
 
 
 void mppt(int *dutyCycle, float *power, float *prevPower) {
@@ -171,109 +112,10 @@ void mppt(int *dutyCycle, float *power, float *prevPower) {
 	*prevPower = *power; // Actualizar `prevPower` con el valor actual de `power`
 }
 
-HAL_StatusTypeDef BQ76905_WriteRegister(uint8_t reg, uint8_t* data, uint16_t len) {
-	HAL_StatusTypeDef status;
-    status = HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
-    if (status != HAL_OK) {
-        return status; // Retorna el error si no se pudo enviar el registro
-    }
-
-    // Leer los datos del registro
-    return HAL_I2C_Master_Receive(&hi2c1, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
-}
-
-
-
-
-// Función para leer un registro específico del BQ76905
-HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len) {
-    HAL_StatusTypeDef status;
-
-    // Enviar el registro desde el cual leeremos
-    status = HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
-    if (status != HAL_OK) {
-        return status; // Retorna el error si no se pudo enviar el registro
-    }
-
-    // Leer los datos del registro
-    return HAL_I2C_Master_Receive(&hi2c1, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
-}
-
-// Función para leer los datos de la batería y almacenarlos en la estructura BatteryData
-BatteryData ReadBatteryData(void) {
-    BatteryData data; // Estructura para almacenar los datos
-    uint8_t buffer[2]; // Buffer para leer datos de 16 bits
-
-    // Leer el voltaje de la celda 1
-    if (BQ76905_ReadRegister(0x14, buffer, 2) == HAL_OK) {
-        data.cell1_voltage = (buffer[0] << 8) | buffer[1];
-    } else {
-        data.cell1_voltage = 0; // Manejo básico de error
-    }
-
-    // Leer el voltaje de la celda 2
-    if (BQ76905_ReadRegister(0x16, buffer, 2) == HAL_OK) {
-        data.cell2_voltage = (buffer[0] << 8) | buffer[1];
-    } else {
-        data.cell2_voltage = 0; // Manejo básico de error
-    }
-
-    // Leer el registro de alertas A
-    if (BQ76905_ReadRegister(0x02, &data.alert_status_A, 1) != HAL_OK) {
-        data.alert_status_A = 0; // Manejo básico de error
-    }
-
-    // Leer el registro de fallas A
-    if (BQ76905_ReadRegister(0x03, &data.fault_status_A, 1) != HAL_OK) {
-        data.fault_status_A = 0; // Manejo básico de error
-    }
-
-    // Leer el registro de alertas B
-    if (BQ76905_ReadRegister(0x04, &data.alert_status_B, 1) != HAL_OK) {
-        data.alert_status_B = 0; // Manejo básico de error
-    }
-
-    // Leer el registro de fallas B
-    if (BQ76905_ReadRegister(0x05, &data.fault_status_B, 1) != HAL_OK) {
-        data.fault_status_B = 0; // Manejo básico de error
-    }
-
-    // Leer el registro de estado de la batería
-    if (BQ76905_ReadRegister(0x12, buffer, 2) == HAL_OK) {
-        data.battery_status = (buffer[0] << 8) | buffer[1];
-    } else {
-        data.battery_status = 0; // Manejo básico de error
-    }
-
-    return data;
-}
-
-void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *hi2c) {
-    if (hi2c->Instance == I2C1) {
-        // Procesar datos recibidos si el maestro envió algo
-        HAL_I2C_Slave_Receive_IT(&hi2c1, i2c_rx_buffer, sizeof(i2c_rx_buffer)); // Reiniciar recepción
-    }
-}
-
-void HAL_I2C_AddrCallback(I2C_HandleTypeDef *hi2c, uint8_t TransferDirection, uint16_t AddrMatchCode) {
-    if (hi2c->Instance == I2C1) {
-        if (TransferDirection == I2C_DIRECTION_TRANSMIT) {
-            // El maestro está enviando datos
-            HAL_I2C_Slave_Receive_IT(&hi2c1, i2c_rx_buffer, sizeof(i2c_rx_buffer));
-        } else if (TransferDirection == I2C_DIRECTION_RECEIVE) {
-            // El maestro solicita datos del esclavo
-            HAL_I2C_Slave_Transmit_IT(&hi2c1, i2c_tx_buffer, strlen((char*)i2c_tx_buffer));
-        }
-    }
-}
-
-void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c) {
-    if (hi2c->Instance == I2C1) {
-        // Manejo de errores
-    }
-}
 
 /* USER CODE END 0 */
+
+
 
 /**
   * @brief  The application entry point.
@@ -283,6 +125,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
+ void BQ76905_EnableADC(void);
 
   /* USER CODE END 1 */
 
@@ -304,7 +148,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_ADC3_Init();
@@ -314,7 +157,7 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_UART4_Init();
-  MX_USB_DEVICE_Init();
+  MX_USB_OTG_FS_PCD_Init();
   /* USER CODE BEGIN 2 */
 
 
@@ -328,13 +171,23 @@ int main(void)
 
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
 
-  BatteryData battery_data; // Estructura para almacenar los datos de la batería
 
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);	//3.3V BIS
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	//3.3V
   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);	//5V BIS
-  //HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+
+  //char *data = "hello from hell";
+  uint8_t direccion = 0x00;
+
+
+
+  void BQ76905_EnableADC(void){
+	  uint8_t sys_ctrl1 =
+  }
+
+
 
 
   /* USER CODE END 2 */
@@ -343,8 +196,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	  /*
+/*
 	  	//MPPT
 		VX_in = readADC(&hadc2, ADC_CHANNEL_11);
 		IX_in = readADC(&hadc2, ADC_CHANNEL_10);
@@ -377,8 +229,7 @@ int main(void)
 		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ);
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
-*/
-	    printf("hola mundo");
+
 		//PDU
 		V5 = readADC(&hadc2, ADC_CHANNEL_11);
 		I5 = readADC(&hadc2, ADC_CHANNEL_10);
@@ -392,33 +243,52 @@ int main(void)
 		V3bis = readADC(&hadc2, ADC_CHANNEL_11);
 		I3bis = readADC(&hadc2, ADC_CHANNEL_10);
 		// Imprimir datos al puerto serie
+
+		sprintf(buffer, "V5: %.2f V, I5: %.2f A \n", V5, I5); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		sprintf(buffer, "V5bis: %.2f V, I5bis: %.2f A \n", V5bis, I5bis); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		sprintf(buffer, "V3: %.2f V, I3: %.2f A \n", V3, I3); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+*/
 		char buffer[100];
-		sprintf(buffer, "V5: %.2f V, I5: %.2f A", V5, I5); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		sprintf(buffer, "V5bis: %.2f V, I5bis: %.2f A", V5bis, I5bis); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		sprintf(buffer, "V3: %.2f V, I3: %.2f A", V3, I3); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		sprintf(buffer, "V3bis: %.2f V, I3bis: %.2f A", V3bis, I3bis); // @suppress("Float formatting support")
+		sprintf(buffer, "\n V3bis: %.2f V, I3bis: %.2f A \n", V3bis, I3bis); // @suppress("Float formatting support")
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
 		//COMUNICACION BQ76905
 
-        battery_data = ReadBatteryData();
 
+		char MSG_para_arduino[20];
+
+		HAL_I2C_Master_Receive(&hi2c3, 0x22 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+		HAL_I2C_Master_Transmit(&hi2c3, 0x08 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+		direccion++;
+		if(direccion > 128){
+			direccion =0x00;
+		}
+		HAL_I2C_Master_Transmit(&hi2c3, 0x08 << 1, (uint8_t *) direccion, 20, HAL_MAX_DELAY);
+
+		//HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
+
+		//HAL_UART_Transmit(&huart4, (uint8_t*) &battery_data->alert_status_B, strlen(buffer), HAL_MAX_DELAY);
+        //HAL_UART_Transmit(&huart4, (uint8_t*)"\n\n\n",50, HAL_MAX_DELAY);
+
+	    ReadCellVoltage(&hi2c1, 1);
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
 
-        if ((battery_data.alert_status_B & UTD) || (battery_data.alert_status_B & UTC) || (battery_data.alert_status_B & OTINT)) {
+        //if ((battery_data->alert_status_B & UTD) || (battery_data->alert_status_B & UTC) || (battery_data->alert_status_B & OTINT)) {
+        if (1) {
+        	char MSG_CALENT_OK[60] = "\n Calefactor encendido. Alarma activa. \n";
             HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);  // Activar calefactor
-            HAL_UART_Transmit(&huart4, (uint8_t*)"Calefactor encendido. Alarma activa. \n",50, HAL_MAX_DELAY);
+            HAL_UART_Transmit(&huart4, (uint8_t*) MSG_CALENT_OK,50, HAL_MAX_DELAY);
 
         } else {
+        	char MSG_CALENT_ERROR[60] =  "\n Calefactor apagado. Todas las alarmas inactivas.\n";
             HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);  // Apagar calefactor
-            HAL_UART_Transmit(&huart4, (uint8_t*)"Calefactor apagado. Todas las alarmas inactivas.\n",50, HAL_MAX_DELAY);
+            HAL_UART_Transmit(&huart4, (uint8_t*) MSG_CALENT_ERROR,50, HAL_MAX_DELAY);
         }
 
 		//MODO BAJO CONSUMO
@@ -429,7 +299,7 @@ int main(void)
 	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
 	  	}
 
-		HAL_Delay(500);
+		HAL_Delay(2000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -473,487 +343,13 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV8;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC1_Init(void)
-{
-
-  /* USER CODE BEGIN ADC1_Init 0 */
-
-  /* USER CODE END ADC1_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC1_Init 1 */
-
-  /* USER CODE END ADC1_Init 1 */
-
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
-  */
-  hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
-  hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
-  hadc1.Init.DMAContinuousRequests = DISABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_4;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC1_Init 2 */
-
-  /* USER CODE END ADC1_Init 2 */
-
-}
-
-/**
-  * @brief ADC2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC2_Init(void)
-{
-
-  /* USER CODE BEGIN ADC2_Init 0 */
-
-  /* USER CODE END ADC2_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC2_Init 1 */
-
-  /* USER CODE END ADC2_Init 1 */
-
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
-  */
-  hadc2.Instance = ADC2;
-  hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc2.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc2.Init.ScanConvMode = DISABLE;
-  hadc2.Init.ContinuousConvMode = DISABLE;
-  hadc2.Init.DiscontinuousConvMode = DISABLE;
-  hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc2.Init.NbrOfConversion = 1;
-  hadc2.Init.DMAContinuousRequests = DISABLE;
-  hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_6;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC2_Init 2 */
-
-  /* USER CODE END ADC2_Init 2 */
-
-}
-
-/**
-  * @brief ADC3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC3_Init(void)
-{
-
-  /* USER CODE BEGIN ADC3_Init 0 */
-
-  /* USER CODE END ADC3_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC3_Init 1 */
-
-  /* USER CODE END ADC3_Init 1 */
-
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
-  */
-  hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
-  hadc3.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc3.Init.ScanConvMode = DISABLE;
-  hadc3.Init.ContinuousConvMode = DISABLE;
-  hadc3.Init.DiscontinuousConvMode = DISABLE;
-  hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc3.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc3.Init.NbrOfConversion = 1;
-  hadc3.Init.DMAContinuousRequests = DISABLE;
-  hadc3.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_1;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc3, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC3_Init 2 */
-
-  /* USER CODE END ADC3_Init 2 */
-
-}
-
-/**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C1_Init(void)
-{
-
-  /* USER CODE BEGIN I2C1_Init 0 */
-
-
-  /* USER CODE END I2C1_Init 0 */
-
-  /* USER CODE BEGIN I2C1_Init 1 */
-
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 100000;
-  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
-
-}
-
-/**
-  * @brief I2C3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C3_Init(void)
-{
-
-  /* USER CODE BEGIN I2C3_Init 0 */
-
-  /* USER CODE END I2C3_Init 0 */
-
-  /* USER CODE BEGIN I2C3_Init 1 */
-
-  /* USER CODE END I2C3_Init 1 */
-  hi2c3.Instance = I2C3;
-  hi2c3.Init.ClockSpeed = 100000;
-  hi2c3.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c3.Init.OwnAddress1 = 0;
-  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c3.Init.OwnAddress2 = 0;
-  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C3_Init 2 */
-
-  /* USER CODE END I2C3_Init 2 */
-
-}
-
-/**
-  * @brief TIM2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM2_Init(void)
-{
-
-  /* USER CODE BEGIN TIM2_Init 0 */
-
-  /* USER CODE END TIM2_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM2_Init 1 */
-
-  /* USER CODE END TIM2_Init 1 */
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 420-1;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 4294967295;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_PWM_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
-  HAL_TIM_MspPostInit(&htim2);
-
-}
-
-/**
-  * @brief TIM4 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM4_Init(void)
-{
-
-  /* USER CODE BEGIN TIM4_Init 0 */
-
-  /* USER CODE END TIM4_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM4_Init 1 */
-
-  /* USER CODE END TIM4_Init 1 */
-  htim4.Instance = TIM4;
-  htim4.Init.Prescaler = 420-1;
-  htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = 65535;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM4_Init 2 */
-
-  /* USER CODE END TIM4_Init 2 */
-  HAL_TIM_MspPostInit(&htim4);
-
-}
-
-/**
-  * @brief TIM5 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM5_Init(void)
-{
-
-  /* USER CODE BEGIN TIM5_Init 0 */
-
-  /* USER CODE END TIM5_Init 0 */
-
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_OC_InitTypeDef sConfigOC = {0};
-
-  /* USER CODE BEGIN TIM5_Init 1 */
-
-  /* USER CODE END TIM5_Init 1 */
-  htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 420-1;
-  htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim5.Init.Period = 4294967295;
-  htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim5.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_PWM_Init(&htim5) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim5, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
-  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim5, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM5_Init 2 */
-
-  /* USER CODE END TIM5_Init 2 */
-  HAL_TIM_MspPostInit(&htim5);
-
-}
-
-/**
-  * @brief UART4 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_UART4_Init(void)
-{
-
-  /* USER CODE BEGIN UART4_Init 0 */
-
-  /* USER CODE END UART4_Init 0 */
-
-  /* USER CODE BEGIN UART4_Init 1 */
-
-  /* USER CODE END UART4_Init 1 */
-  huart4.Instance = UART4;
-  huart4.Init.BaudRate = 115200;
-  huart4.Init.WordLength = UART_WORDLENGTH_8B;
-  huart4.Init.StopBits = UART_STOPBITS_1;
-  huart4.Init.Parity = UART_PARITY_NONE;
-  huart4.Init.Mode = UART_MODE_TX_RX;
-  huart4.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart4.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN UART4_Init 2 */
-
-  /* USER CODE END UART4_Init 2 */
-
-}
-
-/**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA1_CLK_ENABLE();
-
-  /* DMA interrupt init */
-  /* DMA1_Stream2_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream2_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream2_IRQn);
-  /* DMA1_Stream4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream4_IRQn);
-
-}
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, Enable5V_Pin|Enable3_3VBis_Pin|Enable3_3V_Pin|Enable5VBis_Pin
-                          |EnableCalefactor_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(EnableBatOut_GPIO_Port, EnableBatOut_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pins : Enable5V_Pin Enable3_3VBis_Pin Enable3_3V_Pin Enable5VBis_Pin
-                           EnableCalefactor_Pin */
-  GPIO_InitStruct.Pin = Enable5V_Pin|Enable3_3VBis_Pin|Enable3_3V_Pin|Enable5VBis_Pin
-                          |EnableCalefactor_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : EnableBatOut_Pin */
-  GPIO_InitStruct.Pin = EnableBatOut_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(EnableBatOut_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : BMS_Alert_Pin */
-  GPIO_InitStruct.Pin = BMS_Alert_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(BMS_Alert_GPIO_Port, &GPIO_InitStruct);
-
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */

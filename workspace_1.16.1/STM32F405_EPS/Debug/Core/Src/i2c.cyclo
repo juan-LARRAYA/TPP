@@ -1,0 +1,8 @@
+../Core/Src/i2c.c:38:19:BQ76905_WriteRegister	2
+../Core/Src/i2c.c:53:19:BQ76905_ReadRegister	2
+../Core/Src/i2c.c:67:19:BQ76905_ReadRegister_test	1
+../Core/Src/i2c.c:72:6:ReadCellVoltage	2
+../Core/Src/i2c.c:98:6:MX_I2C1_Init	2
+../Core/Src/i2c.c:127:6:MX_I2C3_Init	2
+../Core/Src/i2c.c:156:6:HAL_I2C_MspInit	3
+../Core/Src/i2c.c:224:6:HAL_I2C_MspDeInit	3

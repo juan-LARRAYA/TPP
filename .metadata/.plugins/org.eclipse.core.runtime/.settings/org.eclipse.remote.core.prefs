@@ -3,4 +3,9 @@ connections/org.eclipse.remote.serial.core.connectionType/F405RGT/serial.byteSiz
 connections/org.eclipse.remote.serial.core.connectionType/F405RGT/serial.parity=0
 connections/org.eclipse.remote.serial.core.connectionType/F405RGT/serial.portName=/dev/cu.usbserial-140
 connections/org.eclipse.remote.serial.core.connectionType/F405RGT/serial.stopBits=0
+connections/org.eclipse.remote.serial.core.connectionType/Serial-USB2/serial.baudRate=11
+connections/org.eclipse.remote.serial.core.connectionType/Serial-USB2/serial.byteSize=3
+connections/org.eclipse.remote.serial.core.connectionType/Serial-USB2/serial.parity=0
+connections/org.eclipse.remote.serial.core.connectionType/Serial-USB2/serial.portName=/dev/cu.usbserial-1130
+connections/org.eclipse.remote.serial.core.connectionType/Serial-USB2/serial.stopBits=0
 eclipse.preferences.version=1

@@ -133,8 +133,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	SystemClock_Config();
-
 
   /* USER CODE END 1 */
 
@@ -193,10 +191,8 @@ int main(void)
 		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, dutyCycle);
 		// Imprimir datos al puerto serie
 		char buffer[100];
-		sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in,
-				I_in, power); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart1, (uint8_t*) buffer, strlen(buffer),
-				HAL_MAX_DELAY);
+		sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in, I_in, power); // @suppress("Float formatting support")
+		HAL_UART_Transmit(&huart1, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 
 		// Guardar la potencia anterior
 		previousPower = power;
@@ -204,11 +200,11 @@ int main(void)
 		//char prueba[27]="welcome to the jungle! \n\r";
 		//HAL_UART_Transmit(&huart1, (uint8_t *)prueba, 27, 1000);
 //
-////		Para prender y apagar el led que viene en la bluepil
-//      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
-//      HAL_Delay(1000); // 1 segundo de delay
-//      HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-      HAL_Delay(500); // 1 segundo de delay
+//		Para prender y apagar el led que viene en la bluepil
+		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
+		HAL_Delay(1000); // 1 segundo de delay
+		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
+		HAL_Delay(1000); // 1 segundo de delay
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

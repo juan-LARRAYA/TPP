@@ -1,27 +1,306 @@
-09:27:11 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+17:50:20 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
 make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:381:13: warning: implicit declaration of function 'print'; did you mean 'printf'? [-Wimplicit-function-declaration]
-  381 |             print("hola mundo");
-      |             ^~~~~
-      |             printf
-arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
-/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
-/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/Debug/../Core/Src/main.c:381: undefined reference to `print'
-collect2: error: ld returned 1 exit status
-make: *** [makefile:73: STM32F405_EPS.elf] Error 1
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:81:54: error: 'voltage' undeclared (first use in this function)
+   81 |         sprintf(buffer, "Cellda %d = %d mV\n", cell, voltage); // @suppress("Float formatting support")
+      |                                                      ^~~~~~~
+../Core/Src/i2c.c:81:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/i2c.o] Error 1
 "make -j7 all" terminated with exit code 2. Build might be incomplete.
-09:27:22 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
+23:46:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:246:17: error: expected ',' or ';' before 'HAL_I2C_Master_Transmit'
+  246 |                 HAL_I2C_Master_Transmit(&hi2c2, 0x08 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:245:22: warning: unused variable 'MSG_para_arduino' [-Wunused-variable]
+  245 |                 char MSG_para_arduino[20] = "Hola desde STM32"
+      |                      ^~~~~~~~~~~~~~~~
+../Core/Src/i2c.c:81:54: error: 'voltage' undeclared (first use in this function)
+   81 |         sprintf(buffer, "Cellda %d = %d mV\n", cell, voltage); // @suppress("Float formatting support")
+      |                                                      ^~~~~~~
+../Core/Src/i2c.c:81:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/i2c.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+23:48:04 **** Incremental Build of configuration Debug for project BLUEPILL ****
+make -j7 all 
+arm-none-eabi-size  BLUEPILL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35708	    472	   2184	  38364	   95dc	BLUEPILL.elf
+Finished building: default.size.stdout
+ 
+23:48:05 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA_128k ****
 make -j7 all 
 arm-none-eabi-size  BLUEPILL_CHINA_128k.elf 
    text	   data	    bss	    dec	    hex	filename
   35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA_128k.elf
 Finished building: default.size.stdout
  
-09:27:23 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+23:48:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
 make -j7 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:246:42: error: 'hi2c2' undeclared (first use in this function); did you mean 'hi2c3'?
+  246 |                 HAL_I2C_Master_Transmit(&hi2c2, 0x08 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+      |                                          ^~~~~
+      |                                          hi2c3
+../Core/Src/main.c:246:42: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:81:54: error: 'voltage' undeclared (first use in this function)
+   81 |         sprintf(buffer, "Cellda %d = %d mV\n", cell, voltage); // @suppress("Float formatting support")
+      |                                                      ^~~~~~~
+../Core/Src/i2c.c:81:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/i2c.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+23:48:06 **** Incremental Build of configuration Debug for project a ****
+make -j7 all 
+arm-none-eabi-size  a.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4672	     12	   1572	   6256	   1870	a.elf
+Finished building: default.size.stdout
+ 
+23:48:13 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:246:42: error: 'hi2c2' undeclared (first use in this function); did you mean 'hi2c3'?
+  246 |                 HAL_I2C_Master_Transmit(&hi2c2, 0x08 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+      |                                          ^~~~~
+      |                                          hi2c3
+../Core/Src/main.c:246:42: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:81:54: error: 'voltage' undeclared (first use in this function)
+   81 |         sprintf(buffer, "Cellda %d = %d mV\n", cell, voltage); // @suppress("Float formatting support")
+      |                                                      ^~~~~~~
+../Core/Src/i2c.c:81:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Core/Src/subdir.mk:52: Core/Src/i2c.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+23:48:29 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:81:54: error: 'voltage' undeclared (first use in this function)
+   81 |         sprintf(buffer, "Cellda %d = %d mV\n", cell, voltage); // @suppress("Float formatting support")
+      |                                                      ^~~~~~~
+../Core/Src/i2c.c:81:54: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/i2c.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+23:49:23 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+../Core/Src/i2c.c:77:46: warning: 'result' is used uninitialized [-Wuninitialized]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/i2c.c:74:13: note: 'result' was declared here
+   74 |     uint8_t result;
+      |             ^~~~~~
 arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: STM32F405_EPS.elf
  
@@ -30,7 +309,7 @@ arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
 arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
 arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
    text	   data	    bss	    dec	    hex	filename
-  67252	    720	   9952	  77924	  13064	STM32F405_EPS.elf
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
 Finished building: default.size.stdout
  
 Finished building: STM32F405_EPS.hex
@@ -38,4 +317,480 @@ Finished building: STM32F405_EPS.bin
  
  
 Finished building: STM32F405_EPS.list
+ 
+23:50:18 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:50:27 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:50:41 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:50:51 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:51:41 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:52:03 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:56:24 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
+../Core/Src/i2c.c: In function 'ReadCellVoltage':
+../Core/Src/i2c.c:77:82: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                                                                  ^~~~~~
+      |                                                                                  |
+      |                                                                                  uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:77:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                    |
+      |                                    unsigned char
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:745:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'unsigned char'
+  745 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/i2c.c:80:45: warning: passing argument 2 of 'BQ76905_ReadRegister_test' makes pointer from integer without a cast [-Wint-conversion]
+   80 |     if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
+      |                                             ^~~~~~
+      |                                             |
+      |                                             uint8_t {aka unsigned char}
+../Core/Src/i2c.c:67:71: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+   67 | HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
+      |                                                              ~~~~~~~~~^~~~
+../Core/Src/i2c.c:86:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+   86 |         HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
+      |                                   ^
+../Core/Src/i2c.c:77:46: warning: 'result' is used uninitialized [-Wuninitialized]
+   77 |         HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
+      |                                              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/i2c.c:74:13: note: 'result' was declared here
+   74 |     uint8_t result;
+      |             ^~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44180	    468	   3836	  48484	   bd64	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:24:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45684	    468	   3836	  49988	   c344	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:32:43 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45684	    468	   3836	  49988	   c344	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:33:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:245:43: error: invalid initializer
+  245 |                 char MSG_para_arduino[20]=0;
+      |                                           ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+00:33:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:40:50 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:246:48: error: 'BQ76905_ADDR' undeclared (first use in this function)
+  246 |                 HAL_I2C_Master_Receive(&hi2c1, BQ76905_ADDR, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
+      |                                                ^~~~~~~~~~~~
+../Core/Src/main.c:246:48: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+00:41:10 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:41:50 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:42:17 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:42:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:43:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45700	    468	   3836	  50004	   c354	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:44:57 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45756	    468	   3836	  50060	   c38c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:45:36 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45692	    468	   3836	  49996	   c34c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:46:01 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45692	    468	   3836	  49996	   c34c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:47:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45716	    468	   3836	  50020	   c364	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:47:35 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:245:43: error: expected expression before ';' token
+  245 |                 char MSG_para_arduino[20]=;
+      |                                           ^
+make: *** [Core/Src/subdir.mk:52: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+00:47:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45692	    468	   3836	  49996	   c34c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:48:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45692	    468	   3836	  49996	   c34c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:49:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45716	    468	   3836	  50020	   c364	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:50:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45708	    468	   3836	  50012	   c35c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:50:57 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45708	    468	   3836	  50012	   c35c	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:52:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  45708	    468	   3836	  50012	   c35c	STM32F405_EPS.elf
+Finished building: default.size.stdout
  
