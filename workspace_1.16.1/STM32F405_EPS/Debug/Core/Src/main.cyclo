@@ -1,4 +1,6 @@
-../Core/Src/main.c:94:6:mppt	6
-../Core/Src/main.c:119:5:main	3
-../Core/Src/main.c:295:6:SystemClock_Config	3
-../Core/Src/main.c:344:6:Error_Handler	1
+../Core/Src/main.c:97:6:mppt	6
+../Core/Src/main.c:118:8:enable_Discharge_FET	1
+../Core/Src/main.c:128:8:disable_Discharge_FET	1
+../Core/Src/main.c:143:5:main	2
+../Core/Src/main.c:532:6:SystemClock_Config	3
+../Core/Src/main.c:581:6:Error_Handler	1

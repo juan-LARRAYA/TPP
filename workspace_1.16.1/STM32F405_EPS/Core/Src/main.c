@@ -34,14 +34,14 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+// Definir el comando de FET Control (0x29)
+#define FET_CONTROL_CMD 0x29
+#define BQ76905_I2C_ADDR 0x10  // Dirección I2C del BQ76905, asegúrate de que sea la correcta
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define SYS_CTRL1_REG 0x03
-#define DEVICE_ID_REG 0x00
 
 /* USER CODE END PD */
 
@@ -113,9 +113,28 @@ void mppt(int *dutyCycle, float *power, float *prevPower) {
 }
 
 
+
+// Función para forzar el FET de descarga a encenderse
+  void enable_Discharge_FET() {
+      uint8_t command[2];
+      command[0] = FET_CONTROL_CMD;  // Comando FET Control
+      command[1] = 0x01;  // Valor para forzar el FET de descarga (DSG) a encenderse (CHG no se fuerza)
+
+      // Enviar el comando a través de I2C
+      HAL_I2C_Master_Transmit(&hi2c1, BQ76905_I2C_ADDR, command, 2, HAL_MAX_DELAY);
+  }
+
+  // Función para deshabilitar el FET de descarga (opcional)
+  void disable_Discharge_FET() {
+      uint8_t command[2];
+      command[0] = FET_CONTROL_CMD;  // Comando FET Control
+      command[1] = 0x00;  // Valor para deshabilitar el FET de descarga
+
+      // Enviar el comando a través de I2C
+      HAL_I2C_Master_Transmit(&hi2c1, BQ76905_I2C_ADDR, command, 2, HAL_MAX_DELAY);
+  }
+
 /* USER CODE END 0 */
-
-
 
 /**
   * @brief  The application entry point.
@@ -124,68 +143,62 @@ void mppt(int *dutyCycle, float *power, float *prevPower) {
 int main(void)
 {
 
-  /* USER CODE BEGIN 1 */
-
- void BQ76905_EnableADC(void);
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_ADC1_Init();
-  MX_ADC2_Init();
-  MX_ADC3_Init();
-  MX_I2C1_Init();
-  MX_I2C3_Init();
-  MX_TIM2_Init();
-  MX_TIM4_Init();
-  MX_TIM5_Init();
-  MX_UART4_Init();
-  MX_USB_OTG_FS_PCD_Init();
-  /* USER CODE BEGIN 2 */
+	/* USER CODE BEGIN 1 */
 
 
+	/* USER CODE END 1 */
 
-  //COMUNICACION ENTRE PLACAS
-  HAL_I2C_EnableListen_IT(&hi2c1); // Habilitar escucha en modo esclavo
+	/* MCU Configuration--------------------------------------------------------*/
 
-  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
 
-  HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+	/* USER CODE BEGIN Init */
 
-  HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+	/* USER CODE END Init */
 
+	/* Configure the system clock */
+	SystemClock_Config();
 
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);	//3.3V BIS
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	//3.3V
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);	//5V BIS
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+	/* USER CODE BEGIN SysInit */
 
-  //char *data = "hello from hell";
-  uint8_t direccion = 0x00;
+	/* USER CODE END SysInit */
+
+	/* Initialize all configured peripherals */
+	MX_GPIO_Init();
+	MX_ADC1_Init();
+	MX_ADC2_Init();
+	MX_ADC3_Init();
+	MX_I2C3_Init();
+	MX_TIM2_Init();
+	MX_TIM4_Init();
+	MX_TIM5_Init();
+	MX_UART4_Init();
+	MX_USB_OTG_FS_PCD_Init();
+	MX_I2C1_Init();
+	/* USER CODE BEGIN 2 */
 
 
 
-  void BQ76905_EnableADC(void){
-	  uint8_t sys_ctrl1 =
-  }
+	//COMUNICACION ENTRE PLACAS
+	//HAL_I2C_EnableListen_IT(&hi2c1); // Habilitar escucha en modo esclavo
+
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
+
+
+//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
+//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);	//3.3V BIS
+//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	//3.3V
+//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);	//5V BIS
+//	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
+
+	//char *data = "hello from hell";
+
+	//enable_Discharge_FET();
 
 
 
@@ -253,36 +266,234 @@ int main(void)
 		sprintf(buffer, "V3: %.2f V, I3: %.2f A \n", V3, I3); // @suppress("Float formatting support")
 		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 */
-		char buffer[100];
-		sprintf(buffer, "\n V3bis: %.2f V, I3bis: %.2f A \n", V3bis, I3bis); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+
+		//sprintf(buffer, "\n V3bis: %.2f V, I3bis: %.2f A \n", V3bis, I3bis); // @suppress("Float formatting support")
+
+		//HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
 
 		//COMUNICACION BQ76905
 
+//
+//	  	uint8_t data;
+//    	HAL_I2C_Mem_Read(&hi2c1,
+//    	                 0x10,         		 // Dirección I2C
+//						 0x00,                // Registro que quieres leer
+//    	                 I2C_MEMADD_SIZE_8BIT,// Tamaño de la dirección (8 bits)
+//    	                 &data,               // Búfer donde guardar el dato leído
+//    	                 1,                   // Cantidad de bytes a leer
+//    	                 HAL_MAX_DELAY);
+//
+//		HAL_I2C_Master_Transmit(&hi2c3,
+//								0x08 << 1,
+//								&data,
+//								1,
+//								HAL_MAX_DELAY);
 
-		char MSG_para_arduino[20];
 
-		HAL_I2C_Master_Receive(&hi2c3, 0x22 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
-		HAL_I2C_Master_Transmit(&hi2c3, 0x08 << 1, (uint8_t *) MSG_para_arduino, 20, HAL_MAX_DELAY);
-		direccion++;
-		if(direccion > 128){
-			direccion =0x00;
+	  //limites de voltage UV Y OV
+	  //limites de corrinte (over current in discharge and OCIC)
+	  //short circuit detection
+	  //proteccion por temperatura alta o baja en carga y descarga
+
+		//config bms
+
+		// Se asume que hi2c1 está inicializado y corresponde al bus I2C
+		HAL_StatusTypeDef ret;
+		uint8_t tx[32];
+		uint8_t rx[32];
+
+		//----------------------------------------------------------------------------------------
+		// 1) Entrar a CONFIG_UPDATE (subcomando 0x0090)
+		//   Para escribir un subcomando de 16 bits (little-endian): se manda [0x3E, LSB, MSB].
+		//----------------------------------------------------------------------------------------
+		tx[0] = 0x3E;   // Dirección donde se escribe el subcomando
+		tx[1] = 0x90;   // LSB del subcomando (0x0090)
+		tx[2] = 0x00;   // MSB del subcomando
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		if(ret != HAL_OK) { /* Manejo de error */ }
+
+		//----------------------------------------------------------------------------------------
+		// 2) Escribir VCell Mode = 2 celdas en 0x901B (Data Memory).
+		//    Procedimiento:
+		//      a) Mandar en 1ra Tx: [0x3E, addrLow, addrHigh, ...payload...]
+		//      b) Calcular checksum y length => escribir en 0x60, 0x61
+		//
+		//    Ejemplo: address = 0x901B => (LSB=0x1B, MSB=0x90), data=0x04
+		//----------------------------------------------------------------------------------------
+		// a) Mandamos dirección + data
+		tx[0] = 0x3E;       // se escribe en 0x3E
+		tx[1] = 0x1B;       // LSB de 0x901B
+		tx[2] = 0x90;       // MSB de 0x901B
+		tx[3] = 0x02;       // Valor = 2 (2 celdas)
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 4, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+
+
+		// b) Calcular checksum = ~ ( sum( [addrLow, addrHigh, data...] ) ) & 0xFF
+		//    length = dataLen + 4 => (1 byte data) + 2 address + 2 (chksum+length) => total 1+2+2=5 => dataLen+4
+		{
+		  uint8_t sumTemp = 0x1B + 0x90 + 0x02; // la sumatoria
+		  uint8_t chksum  = (uint8_t)(~sumTemp);
+		  uint8_t lengthVal = 1 + 4;           // (dataLen=1) +4 = 5
+
+		  tx[0] = 0x60;       // dónde se escribe el checksum
+		  tx[1] = chksum;
+		  tx[2] = lengthVal;  // 5
+		  ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		  if(ret != HAL_OK) { /* error */ }
 		}
-		HAL_I2C_Master_Transmit(&hi2c3, 0x08 << 1, (uint8_t *) direccion, 20, HAL_MAX_DELAY);
 
-		//HAL_I2C_Master_Transmit(&hi2c1, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
+		//----------------------------------------------------------------------------------------
+		// 3) Escribir Enabled Protections A = 0xE1 en 0x9024
+		//----------------------------------------------------------------------------------------
+		// a) Dirección + data => [0x3E, 0x24, 0x90, 0xE1]
+		tx[0] = 0x3E;
+		tx[1] = 0x24;  // LSB de 0x9024
+		tx[2] = 0x90;  // MSB
+		tx[3] = 0xE1;  // Valor
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 4, 100);
+		if(ret != HAL_OK) { /* error */ }
 
-		//HAL_UART_Transmit(&huart4, (uint8_t*) &battery_data->alert_status_B, strlen(buffer), HAL_MAX_DELAY);
-        //HAL_UART_Transmit(&huart4, (uint8_t*)"\n\n\n",50, HAL_MAX_DELAY);
+		// b) checksum + length => sum(0x24 + 0x90 + 0xE1)= 0x24+0x90=0xB4(180) +0xE1=0x195(405 decimal=0x195)
+		//    sum &0xFF= 0x95, chksum=~0x95=0x6A
+		{
+		  uint8_t sumTemp = (uint8_t)(0x24 + 0x90 + 0xE1); // 0x24 +0x90= 0xB4, +0xE1= 0x195 => LSB=0x95
+		  uint8_t chksum  = (uint8_t)(~sumTemp); // ~0x95=0x6A
+		  uint8_t lengthVal = 1 + 4; // dataLen=1 => +4=5
 
-	    ReadCellVoltage(&hi2c1, 1);
+		  tx[0] = 0x60;
+		  tx[1] = chksum;      // 0x6A
+		  tx[2] = lengthVal;   // 5
+		  ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		  if(ret != HAL_OK) { /* error */ }
+		}
+
+
+		//----------------------------------------------------------------------------------------
+		// 4) Escribir Cell Undevoltage TH = 0x0BB8 en 0x902E
+		//----------------------------------------------------------------------------------------
+		// a) Dirección + data => [0x3E, 0x2E, 0x90, 0xB8, 0x0]
+		tx[0] = 0x3E;
+		tx[1] = 0x2E;  // LSB de 0x9024
+		tx[2] = 0x90;  // MSB
+		tx[3] = 0xB8;  // Valor
+		tx[4] = 0x0B;
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 4, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+		// b) checksum + length => sum(0x24 + 0x90 + 0xE1)= 0x24+0x90=0xB4(180) +0xE1=0x195(405 decimal=0x195)
+		//    sum &0xFF= 0x95, chksum=~0x95=0x6A
+		{
+		  uint8_t sumTemp = (uint8_t)(0x24 + 0x90 + 0xE1); // 0x24 +0x90= 0xB4, +0xE1= 0x195 => LSB=0x95
+		  uint8_t chksum  = (uint8_t)(~sumTemp); // ~0x95=0x6A
+		  uint8_t lengthVal = 1 + 4; // dataLen=1 => +4=5
+
+		  tx[0] = 0x60;
+		  tx[1] = chksum;      // 0x6A
+		  tx[2] = lengthVal;   // 5
+		  ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		  if(ret != HAL_OK) { /* error */ }
+		}
+
+
+		//----------------------------------------------------------------------------------------
+		// 4) Salir de CONFIG_UPDATE (subcomando 0x0092)
+		//----------------------------------------------------------------------------------------
+		tx[0] = 0x3E;  // subcmd
+		tx[1] = 0x92;  // LSB
+		tx[2] = 0x00;  // MSB
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+		//----------------------------------------------------------------------------------------
+		// 5) Habilitar FET_EN con subcomando 0x0022
+		//----------------------------------------------------------------------------------------
+
+		/*
+		tx[0] = 0x3E;
+		tx[1] = 0x22;  // LSB
+		tx[2] = 0x00;  // MSB
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		HAL_Delay(2);
+
+		*/
+
+		//----------------------------------------------------------------------------------------
+		// (Opcional) 6) Forzar manualmente DSG_ON: Comando directo 0x68 => 1 byte con bit0=1
+		//----------------------------------------------------------------------------------------
+
+		tx[0] = 0x68;   // FET Control
+		tx[1] = 0x01;   // 0b00000001 => DSG_ON=1
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 2, 100);
+		if(ret != HAL_OK) { }
+
+		//----------------------------------------------------------------------------------------
+		// 7) Leer bit DSG en Battery Status (0x12). BatteryStatus() = 2 bytes, LSB en rx[0]
+		//    => bit0 de rx[0] indica DSG (1=encendido, 0=apagado)
+		//----------------------------------------------------------------------------------------
+		tx[0] = 0x12; // Comando directo a leer
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 1, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+		// Recibir 2 bytes
+		memset(rx, 0, sizeof(rx));
+		ret = HAL_I2C_Master_Receive(&hi2c1, 0x10, rx, 2, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+
+
+		//----------------------------------------------------------------------------------------
+		// Habilitar Alarm Enable escribiendo en 0x66 con el valor 0x0060 (FULLSCAN y ADSCAN)
+		//----------------------------------------------------------------------------------------
+
+		tx[0] = 0x66;  // Dirección de Alarm Enable
+		tx[1] = 0x60;  // LSB del valor 0x0060 (FULLSCAN, ADSCAN)
+		tx[2] = 0x00;  // MSB del valor 0x0060
+		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
+		if(ret != HAL_OK) { /* error */ }
+
+/*
+		uint8_t regValue;
+		HAL_StatusTypeDef status;
+		uint8_t msg = 0xFF;
+
+		regValue = 0x01;
+
+		status = HAL_I2C_Mem_Read(&hi2c1, 0x10, 0x68, I2C_MEMADD_SIZE_8BIT, &regValue, 1, HAL_MAX_DELAY);
+
+
+		if (status != HAL_OK)
+		{
+			HAL_I2C_Master_Transmit(&hi2c3,
+									0x08 << 1,
+									&msg,
+									1,
+									HAL_MAX_DELAY);
+		}else{
+			HAL_I2C_Master_Transmit(&hi2c3,
+									0x08 << 1,
+									&regValue,
+									1,
+									HAL_MAX_DELAY);
+		}
+
+
+		status = HAL_I2C_Mem_Write(&hi2c1, 0x10, 0x68, I2C_MEMADD_SIZE_8BIT, &regValue, 1, HAL_MAX_DELAY);
+*/
+
+
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
-
-        //if ((battery_data->alert_status_B & UTD) || (battery_data->alert_status_B & UTC) || (battery_data->alert_status_B & OTINT)) {
         if (1) {
-        	char MSG_CALENT_OK[60] = "\n Calefactor encendido. Alarma activa. \n";
+        //if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8) == GPIO_PIN_SET) {
             HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);  // Activar calefactor
+//    		HAL_Delay(500);
+//            HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);  // desctivar calefactor
+
+            char MSG_CALENT_OK[60] = "\n Calefactor encendido. Alarma activa. \n";
             HAL_UART_Transmit(&huart4, (uint8_t*) MSG_CALENT_OK,50, HAL_MAX_DELAY);
 
         } else {
@@ -299,7 +510,14 @@ int main(void)
 	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
 	  	}
 
-		HAL_Delay(2000);
+		HAL_Delay(5000);
+
+
+        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);  // Activar calefactor
+		HAL_Delay(5000);
+
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -342,11 +560,11 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }

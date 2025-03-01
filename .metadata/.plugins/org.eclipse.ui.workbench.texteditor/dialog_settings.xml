@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="HAL_GPIO_WritePin"/>
+		<item key="selection" value="HAL_Stat"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="hal_stat"/>
+			<item value="hall_"/>
+			<item value="MX_I2C3_Init"/>
+			<item value="enable"/>
+			<item value="enab"/>
+			<item value="enable_"/>
+			<item value="enable_dis"/>
+			<item value="I2C"/>
+			<item value="register_number"/>
+			<item value="buffer"/>
+			<item value="HAL_I2C_Master_Transmit"/>
+			<item value="HAL_GPIO_ReadPin"/>
+			<item value="MSG_para_arduino"/>
+			<item value="HAL_I2C_Master_Receive"/>
 			<item value="HAL_GPIO_WritePin"/>
-			<item value="HAL_Sta"/>
-			<item value="HAL_STA"/>
-			<item value="hall_s"/>
-			<item value="SystemClock_Config"/>
-			<item value="Batter"/>
-			<item value="Bater"/>
-			<item value="B\ater"/>
-			<item value="bater"/>
-			<item value="i2c_tx_buffer"/>
-			<item value="i2c_rx_buffer"/>
-			<item value="HAL_I2C_EnableListen_IT"/>
-			<item value="HAL_I2C_ErrorCallback"/>
-			<item value="HAL_I2C_AddrCallback"/>
-			<item value="HAL_I2C_SlaveRxCpltCallback"/>
 		</list>
 		<list key="replacehistory">
 			<item value="-&gt;"/>

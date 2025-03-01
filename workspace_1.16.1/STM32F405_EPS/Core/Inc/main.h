@@ -99,6 +99,10 @@ void Error_Handler(void);
 #define Enable5VBis_GPIO_Port GPIOB
 #define EnableCalefactor_Pin GPIO_PIN_14
 #define EnableCalefactor_GPIO_Port GPIOB
+#define SDA_I2C_COM_Pin GPIO_PIN_9
+#define SDA_I2C_COM_GPIO_Port GPIOC
+#define SCL_I2C_COM_Pin GPIO_PIN_8
+#define SCL_I2C_COM_GPIO_Port GPIOA
 #define EnableBatOut_Pin GPIO_PIN_9
 #define EnableBatOut_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
@@ -109,10 +113,10 @@ void Error_Handler(void);
 #define TX_GPIO_Port GPIOC
 #define RX_Pin GPIO_PIN_11
 #define RX_GPIO_Port GPIOC
-#define SCL_BMS_Pin GPIO_PIN_6
-#define SCL_BMS_GPIO_Port GPIOB
-#define SDA_BMS_Pin GPIO_PIN_7
-#define SDA_BMS_GPIO_Port GPIOB
+#define SCL_I2C_BMS_Pin GPIO_PIN_6
+#define SCL_I2C_BMS_GPIO_Port GPIOB
+#define SDA_I2C_BMS_Pin GPIO_PIN_7
+#define SDA_I2C_BMS_GPIO_Port GPIOB
 #define BMS_Alert_Pin GPIO_PIN_8
 #define BMS_Alert_GPIO_Port GPIOB
 #define MPPTXControl_Pin GPIO_PIN_9
