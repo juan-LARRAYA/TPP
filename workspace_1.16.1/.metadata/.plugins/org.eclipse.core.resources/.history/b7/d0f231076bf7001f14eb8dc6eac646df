@@ -1,0 +1,28 @@
+/*
+ * mttp.h
+ *
+ *  Created on: Mar 2, 2025
+ *      Author: apple
+ */
+
+#ifndef INC_MPPT_H_
+#define INC_MPPT_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "main.h"
+#include <stdint.h>
+
+// Declaración de la función MPPT
+void mttp(uint8_t *dutyCycle, const float *power, float *prevPower);
+
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+#endif /* INC_MPPT_H_ */

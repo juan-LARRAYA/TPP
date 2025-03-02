@@ -1,21 +1,4 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -29,267 +12,229 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+#include "mppt.h"
+#include "bms.h"
+#include "pdu.h"
+
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-// Definir el comando de FET Control (0x29)
-#define FET_CONTROL_CMD 0x29
-#define BQ76905_I2C_ADDR 0x10  // Dirección I2C del BQ76905, asegúrate de que sea la correcta
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+#define DELAY 2000
 
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//MPPT VARS
-float VX_in = 0, VY_in = 0, VZ_in = 0;
-float IX_in = 0, IY_in = 0, IZ_in = 0;
-float powerX = 0, powerY = 0, powerZ = 0;
-float prevPowerX = 0, prevPowerY = 0, prevPowerZ = 0;
-int dutyCycleX = 255 * 0.5, dutyCycleY = 255 * 0.5, dutyCycleZ = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
-
-//PDU VARS
-float V5, I5, V5bis, I5bis, V3, I3, V3bis, I3bis;
-
-//BMS
-
-typedef struct {
-    uint16_t cell1_voltage;        // Voltaje de la celda 1 (mV)
-    uint16_t cell2_voltage;        // Voltaje de la celda 2 (mV)
-    uint8_t alert_status_A;        // Registro de alertas A
-    uint8_t fault_status_A;        // Registro de fallas A
-    uint8_t alert_status_B;        // Registro de alertas B
-    uint8_t fault_status_B;        // Registro de fallas B
-    uint16_t battery_status;       // Registro de estado de la batería
-} BatteryData;
-
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
-
-HAL_StatusTypeDef BQ76905_WriteRegister(uint8_t reg, uint8_t* data, uint16_t len);
-HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len);
-HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size);
-void ReadCellVoltage(I2C_HandleTypeDef *hi2c, uint8_t cell);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-
-void mppt(int *dutyCycle, float *power, float *prevPower) {
-	const int deltaDuty = 10;    // Incremento o decremento del Duty Cycle
-	if (*power > *prevPower) {
-		if (*dutyCycle < 255)
-			*dutyCycle += deltaDuty; // Si la potencia ha aumentado, continuar ajustando en la misma dirección
-	} else {
-		if (*dutyCycle > 0)
-			*dutyCycle -= deltaDuty; // Si la potencia ha disminuido, invertir la dirección del ajuste
-	}
-
-	if (*dutyCycle < 0)
-		*dutyCycle = 0; // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
-	if (*dutyCycle > 255)
-		*dutyCycle = 255;
-
-	*prevPower = *power; // Actualizar `prevPower` con el valor actual de `power`
+void printMPPTData(MPPT_Channel *mppt, const char *label) {
+    char buffer[STR_LEN];
+    snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A, %.2f W\n",
+             label, mppt->voltage, mppt->current, mppt->power);
+    HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 
 
 
-// Función para forzar el FET de descarga a encenderse
-  void enable_Discharge_FET() {
-      uint8_t command[2];
-      command[0] = FET_CONTROL_CMD;  // Comando FET Control
-      command[1] = 0x01;  // Valor para forzar el FET de descarga (DSG) a encenderse (CHG no se fuerza)
-
-      // Enviar el comando a través de I2C
-      HAL_I2C_Master_Transmit(&hi2c1, BQ76905_I2C_ADDR, command, 2, HAL_MAX_DELAY);
-  }
-
-  // Función para deshabilitar el FET de descarga (opcional)
-  void disable_Discharge_FET() {
-      uint8_t command[2];
-      command[0] = FET_CONTROL_CMD;  // Comando FET Control
-      command[1] = 0x00;  // Valor para deshabilitar el FET de descarga
-
-      // Enviar el comando a través de I2C
-      HAL_I2C_Master_Transmit(&hi2c1, BQ76905_I2C_ADDR, command, 2, HAL_MAX_DELAY);
-  }
 
 /* USER CODE END 0 */
 
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
+
 int main(void)
 {
-
 	/* USER CODE BEGIN 1 */
 
 
 	/* USER CODE END 1 */
 
 	/* MCU Configuration--------------------------------------------------------*/
-
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
 	HAL_Init();
 
-	/* USER CODE BEGIN Init */
-
-	/* USER CODE END Init */
-
-	/* Configure the system clock */
 	SystemClock_Config();
-
-	/* USER CODE BEGIN SysInit */
-
-	/* USER CODE END SysInit */
-
-	/* Initialize all configured peripherals */
 	MX_GPIO_Init();
+
 	MX_ADC1_Init();
 	MX_ADC2_Init();
 	MX_ADC3_Init();
+
+	MX_I2C1_Init();
 	MX_I2C3_Init();
+
 	MX_TIM2_Init();
 	MX_TIM4_Init();
 	MX_TIM5_Init();
+
 	MX_UART4_Init();
 	MX_USB_OTG_FS_PCD_Init();
-	MX_I2C1_Init();
+
 	/* USER CODE BEGIN 2 */
 
-
-
-	//COMUNICACION ENTRE PLACAS
-	//HAL_I2C_EnableListen_IT(&hi2c1); // Habilitar escucha en modo esclavo
-
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
-
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_4);
 
+	//MPPT VARS
 
-//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, GPIO_PIN_SET); 	//5V
-//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);	//3.3V BIS
-//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);	//3.3V
-//	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);	//5V BIS
+	MPPT_Channel mpptX = {
+		.hadc = &hadc2,
+		.v_channel = ADC_CHANNEL_11,
+		.i_channel = ADC_CHANNEL_10,
+		.htim = &htim2,
+		.tim_channel = TIM_CHANNEL_1,
+		.voltage = 0,    // Inicializar como indefinido
+		.current = -1,    // Inicializar como indefinido
+		.power = -1,      // Inicializar como indefinido
+		.prevPower = 0,
+		.dutyCycle = 255 * 0.5  // 50% de 255
+	};
+
+	MPPT_Channel mpptY = {
+	    .hadc = &hadc1,
+	    .v_channel = ADC_CHANNEL_13,
+	    .i_channel = ADC_CHANNEL_12,
+	    .htim = &htim4,
+	    .tim_channel = TIM_CHANNEL_4,
+		.voltage = -1,    // Inicializar como indefinido
+		.current = -1,    // Inicializar como indefinido
+		.power = -1,      // Inicializar como indefinido
+		.prevPower = 0,
+		.dutyCycle = 255 * 0.5  // 50% de 255
+	};
+
+	MPPT_Channel mpptZ = {
+	    .hadc = &hadc3,
+	    .v_channel = ADC_CHANNEL_2,
+	    .i_channel = ADC_CHANNEL_1,
+	    .htim = &htim5,
+	    .tim_channel = TIM_CHANNEL_4,
+		.voltage = -1,    // Inicializar como indefinido
+		.current = -1,    // Inicializar como indefinido
+		.power = -1,      // Inicializar como indefinido
+		.prevPower = 0,
+		.dutyCycle = 255 * 0.5  // 50% de 255
+	};
+
+	// Definir las estructuras para cada canal de la PDU
+
+	PDU_Channel pdu_V5 = {
+	    .hadc = &hadc2,
+	    .v_channel = ADC_CHANNEL_11,  // Canal ADC para voltaje de V5
+	    .i_channel = ADC_CHANNEL_10,  // Canal ADC para corriente de V5
+	    .voltage = 0,
+	    .current = 0,
+	    .label = "V5",
+	    .gpio_port = GPIOB,  // Puerto GPIO de salida
+	    .gpio_pin = GPIO_PIN_12  // Pin de control para 5V BIS
+	};
+
+	PDU_Channel pdu_V5bis = {
+	    .hadc = &hadc2,
+	    .v_channel = ADC_CHANNEL_11,  // Canal ADC para voltaje de V5bis
+	    .i_channel = ADC_CHANNEL_10,  // Canal ADC para corriente de V5bis
+	    .voltage = 0,
+	    .current = 0,
+	    .label = "V5bis",
+	    .gpio_port = GPIOB,
+	    .gpio_pin = GPIO_PIN_12  // Pin de control para 5V BIS
+	};
+
+	PDU_Channel pdu_V3 = {
+	    .hadc = &hadc2,
+	    .v_channel = ADC_CHANNEL_11,  // Canal ADC para voltaje de V3
+	    .i_channel = ADC_CHANNEL_10,  // Canal ADC para corriente de V3
+	    .voltage = 0,
+	    .current = 0,
+	    .label = "V3",
+	    .gpio_port = GPIOB,
+	    .gpio_pin = GPIO_PIN_11  // Pin de control para 3.3V
+	};
+
+	PDU_Channel pdu_V3bis = {
+	    .hadc = &hadc2,
+	    .v_channel = ADC_CHANNEL_11,  // Canal ADC para voltaje de V3bis
+	    .i_channel = ADC_CHANNEL_10,  // Canal ADC para corriente de V3bis
+	    .voltage = 0,
+	    .current = 0,
+	    .label = "V3bis",
+	    .gpio_port = GPIOB,
+	    .gpio_pin = GPIO_PIN_10  // Pin de control para 3.3V BIS
+	};
+
+
+	//Pruebas de salidas
+    // Habilitar las fuentes
+    enablePDU(&pdu_V3bis);
+    enablePDU(&pdu_V3);
+    enablePDU(&pdu_V5bis); 				//Ahora no prende este nose xq
+//    enablePDU(&pdu_V5);	//5V  		//NO ANDA Y METE RUIDO
+
 //	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
-
-	//char *data = "hello from hell";
-
-	//enable_Discharge_FET();
-
-
-
 
   /* USER CODE END 2 */
 
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-/*
 	  	//MPPT
-		VX_in = readADC(&hadc2, ADC_CHANNEL_11);
-		IX_in = readADC(&hadc2, ADC_CHANNEL_10);
-		powerX = VX_in * IX_in;
-
-		VY_in = readADC(&hadc1, ADC_CHANNEL_13);
-		IY_in = readADC(&hadc1, ADC_CHANNEL_12);
-		powerY = VY_in * IY_in;
-
-		VZ_in = readADC(&hadc3, ADC_CHANNEL_2);
-		IZ_in = readADC(&hadc3, ADC_CHANNEL_1);
-		powerZ = VZ_in * IZ_in;
-
-
-		mppt(&dutyCycleX, &powerX, &prevPowerX);
-		mppt(&dutyCycleY, &powerY, &prevPowerY);
-		mppt(&dutyCycleZ, &powerZ, &prevPowerZ);
-
-		__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, dutyCycleX);
-		__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_4, dutyCycleY);
-		__HAL_TIM_SET_COMPARE(&htim5, TIM_CHANNEL_4, dutyCycleZ);
+        updateMPPT(&mpptX);
+        updateMPPT(&mpptY);
+        updateMPPT(&mpptZ);
 
 
 		// Imprimir datos al puerto serie
-		char buffer[100];
-		sprintf(buffer, "VX_in: %.2f V, IX_in: %.2f A, PowerX: %.2f W\n", VX_in, IX_in, powerX); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-		sprintf(buffer, "VY_in: %.2f V, IY_in: %.2f A, PowerY: %.2f W\n", VY_in, IY_in, powerY);
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-		sprintf(buffer, "VZ_in: %.2f V, IZ_in: %.2f A, PowerZ: %.2f W\n", VZ_in, IZ_in, powerZ);
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+
+
+        printMPPTData(&mpptX, "VX_in"); // Imprimir valores de MPPT para el eje X
+        printMPPTData(&mpptY, "VY_in"); // Imprimir valores de MPPT para el eje Y
+        printMPPTData(&mpptZ, "VZ_in"); // Imprimir valores de MPPT para el eje Z
 
 
 		//PDU
-		V5 = readADC(&hadc2, ADC_CHANNEL_11);
-		I5 = readADC(&hadc2, ADC_CHANNEL_10);
 
-		V5bis = readADC(&hadc2, ADC_CHANNEL_11);
-		I5bis = readADC(&hadc2, ADC_CHANNEL_10);
-
-		V3 = readADC(&hadc2, ADC_CHANNEL_11);
-		I3 = readADC(&hadc2, ADC_CHANNEL_10);
-
-		V3bis = readADC(&hadc2, ADC_CHANNEL_11);
-		I3bis = readADC(&hadc2, ADC_CHANNEL_10);
-		// Imprimir datos al puerto serie
-
-		sprintf(buffer, "V5: %.2f V, I5: %.2f A \n", V5, I5); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		sprintf(buffer, "V5bis: %.2f V, I5bis: %.2f A \n", V5bis, I5bis); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		sprintf(buffer, "V3: %.2f V, I3: %.2f A \n", V3, I3); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-*/
-
-
-		//sprintf(buffer, "\n V3bis: %.2f V, I3bis: %.2f A \n", V3bis, I3bis); // @suppress("Float formatting support")
-
-		//HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+        updatePDU(&pdu_V5);
+        updatePDU(&pdu_V5bis);
+        updatePDU(&pdu_V3);
+        updatePDU(&pdu_V3bis);
 
 
 		//COMUNICACION BQ76905
 
-//
-//	  	uint8_t data;
-//    	HAL_I2C_Mem_Read(&hi2c1,
-//    	                 0x10,         		 // Dirección I2C
-//						 0x00,                // Registro que quieres leer
-//    	                 I2C_MEMADD_SIZE_8BIT,// Tamaño de la dirección (8 bits)
-//    	                 &data,               // Búfer donde guardar el dato leído
-//    	                 1,                   // Cantidad de bytes a leer
-//    	                 HAL_MAX_DELAY);
-//
-//		HAL_I2C_Master_Transmit(&hi2c3,
-//								0x08 << 1,
-//								&data,
-//								1,
-//								HAL_MAX_DELAY);
+	  	uint8_t data;
+    	HAL_I2C_Mem_Read(&hi2c1,
+    	                 0x10,         		 // Dirección I2C
+						 0x00,                // Registro que quieres leer
+    	                 I2C_MEMADD_SIZE_8BIT,// Tamaño de la dirección (8 bits)
+    	                 &data,               // Búfer donde guardar el dato leído
+    	                 1,                   // Cantidad de bytes a leer
+    	                 HAL_MAX_DELAY);
+
+		HAL_I2C_Master_Transmit(&hi2c3,
+								0x08 << 1,
+								&data,
+								1,
+								HAL_MAX_DELAY);
 
 
 	  //limites de voltage UV Y OV
@@ -455,7 +400,7 @@ int main(void)
 		ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, tx, 3, 100);
 		if(ret != HAL_OK) { /* error */ }
 
-/*
+
 		uint8_t regValue;
 		HAL_StatusTypeDef status;
 		uint8_t msg = 0xFF;
@@ -482,7 +427,7 @@ int main(void)
 
 
 		status = HAL_I2C_Mem_Write(&hi2c1, 0x10, 0x68, I2C_MEMADD_SIZE_8BIT, &regValue, 1, HAL_MAX_DELAY);
-*/
+
 
 
 
@@ -510,11 +455,11 @@ int main(void)
 	  		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);	//Batery out BIS
 	  	}
 
-		HAL_Delay(5000);
+		HAL_Delay(DELAY);
 
 
         HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);  // Activar calefactor
-		HAL_Delay(5000);
+		HAL_Delay(DELAY);
 
 
 

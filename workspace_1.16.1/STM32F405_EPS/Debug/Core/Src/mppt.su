@@ -1,0 +1,2 @@
+../Core/Src/mppt.c:15:6:mppt_algorithm	32	static
+../Core/Src/mppt.c:37:6:updateMPPT	16	static

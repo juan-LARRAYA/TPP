@@ -46,6 +46,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+#define STR_LEN 50
 
 /* USER CODE END EM */
 

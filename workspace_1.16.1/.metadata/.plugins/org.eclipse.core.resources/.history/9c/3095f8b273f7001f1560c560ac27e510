@@ -1,0 +1,77 @@
+/*
+ * mppt.c
+ *
+ *  Created on: Mar 2, 2025
+ *      Author: apple
+ */
+
+#include "mppt.h"
+#include "adc.h"
+#include "tim.h"
+
+
+// Definir las estructuras para cada eje
+MPPT_Channel mpptX = {
+    .hadc = &hadc2,
+    .v_channel = ADC_CHANNEL_11,
+    .i_channel = ADC_CHANNEL_10,
+    .dutyCycle = 127,  // 50% de 255
+    .prevPower = 0,
+    .htim = &htim2,
+    .tim_channel = TIM_CHANNEL_1
+};
+
+MPPT_Channel mpptY = {
+    .hadc = &hadc1,
+    .v_channel = ADC_CHANNEL_13,
+    .i_channel = ADC_CHANNEL_12,
+    .dutyCycle = 127,
+    .prevPower = 0,
+    .htim = &htim4,
+    .tim_channel = TIM_CHANNEL_4
+};
+
+MPPT_Channel mpptZ = {
+    .hadc = &hadc3,
+    .v_channel = ADC_CHANNEL_2,
+    .i_channel = ADC_CHANNEL_1,
+    .dutyCycle = 127,
+    .prevPower = 0,
+    .htim = &htim5,
+    .tim_channel = TIM_CHANNEL_4
+};
+
+
+void updateMPPT(MPPT_Channel *mppt) {
+    // Leer valores de voltaje y corriente del ADC
+    mppt->voltage = readADC(mppt->hadc, mppt->v_channel);
+    mppt->current = readADC(mppt->hadc, mppt->i_channel);
+
+    // Calcular potencia
+    mppt->power = mppt->voltage * mppt->current;
+
+    // Aplicar algoritmo MPPT
+    mppt(mppt->dutyCycle, &mppt->power, &mppt->prevPower);
+
+    // Actualizar el PWM en el canal correspondiente
+    __HAL_TIM_SET_COMPARE(mppt->htim, mppt->tim_channel, mppt->dutyCycle);
+}
+
+
+void updateMPPT(ADC_HandleTypeDef *hadc, uint32_t v_channel, uint32_t i_channel,
+                float *voltage, float *current, float *power, float *prevPower,
+                uint8_t *dutyCycle, TIM_HandleTypeDef *htim, uint32_t tim_channel) {
+
+    // Leer valores de voltaje y corriente del ADC
+    *voltage = readADC(hadc, v_channel);
+    *current = readADC(hadc, i_channel);
+
+    // Calcular potencia
+    *power = (*voltage) * (*current);
+
+    // Aplicar algoritmo MPPT
+    mppt(dutyCycle, power, prevPower);
+
+    // Actualizar el PWM del canal correspondiente
+    __HAL_TIM_SET_COMPARE(htim, tim_channel, *dutyCycle);
+}

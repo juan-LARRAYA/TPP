@@ -35,60 +35,6 @@
 
 
 
-HAL_StatusTypeDef BQ76905_WriteRegister(uint8_t reg, uint8_t* data, uint16_t len) {
-	HAL_StatusTypeDef status;
-    status = HAL_I2C_Master_Transmit(&hi2c3, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
-    if (status != HAL_OK) {
-        return status; // Retorna el error si no se pudo enviar el registro
-    }
-
-    // Leer los datos del registro
-    return HAL_I2C_Master_Receive(&hi2c3, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
-}
-
-
-
-
-// Función para leer un registro específico del BQ76905
-HAL_StatusTypeDef BQ76905_ReadRegister(uint8_t reg, uint8_t* data, uint16_t len) {
-    HAL_StatusTypeDef status;
-
-    // Enviar el registro desde el cual leeremos
-    status = HAL_I2C_Master_Transmit(&hi2c3, BQ76905_ADDR, &reg, 1, HAL_MAX_DELAY);
-    if (status != HAL_OK) {
-        return status; // Retorna el error si no se pudo enviar el registro
-    }
-
-    // Leer los datos del registro
-    return HAL_I2C_Master_Receive(&hi2c3, BQ76905_ADDR, data, len, HAL_MAX_DELAY);
-}
-
-// Función para leer un registro del BQ76905
-HAL_StatusTypeDef BQ76905_ReadRegister_test(uint8_t regAddr, uint8_t *data, uint16_t size) {
-    return HAL_I2C_Mem_Read(&hi2c3, BQ76905_ADDR, regAddr, I2C_MEMADD_SIZE_8BIT, data, size, HAL_MAX_DELAY);
-}
-
-// Función para leer el voltaje de una celda
-void ReadCellVoltage(I2C_HandleTypeDef *hi2c, uint8_t cell) {
-    uint8_t cmd_addr = 0x14 + (cell * 2);
-    uint8_t result;
-	char buffer[100];
-
-	HAL_UART_Transmit(&huart4, (uint8_t) BQ76905_ReadRegister_test(cmd_addr, result, 2),100, HAL_MAX_DELAY);
-
-
-    if (BQ76905_ReadRegister_test(cmd_addr, result, 2) == HAL_OK) {
-    	sprintf(buffer, "Cellda %d = %d mV\n", cell, result); // @suppress("Float formatting support")
-    	HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-    } else {
-    	char MSG_READ_ERROR[60] =  "\n Error al leer \n";
-        HAL_UART_Transmit(&huart4, (uint8_t*) MSG_READ_ERROR,50, HAL_MAX_DELAY);
-    	HAL_UART_Transmit(&huart4,(uint8_t*) result,100, HAL_MAX_DELAY);
-    	//HAL_UART_Transmit(&huart4, result[1],100, HAL_MAX_DELAY);
-
-    }
-}
-
 /* USER CODE END 0 */
 
 I2C_HandleTypeDef hi2c1;
