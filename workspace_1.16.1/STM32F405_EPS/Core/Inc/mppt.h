@@ -13,7 +13,7 @@ extern "C" {
 #endif
 
 #include "main.h"
-#include <stdint.h>
+
 
 
 // Estructura para encapsular la configuración de cada canal MPPT
@@ -33,6 +33,7 @@ typedef struct {
 // Declaración de la función MPPT
 void mppt_algorithm(uint8_t *dutyCycle, const float *power, float *prevPower);
 void updateMPPT(MPPT_Channel *mppt);
+void printMPPTData(MPPT_Channel *mppt, const char *label);
 
 
 #ifdef __cplusplus

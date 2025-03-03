@@ -41,13 +41,13 @@ extern ADC_HandleTypeDef hadc3;
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
-uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
 
 void MX_ADC1_Init(void);
 void MX_ADC2_Init(void);
 void MX_ADC3_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
 
 /* USER CODE END Prototypes */
 

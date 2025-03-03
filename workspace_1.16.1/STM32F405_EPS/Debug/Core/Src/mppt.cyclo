@@ -1,2 +1,3 @@
-../Core/Src/mppt.c:16:6:mppt_algorithm	4
-../Core/Src/mppt.c:38:6:updateMPPT	4
+../Core/Src/mppt.c:19:6:mppt_algorithm	4
+../Core/Src/mppt.c:41:6:updateMPPT	4
+../Core/Src/mppt.c:57:6:printMPPTData	1

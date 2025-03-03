@@ -4,3 +4,4 @@
 ../Core/Src/bms.c:50:19:BQ76905_ReadRegister	40	static
 ../Core/Src/bms.c:58:6:BQ76905_Configure	24	static
 ../Core/Src/bms.c:82:6:BQ76905_ReadData	24	static
+../Core/Src/bms.c:153:6:sendBMSDataI2C	104	static

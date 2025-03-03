@@ -1,3 +1,3 @@
 ../Core/Src/pdu.c:14:6:updatePDU	104	static
-../Core/Src/pdu.c:26:6:enablePDU	16	static
-../Core/Src/pdu.c:31:6:disablePDU	16	static
+../Core/Src/pdu.c:28:6:enablePDU	16	static
+../Core/Src/pdu.c:33:6:disablePDU	16	static

@@ -1,2 +1,7 @@
 connectionTypeId=org.eclipse.remote.JSch
+connections/org.eclipse.remote.serial.core.connectionType/ttl-usb/serial.baudRate=11
+connections/org.eclipse.remote.serial.core.connectionType/ttl-usb/serial.byteSize=3
+connections/org.eclipse.remote.serial.core.connectionType/ttl-usb/serial.parity=0
+connections/org.eclipse.remote.serial.core.connectionType/ttl-usb/serial.portName=/dev/cu.usbserial-130
+connections/org.eclipse.remote.serial.core.connectionType/ttl-usb/serial.stopBits=0
 eclipse.preferences.version=1

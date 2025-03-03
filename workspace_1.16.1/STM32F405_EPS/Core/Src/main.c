@@ -1,4 +1,21 @@
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -10,8 +27,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
-#include "string.h"
 #include "mppt.h"
 #include "bms.h"
 #include "pdu.h"
@@ -30,7 +45,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DELAY 5000
+#define DELAY 4000
 
 /* USER CODE END PM */
 
@@ -48,48 +63,54 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void printMPPTData(MPPT_Channel *mppt, const char *label) {
-    char buffer[STR_LEN];
-    snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A, %.2f W\n",
-             label, mppt->voltage, mppt->current, mppt->power);
-    HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-}
+
 
 
 
 
 /* USER CODE END 0 */
 
-
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
 int main(void)
 {
-	/* USER CODE BEGIN 1 */
+
+  /* USER CODE BEGIN 1 */
 
 
-	/* USER CODE END 1 */
+  /* USER CODE END 1 */
 
-	/* MCU Configuration--------------------------------------------------------*/
-	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init();
+  /* MCU Configuration--------------------------------------------------------*/
 
-	SystemClock_Config();
-	MX_GPIO_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
-	MX_ADC1_Init();
-	MX_ADC2_Init();
-	MX_ADC3_Init();
+  /* USER CODE BEGIN Init */
 
-	MX_I2C1_Init();
-	MX_I2C3_Init();
+  /* USER CODE END Init */
 
-	MX_TIM2_Init();
-	MX_TIM4_Init();
-	MX_TIM5_Init();
+  /* Configure the system clock */
+  SystemClock_Config();
 
-	MX_UART4_Init();
-	MX_USB_OTG_FS_PCD_Init();
+  /* USER CODE BEGIN SysInit */
 
-	/* USER CODE BEGIN 2 */
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_ADC2_Init();
+  MX_ADC3_Init();
+  MX_I2C3_Init();
+  MX_TIM2_Init();
+  MX_TIM4_Init();
+  MX_TIM5_Init();
+  MX_UART4_Init();
+  MX_USB_OTG_FS_PCD_Init();
+  MX_I2C1_Init();
+  /* USER CODE BEGIN 2 */
 
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
@@ -205,11 +226,16 @@ int main(void)
     //
     BQ76905_Configure(&bms);
 
+
+
+
   /* USER CODE END 2 */
 
+  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
 	  	//MPPT
         updateMPPT(&mpptX);
         updateMPPT(&mpptY);
@@ -224,7 +250,7 @@ int main(void)
         updatePDU(&pdu_V5bis);
         updatePDU(&pdu_V3);
         updatePDU(&pdu_V3bis);
-        updatePDU(&pdu_BatOut);
+        updatePDU(&pdu_BatOut); //fallo
 
 		//COMUNICACION BQ76905
 			//limites de voltage UV Y OV
@@ -232,12 +258,7 @@ int main(void)
 			//short circuit detection
 			//proteccion por temperatura alta o baja en carga y descarga
         BQ76905_ReadData(&bms);
-
-        //PRENDO Y APAGO EL LED QUE ESTA EN EL PIN DEL CALEFACTOR PARA DEBUGEAR
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
-		HAL_Delay(DELAY);
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
-		HAL_Delay(DELAY);
+        sendBMSDataI2C(&bms);
 
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA
@@ -246,7 +267,10 @@ int main(void)
 
 		//ALMACENAMIENTO EN FLASH DE VARIBLES
 
-
+      	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+    	HAL_Delay(DELAY);
+      	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+    	HAL_Delay(DELAY);
 
 
     /* USER CODE END WHILE */

@@ -16,7 +16,10 @@ extern "C" {
 #include "main.h"
 #include <stdint.h>
 
-#define BQ76905_I2C_ADDR 0x10	// Dirección I2C del BQ76905
+#define BQ76905_I2C_ADDR 0x10			// Dirección I2C del BQ76905
+#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
+#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
+#define MAX_CELLS 5  					// Cantidad total de celdas
 
 
 // Enumeración de registros con nombres representativos
@@ -146,6 +149,7 @@ HAL_StatusTypeDef BQ76905_WriteChecksum(BQ76905_Device *bms, BQ76905_Registers r
 HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *rxData, uint8_t len);
 void BQ76905_Configure(BQ76905_Device *bms);
 void BQ76905_ReadData(BQ76905_Device *bms);
+void sendBMSDataI2C(BQ76905_Device *bms);
 
 
 

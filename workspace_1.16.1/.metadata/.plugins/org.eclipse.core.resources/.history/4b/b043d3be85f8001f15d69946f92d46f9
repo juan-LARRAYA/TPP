@@ -1,0 +1,193 @@
+
+#include "bms.h"
+#include "i2c.h"
+#include "usart.h"
+#include <stdio.h>
+#include <string.h>
+
+// Función para enviar un subcomando al BQ76905 (no requiere checksum)
+HAL_StatusTypeDef BQ76905_WriteSubcommand(BQ76905_Device *bms, BQ76905_Registers subcmd) {
+    uint8_t tx[3] = {BASE_SUBCOMMAND_ADDRESS, (uint8_t)(subcmd & 0xFF), (uint8_t)(subcmd >> 8)};
+    return HAL_I2C_Master_Transmit(bms->hi2c, BQ76905_I2C_ADDR, tx, 3, HAL_MAX_DELAY);
+}
+
+
+// Función para escribir en un registro (requiere checksum si es de memoria)
+HAL_StatusTypeDef BQ76905_WriteRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *data, uint8_t len) {
+    uint8_t tx[32];
+    tx[0] = BASE_SUBCOMMAND_ADDRESS; // Dirección base
+    tx[1] = (uint8_t)(reg & 0xFF);  // LSB del registro
+    tx[2] = (uint8_t)(reg >> 8);    // MSB del registro
+
+    // Copiar datos al buffer de transmisión
+    memcpy(&tx[3], data, len);
+
+    // Enviar datos al registro
+    HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(bms->hi2c, BQ76905_I2C_ADDR, tx, len + 3, HAL_MAX_DELAY);
+    if (ret != HAL_OK) return ret;
+
+    // Si el registro pertenece a la memoria, escribir checksum
+    return BQ76905_WriteChecksum(bms, reg, data, len);
+}
+
+// Función para calcular y escribir el checksum
+HAL_StatusTypeDef BQ76905_WriteChecksum(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *data, uint8_t len) {
+    uint8_t sum = (uint8_t)(reg & 0xFF) + (uint8_t)(reg >> 8);
+
+    for (uint8_t i = 0; i < len; i++) {
+        sum += data[i];
+    }
+
+    uint8_t chksum = ~sum;      // Invertimos el complemento a uno
+    uint8_t lengthVal = len + 4;  // Longitud = datos + dirección + (checksum + longitud)
+
+    uint8_t tx[3] = {0x60, chksum, lengthVal};  // Dirección del checksum
+    return HAL_I2C_Master_Transmit(bms->hi2c, BQ76905_I2C_ADDR, tx, 3, HAL_MAX_DELAY);
+}
+
+
+// Función para leer un registro
+HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *rxData, uint8_t len) {
+    HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(bms->hi2c, BQ76905_I2C_ADDR, (uint8_t*)&reg, 1, HAL_MAX_DELAY);
+    if (ret != HAL_OK) return ret;
+    return HAL_I2C_Master_Receive(bms->hi2c, BQ76905_I2C_ADDR, rxData, len, HAL_MAX_DELAY);
+}
+
+
+// Función para configurar el BQ76905
+void BQ76905_Configure(BQ76905_Device *bms) {
+    uint8_t data[2];
+
+    // Entrar en modo CONFIG_UPDATE
+    BQ76905_WriteSubcommand(bms, CONFIG_UPDATE);
+
+    // Configurar VCell Mode (2 celdas)
+    data[0] = 0x02;
+    BQ76905_WriteRegister(bms, VCELL_MODE, data, 1);
+
+    // Habilita protecciones OCC, OCD, SCD y COV
+    data[0] = 0xE1;
+    BQ76905_WriteRegister(bms, ENABLED_PROT_A, data, 1);
+
+    // Umbral de bajo voltaje (en mV) 0x0B *256 + 0x8b = 3000 mV
+    data[0] = 0xB8;
+    data[1] = 0x0B;
+    BQ76905_WriteRegister(bms, CELL_UV_THRESHOLD, data, 2);
+
+    // Salir de modo CONFIG_UPDATE
+    BQ76905_WriteSubcommand(bms, CONFIG_EXIT);
+}
+
+// Función para leer datos desde el BQ76905
+void BQ76905_ReadData(BQ76905_Device *bms) {
+    uint8_t rx[6]; // Buffer temporal de lectura
+
+    //  Leer voltaje de todas las celdas (hasta 5 celdas)
+    for (uint8_t i = 0; i < 5; i++) {
+        BQ76905_ReadRegister(bms, CELL1_VOLTAGE + (i * 2), rx, 2);
+        bms->cell_voltages[i] = rx[0] | (rx[1] << 8);
+    }
+
+    //  Leer voltaje total del pack
+    BQ76905_ReadRegister(bms, STACK_VOLTAGE, rx, 2);
+    bms->stack_voltage = rx[0] | (rx[1] << 8);
+
+    //  Leer voltaje de referencia interna (1.8V)
+    BQ76905_ReadRegister(bms, REG18_VOLTAGE, rx, 2);
+    bms->reg18_voltage = rx[0] | (rx[1] << 8);
+
+    //  Leer medición de referencia de tierra
+    BQ76905_ReadRegister(bms, VSS_VOLTAGE, rx, 2);
+    bms->vss_voltage = rx[0] | (rx[1] << 8);
+
+    //  Leer temperatura interna
+    BQ76905_ReadRegister(bms, INT_TEMPERATURE, rx, 2);
+    bms->internal_temperature = rx[0] | (rx[1] << 8);
+
+    //  Leer temperatura del sensor externo (TS)
+    BQ76905_ReadRegister(bms, TS_MEASUREMENT, rx, 2);
+    bms->ts_measurement = rx[0] | (rx[1] << 8);
+
+    //  Leer medición de corriente cruda (32 bits)
+    BQ76905_ReadRegister(bms, RAW_CURRENT, rx, 4);
+    bms->raw_current = (int32_t)(rx[0] | (rx[1] << 8) | (rx[2] << 16) | (rx[3] << 24));
+
+    //  Leer corriente CC2 (16 bits)
+    BQ76905_ReadRegister(bms, CURRENT_MEASUREMENT, rx, 2);
+    bms->current = (int16_t)(rx[0] | (rx[1] << 8));
+
+    //  Leer corriente CC1 (16 bits)
+    BQ76905_ReadRegister(bms, CC1_CURRENT_MEASUREMENT, rx, 2);
+    bms->cc1_current = (int16_t)(rx[0] | (rx[1] << 8));
+
+    //  Leer estado de la batería
+    BQ76905_ReadRegister(bms, BATTERY_STATUS, rx, 2);
+    bms->battery_status = rx[0] | (rx[1] << 8);
+
+    //  Leer estado de alarmas y protecciones
+    BQ76905_ReadRegister(bms, ALARM_STATUS, &bms->alarm_status, 1);
+    BQ76905_ReadRegister(bms, ALARM_RAW_STATUS, &bms->alarm_raw_status, 1);
+    BQ76905_ReadRegister(bms, ENABLED_PROT_A, &bms->enabled_protections, 1);
+
+    //  Leer umbrales de protección por voltaje
+    BQ76905_ReadRegister(bms, CELL_UNDERVOLTAGE_THRESHOLD, rx, 2);
+    bms->cell_undervoltage_threshold = rx[0] | (rx[1] << 8);
+
+    BQ76905_ReadRegister(bms, CELL_OVERVOLTAGE_THRESHOLD, rx, 2);
+    bms->cell_overvoltage_threshold = rx[0] | (rx[1] << 8);
+
+    //  Leer protecciones de sobrecorriente y cortocircuito
+    BQ76905_ReadRegister(bms, OVERCURRENT_CHARGE_THRESHOLD, &bms->overcurrent_charge_threshold, 1);
+    BQ76905_ReadRegister(bms, OVERCURRENT_DISCHARGE_1, &bms->overcurrent_discharge_1, 1);
+    BQ76905_ReadRegister(bms, OVERCURRENT_DISCHARGE_2, &bms->overcurrent_discharge_2, 1);
+    BQ76905_ReadRegister(bms, SHORT_CIRCUIT_DISCHARGE, &bms->short_circuit_discharge, 1);
+
+    //  Leer protecciones de temperatura
+    BQ76905_ReadRegister(bms, OVERTEMP_CHARGE_THRESHOLD, &bms->overtemp_charge_threshold, 1);
+    BQ76905_ReadRegister(bms, UNDERTEMP_CHARGE_THRESHOLD, &bms->undertemp_charge_threshold, 1);
+    BQ76905_ReadRegister(bms, OVERTEMP_DISCHARGE_THRESHOLD, &bms->overtemp_discharge_threshold, 1);
+    BQ76905_ReadRegister(bms, UNDERTEMP_DISCHARGE_THRESHOLD, &bms->undertemp_discharge_threshold, 1);
+    BQ76905_ReadRegister(bms, INTERNAL_OVERTEMP_THRESHOLD, &bms->internal_overtemp_threshold, 1);
+}
+
+void sendBMSDataI2C(BQ76905_Device *bms) {
+    char buffer[BUFFER_SIZE];
+
+    // 🔹 Voltajes de celdas
+    for (int i = 0; i < 5; i++) {
+        snprintf(buffer, BUFFER_SIZE, "Celda %d: %.3f V\n", i + 1, bms->cell_voltages[i] * 0.001);
+        HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+        HAL_Delay(10);
+    }
+
+    // 🔹 Voltaje del Pack
+    snprintf(buffer, BUFFER_SIZE, "Voltaje Pack: %.3f V\n", bms->stack_voltage * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Temperaturas
+    snprintf(buffer, BUFFER_SIZE, "Temp Interna: %.2f °C\n", bms->internal_temperature * 0.1);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Temp Ext: %.2f °C\n", bms->ts_measurement * 0.1);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Corriente
+    snprintf(buffer, BUFFER_SIZE, "Corriente: %d mA\n", (int16_t)bms->current);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Estado de la batería
+    snprintf(buffer, BUFFER_SIZE, "Estado Bateria: 0x%02X\n", bms->battery_status);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🟢 Fin del mensaje
+    snprintf(buffer, BUFFER_SIZE, "--------------------------\n");
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+}
+
+
+

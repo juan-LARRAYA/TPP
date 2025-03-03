@@ -83,7 +83,7 @@ void BQ76905_ReadData(BQ76905_Device *bms) {
     uint8_t rx[6]; // Buffer temporal de lectura
 
     //  Leer voltaje de todas las celdas (hasta 5 celdas)
-    for (uint8_t i = 0; i < 5; i++) {
+    for (uint8_t i = 0; i < MAX_CELLS; i++) {
         BQ76905_ReadRegister(bms, CELL1_VOLTAGE + (i * 2), rx, 2);
         bms->cell_voltages[i] = rx[0] | (rx[1] << 8);
     }
@@ -148,6 +148,105 @@ void BQ76905_ReadData(BQ76905_Device *bms) {
     BQ76905_ReadRegister(bms, OVERTEMP_DISCHARGE_THRESHOLD, &bms->overtemp_discharge_threshold, 1);
     BQ76905_ReadRegister(bms, UNDERTEMP_DISCHARGE_THRESHOLD, &bms->undertemp_discharge_threshold, 1);
     BQ76905_ReadRegister(bms, INTERNAL_OVERTEMP_THRESHOLD, &bms->internal_overtemp_threshold, 1);
+}
+
+void sendBMSDataI2C(BQ76905_Device *bms) {
+    char buffer[BUFFER_SIZE];
+
+    // 🟢 Encabezado
+    snprintf(buffer, BUFFER_SIZE, "\n--- Datos del BMS ---\n");
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Voltajes de celdas
+    for (int i = 0; i < MAX_CELLS; i++) {
+        snprintf(buffer, BUFFER_SIZE, "Celda %d: %.3f V\n", i + 1, bms->cell_voltages[i] * 0.001);
+        HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+        HAL_Delay(10);
+    }
+
+    // 🔹 Voltajes generales
+    snprintf(buffer, BUFFER_SIZE, "Voltaje Pack: %.3f V\n", bms->stack_voltage * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Voltaje REG18: %.3f V\n", bms->reg18_voltage * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Voltaje VSS: %.3f V\n", bms->vss_voltage * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Temperaturas
+    snprintf(buffer, BUFFER_SIZE, "Temp Interna: %.2f °C\n", bms->internal_temperature * 0.1);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Temp Externa: %.2f °C\n", bms->ts_measurement * 0.1);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Corriente
+    snprintf(buffer, BUFFER_SIZE, "Corriente Raw: %ld\n", (int32_t)bms->raw_current);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Corriente CC2: %d mA\n", (int16_t)bms->current);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Corriente CC1: %d mA\n", (int16_t)bms->cc1_current);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Estados y Protecciones
+    snprintf(buffer, BUFFER_SIZE, "Estado Bateria: 0x%02X\n", bms->battery_status);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Alarmas Activas: 0x%02X\n", bms->alarm_status);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Protecciones Activas: 0x%02X\n", bms->enabled_protections);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Configuración de Protección por Voltaje
+    snprintf(buffer, BUFFER_SIZE, "Undervoltage Threshold: %.3f V\n", bms->cell_undervoltage_threshold * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Overvoltage Threshold: %.3f V\n", bms->cell_overvoltage_threshold * 0.001);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Protección por Corriente
+    snprintf(buffer, BUFFER_SIZE, "Overcurrent Charge: %d mA\n", bms->overcurrent_charge_threshold * 10);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Overcurrent Discharge 1: %d mA\n", bms->overcurrent_discharge_1 * 10);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Overcurrent Discharge 2: %d mA\n", bms->overcurrent_discharge_2 * 10);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    snprintf(buffer, BUFFER_SIZE, "Short Circuit Discharge: %d mA\n", bms->short_circuit_discharge * 10);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🔹 Protección por Temperatura
+    snprintf(buffer, BUFFER_SIZE, "Overtemp Charge: %.2f °C\n", bms->overtemp_charge_threshold * 0.1);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+
+    // 🟢 Fin del mensaje
+    snprintf(buffer, BUFFER_SIZE, "--------------------------\n");
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 
 
