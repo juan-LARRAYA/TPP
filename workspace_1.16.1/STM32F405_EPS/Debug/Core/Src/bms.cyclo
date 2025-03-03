@@ -1,6 +1,6 @@
-../Core/Src/bms.c:15:19:BQ76905_WriteRegister	1
-../Core/Src/bms.c:24:19:BQ76905_ReadRegister	2
-../Core/Src/bms.c:36:19:BQ76905_ReadRegister_test	1
-../Core/Src/bms.c:41:6:ReadCellVoltage	2
-../Core/Src/bms.c:57:6:enable_Discharge_FET	1
-../Core/Src/bms.c:63:6:disable_Discharge_FET	1
+../Core/Src/bms.c:9:19:BQ76905_WriteSubcommand	1
+../Core/Src/bms.c:16:19:BQ76905_WriteRegister	2
+../Core/Src/bms.c:34:19:BQ76905_WriteChecksum	2
+../Core/Src/bms.c:50:19:BQ76905_ReadRegister	2
+../Core/Src/bms.c:58:6:BQ76905_Configure	1
+../Core/Src/bms.c:82:6:BQ76905_ReadData	2

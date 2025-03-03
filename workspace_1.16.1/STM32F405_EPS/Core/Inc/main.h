@@ -48,6 +48,7 @@ extern "C" {
 /* USER CODE BEGIN EM */
 #define STR_LEN 50
 
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

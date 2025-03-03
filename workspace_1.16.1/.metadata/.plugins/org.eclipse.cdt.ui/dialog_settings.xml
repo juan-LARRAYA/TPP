@@ -9,4 +9,12 @@
 	<section name="CResourceRenameRefactoringInputPage">
 		<item key="updateReferences" value="true"/>
 	</section>
+	<section name="PDOMSearchPage">
+		<item key="caseSensitive" value="false"/>
+		<item key="searchFlags" value="227191"/>
+		<list key="previousPatterns">
+			<item value="GPIO_PIN_14"/>
+			<item value="PIN_14"/>
+		</list>
+	</section>
 </section>

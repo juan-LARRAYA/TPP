@@ -24,16 +24,8 @@
 #include "usart.h"
 #include "string.h"
 #include "stdio.h"
-
-
-
-#define BQ76905_ADDR (0x10 << 1) // Dirección del BQ76905 desplazada a la izquierda para I2C
-#define UTD (1 << 5)	//Undertemperature in Discharge Safety Alert
-#define UTC (1 << 4) 	//Undertemperature in Charge Safety Alert
-#define OTINT (1 << 3)	//Internal Overtemperature Safety Alert
-
-
-
+#define I2C_BMS_SPEED 400000 //HZ
+#define I2C_COM_SPEED 100000 //HZ
 
 /* USER CODE END 0 */
 
@@ -52,7 +44,7 @@ void MX_I2C1_Init(void)
 
   /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
-  hi2c1.Init.ClockSpeed = 400000;
+  hi2c1.Init.ClockSpeed = I2C_BMS_SPEED;
   hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c1.Init.OwnAddress1 = 0;
   hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
@@ -81,7 +73,7 @@ void MX_I2C3_Init(void)
 
   /* USER CODE END I2C3_Init 1 */
   hi2c3.Instance = I2C3;
-  hi2c3.Init.ClockSpeed = 100000;
+  hi2c3.Init.ClockSpeed = I2C_COM_SPEED;
   hi2c3.Init.DutyCycle = I2C_DUTYCYCLE_2;
   hi2c3.Init.OwnAddress1 = 0;
   hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;

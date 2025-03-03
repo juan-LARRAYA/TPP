@@ -21,6 +21,9 @@
 #include "adc.h"
 
 /* USER CODE BEGIN 0 */
+#define VOLTAGE_STM32 3.3
+#define ADC_RESOLUTION 4095.0 	//2^12 - 1
+
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
     ADC_ChannelConfTypeDef sConfig = { 0 };
 
@@ -39,7 +42,7 @@ uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
     // Espera hasta que la conversión termine
     if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
         // Retorna el valor convertido
-        return HAL_ADC_GetValue(hadc) * (3.3 / 4095.0);
+        return HAL_ADC_GetValue(hadc) * (VOLTAGE_STM32 / ADC_RESOLUTION);
     }
 
     return 0; // Retorna 0 en caso de error

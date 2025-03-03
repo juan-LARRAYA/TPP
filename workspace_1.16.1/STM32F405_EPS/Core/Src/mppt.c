@@ -8,18 +8,19 @@
 #include "mppt.h"
 #include "adc.h"
 #include "tim.h"
+#define MAX_DUTY 255
 
 
 
 
 void mppt_algorithm(uint8_t *dutyCycle, const float *power, float *prevPower) {
-    const uint8_t deltaDuty = 10;  // Incremento/decremento del Duty Cycle
+    const uint8_t deltaDuty = MAX_DUTY / 100;  // Incremento/decremento del Duty Cycle
 
     if (*power > *prevPower) {
-        if (*dutyCycle <= 255 - deltaDuty) {
+        if (*dutyCycle <= MAX_DUTY - deltaDuty) {
             *dutyCycle += deltaDuty;
         } else {
-            *dutyCycle = 255; // Límite máximo
+            *dutyCycle = MAX_DUTY; // Límite máximo
         }
     } else {
         if (*dutyCycle >= deltaDuty) {

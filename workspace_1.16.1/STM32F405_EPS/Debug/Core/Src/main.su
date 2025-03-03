@@ -1,4 +1,4 @@
 ../Core/Src/main.c:51:6:printMPPTData	112	static
-../Core/Src/main.c:64:5:main	432	static
-../Core/Src/main.c:477:6:SystemClock_Config	88	static
-../Core/Src/main.c:526:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:64:5:main	352	static
+../Core/Src/main.c:263:6:SystemClock_Config	88	static
+../Core/Src/main.c:312:6:Error_Handler	4	static,ignoring_inline_asm
