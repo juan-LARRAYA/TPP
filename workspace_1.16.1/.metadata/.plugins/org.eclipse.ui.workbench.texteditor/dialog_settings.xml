@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="5"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="HAL_ADC_Start&#x0D;&#x0A;"/>
+			<item value="&#x09;HAL_ADC_Start(hadc);&#x0D;&#x0A;"/>
+			<item value="fet"/>
+			<item value="ADC_regular"/>
+			<item value="regular"/>
+			<item value="overcurrent_charge_threshold"/>
 			<item value="5"/>
 			<item value="🔹"/>
 			<item value="printMPPTData"/>
@@ -17,12 +23,6 @@
 			<item value="100"/>
 			<item value="HAL_MAX"/>
 			<item value="enum"/>
-			<item value="BQ76905_ReadRegister"/>
-			<item value="BQ76905_WriteRegister"/>
-			<item value="powerX"/>
-			<item value="VX_in"/>
-			<item value="mttp"/>
-			<item value="BQ76905_ADDR"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

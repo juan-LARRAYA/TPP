@@ -17,25 +17,21 @@ extern "C" {
 #include <stdint.h>
 
 #define BQ76905_I2C_ADDR 0x10			// Dirección I2C del BQ76905
-#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
 #define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
 #define MAX_CELLS 5  					// Cantidad total de celdas
 
 
 // Enumeración de registros con nombres representativos
 typedef enum {
-    BASE_SUBCOMMAND_ADDRESS  = 0x3E,   // Dirección base de subcomandos
 
-    // Configuración y estado
-    CONFIG_UPDATE            = 0x0090, // Entrar en modo configuración
-    CONFIG_EXIT              = 0x0092, // Salir de modo configuración
-    VCELL_MODE               = 0x901B, // Configurar cantidad de celdas en el sistema
-    ENABLED_PROT_A           = 0x9024, // Protecciones habilitadas (Overcurrent, Short Circuit, etc.)
-    CELL_UV_THRESHOLD        = 0x902E, // Umbral de bajo voltaje de celda
+
+	SAFETY_ALERT_A 		     = 0x02,
+	SAFETY_STATUS_A 		 = 0x03,
+	SAFETY_ALERT_B 		     = 0x04,
+	SAFETY_STATUS_B 		 = 0x05,
+
+
     BATTERY_STATUS           = 0x12,   // Estado de la batería
-    ALARM_ENABLE             = 0x66,   // Habilitar alarmas
-    FET_CONTROL              = 0x68,   // Control de FETs
-
     // Voltajes de celdas (mV)
     CELL1_VOLTAGE            = 0x14,
     CELL2_VOLTAGE            = 0x16,
@@ -43,10 +39,11 @@ typedef enum {
     CELL4_VOLTAGE            = 0x1A,
     CELL5_VOLTAGE            = 0x1C,
 
+
     // Otros voltajes
-    STACK_VOLTAGE            = 0x26,   // Voltaje de la pila completa (pack de baterías)
     REG18_VOLTAGE            = 0x22,   // Regulador interno de 1.8V
     VSS_VOLTAGE              = 0x24,   // Medición de tierra usando ADC
+    STACK_VOLTAGE            = 0x26,   // Voltaje de la pila completa (pack de baterías)
 
     // Temperatura e indicadores térmicos
     INT_TEMPERATURE          = 0x28,   // Temperatura interna del BQ76905
@@ -60,9 +57,23 @@ typedef enum {
     // Alarmas y control de salida
     ALARM_STATUS             = 0x62,   // Estado de alarmas activas
     ALARM_RAW_STATUS         = 0x64,   // Estado en tiempo real de alarmas
+    ALARM_ENABLE             = 0x66,   // Habilitar alarmas
+    FET_CONTROL              = 0x68,   // Control de FETs
     REGOUT_CONTROL           = 0x69,   // Control de salida de regulador de voltaje
     DSG_FET_PWM_CONTROL      = 0x6A,   // Control PWM del FET de descarga
     CHG_FET_PWM_CONTROL      = 0x6C,   // Control PWM del FET de carga
+
+
+	//CONFIG MODE
+    BASE_SUBCOMMAND_ADDRESS  = 0x3E,   // Dirección base de subcomandos
+
+    // Configuración y estado
+    CONFIG_UPDATE            = 0x0090, // Entrar en modo configuración
+    CONFIG_EXIT              = 0x0092, // Salir de modo configuración
+    VCELL_MODE               = 0x901B, // Configurar cantidad de celdas en el sistema
+
+    ENABLED_PROT_A           = 0x9024, // Protecciones habilitadas (Overcurrent, Short Circuit, etc.)
+    ENABLED_PROT_B           = 0x9025, // Protecciones
 
     // **NUEVOS REGISTROS: SUBCOMANDOS**
     CELL_UNDERVOLTAGE_THRESHOLD = 0x902E, // Umbral de protección por bajo voltaje de celda
@@ -138,6 +149,11 @@ typedef struct {
     uint8_t overtemp_discharge_threshold;
     uint8_t undertemp_discharge_threshold;
     uint8_t internal_overtemp_threshold;
+
+
+    //registros
+    uint8_t fet_control;
+
 
 } BQ76905_Device;
 

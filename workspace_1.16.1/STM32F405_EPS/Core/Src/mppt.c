@@ -8,7 +8,7 @@
 #include "mppt.h"
 #include "adc.h"
 #include "tim.h"
-#include "usart.h"
+#include "i2c.h"
 
 
 #define MAX_DUTY 255
@@ -40,25 +40,26 @@ void mppt_algorithm(uint8_t *dutyCycle, const float *power, float *prevPower) {
 
 void updateMPPT(MPPT_Channel *mppt) {
     // Leer valores de voltaje y corriente del ADC
-    mppt->voltage = readADC(mppt->hadc, mppt->v_channel);
-    mppt->current = readADC(mppt->hadc, mppt->i_channel);
+    mppt->voltage = readADC(mppt->hadc, mppt->v_channel);//v = 2*vadc
+    mppt->current = readADC(mppt->hadc, mppt->i_channel);//0.033xi*50=vadc ->> i = vadc/(50*0.33)
 
     // Calcular potencia
     mppt->power = mppt->voltage * mppt->current;
 
     // Aplicar algoritmo MPPT
-    mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower);
+//    mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower);
 
     // Actualizar el PWM en el canal correspondiente
-    __HAL_TIM_SET_COMPARE(mppt->htim, mppt->tim_channel, mppt->dutyCycle);
+//    __HAL_TIM_SET_COMPARE(mppt->htim, mppt->tim_channel, mppt->dutyCycle);
 }
 
 
 void printMPPTData(MPPT_Channel *mppt, const char *label) {
+
     char buffer[STR_LEN];
     snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A, %.2f W\n",
              label, mppt->voltage, mppt->current, mppt->power);
-    HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 
 

@@ -7,20 +7,25 @@
 #include "pdu.h"
 #include "adc.h"
 #include "usart.h"
+#include "i2c.h"
 #include <stdio.h>
 #include <string.h>
 
+#define VOLTAGE_STM32 3.3
+#define ADC_RESOLUTION 4095.0 	//2^12 - 1
 
 void updatePDU(PDU_Channel *pdu) {
-	if (strcmp(pdu->label, "VBatOut") != 0) { //Para que no se rompa el codigo, ya que bat out es una salida q no tiene con el adc
-		// Leer valores de voltaje y corriente del ADC
-		pdu->voltage = readADC(pdu->hadc, pdu->v_channel);
-		pdu->current = readADC(pdu->hadc, pdu->i_channel);
-    }
+	//if (strcmp(pdu->label, "VBatOut") != 0)//Para que no se rompa el codigo, ya que bat out es una salida q no tiene con el adc
+
+	// Leer valores de voltaje y corriente del ADC
+	pdu->voltage = readADC(pdu->hadc, pdu->v_channel) * 2 * VOLTAGE_STM32 / ADC_RESOLUTION;
+    HAL_Delay(2);  // 2 ms debería ser suficiente
+	pdu->current = readADC(pdu->hadc, pdu->i_channel) * VOLTAGE_STM32 / ADC_RESOLUTION;
+    HAL_Delay(2);  // 2 ms debería ser suficiente
     // Enviar datos por UART
     char buffer[STR_LEN];
     snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A\n", pdu->label, pdu->voltage, pdu->current);
-    HAL_UART_Transmit(&huart4, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
 }
 

@@ -1,7 +1,7 @@
-../Core/Src/bms.c:9:19:BQ76905_WriteSubcommand	1
-../Core/Src/bms.c:16:19:BQ76905_WriteRegister	2
-../Core/Src/bms.c:34:19:BQ76905_WriteChecksum	2
-../Core/Src/bms.c:50:19:BQ76905_ReadRegister	2
-../Core/Src/bms.c:58:6:BQ76905_Configure	1
-../Core/Src/bms.c:82:6:BQ76905_ReadData	2
-../Core/Src/bms.c:153:6:sendBMSDataI2C	2
+../Core/Src/bms.c:7:19:BQ76905_WriteSubcommand	1
+../Core/Src/bms.c:14:19:BQ76905_WriteRegister	2
+../Core/Src/bms.c:32:19:BQ76905_WriteChecksum	2
+../Core/Src/bms.c:48:19:BQ76905_ReadRegister	2
+../Core/Src/bms.c:56:6:BQ76905_Configure	1
+../Core/Src/bms.c:124:6:BQ76905_ReadData	2
+../Core/Src/bms.c:195:6:sendBMSDataI2C	2

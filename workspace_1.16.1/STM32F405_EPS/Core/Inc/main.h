@@ -28,11 +28,11 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-#include "stdio.h"
-#include "string.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <string.h>
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -48,6 +48,7 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
+#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
 #define STR_LEN 50
 
 

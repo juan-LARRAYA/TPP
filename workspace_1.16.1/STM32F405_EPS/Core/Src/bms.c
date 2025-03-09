@@ -2,8 +2,6 @@
 #include "bms.h"
 #include "i2c.h"
 #include "usart.h"
-#include <stdio.h>
-#include <string.h>
 
 // Función para enviar un subcomando al BQ76905 (no requiere checksum)
 HAL_StatusTypeDef BQ76905_WriteSubcommand(BQ76905_Device *bms, BQ76905_Registers subcmd) {
@@ -56,7 +54,7 @@ HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers re
 
 // Función para configurar el BQ76905
 void BQ76905_Configure(BQ76905_Device *bms) {
-    uint8_t data[2];
+    uint8_t data[3];
 
     // Entrar en modo CONFIG_UPDATE
     BQ76905_WriteSubcommand(bms, CONFIG_UPDATE);
@@ -66,16 +64,60 @@ void BQ76905_Configure(BQ76905_Device *bms) {
     BQ76905_WriteRegister(bms, VCELL_MODE, data, 1);
 
     // Habilita protecciones OCC, OCD, SCD y COV
-    data[0] = 0xE1;
+    data[0] = 0xE1;	//11100001
     BQ76905_WriteRegister(bms, ENABLED_PROT_A, data, 1);
 
     // Umbral de bajo voltaje (en mV) 0x0B *256 + 0x8b = 3000 mV
     data[0] = 0xB8;
     data[1] = 0x0B;
-    BQ76905_WriteRegister(bms, CELL_UV_THRESHOLD, data, 2);
+    BQ76905_WriteRegister(bms, CELL_UNDERVOLTAGE_THRESHOLD, data, 2);
+
+    BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_1, data, 1);
+
+    data[0] = 50;
+    BQ76905_WriteRegister(bms, OVERCURRENT_CHARGE_THRESHOLD, data, 1);
+    data[0] = 75;
+    BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_1, data, 1);
+    data[0] = 75;
+
+    BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_2, data, 1);
+
+
 
     // Salir de modo CONFIG_UPDATE
     BQ76905_WriteSubcommand(bms, CONFIG_EXIT);
+
+
+	//----------------------------------------------------------------------------------------
+	// 5) Habilitar FET_EN con subcomando 0x0022
+	//----------------------------------------------------------------------------------------
+
+	/*
+	data[0] = 0x22;  // LSB
+	data[1] = 0x00;  // MSB
+	ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, data, 2, 100);
+	HAL_Delay(2);
+    BQ76905_WriteRegister(bms, FET_CONTROL, data, 2);
+
+	*/
+
+	//----------------------------------------------------------------------------------------
+	// (Opcional) 6) Forzar manualmente DSG_ON: Comando directo 0x68 => 1 byte con bit0=1
+	//----------------------------------------------------------------------------------------
+
+	data[0] = 0x68;   // FET Control
+	data[1] = 0x03;   // 0b00000001 => DSG_ON=1
+	HAL_I2C_Master_Transmit(&hi2c1, 0x10, data, 2, 100);
+
+	data[0] = 0x66;  // Dirección de Alarm Enable
+	data[1] = 0x60;  // LSB del valor 0x0060 (FULLSCAN, ADSCAN)
+	data[2] = 0x00;  // MSB del valor 0x0060
+	HAL_I2C_Master_Transmit(&hi2c1, 0x10, data, 3, 100);
+
+
+
+
+
 }
 
 // Función para leer datos desde el BQ76905

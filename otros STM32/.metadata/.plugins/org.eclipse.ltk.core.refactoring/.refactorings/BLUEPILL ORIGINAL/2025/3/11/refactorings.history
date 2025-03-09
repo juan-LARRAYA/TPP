@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;BLUEPILL ORIGINAL/BLUEPILL.ioc&apos; to &apos;BLUEPILL ORIGINAL.ioc&apos;" description="Rename resource &apos;BLUEPILL.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="BLUEPILL.ioc" name="BLUEPILL ORIGINAL.ioc" stamp="1741540986699" updateReferences="true"/>
+</session>

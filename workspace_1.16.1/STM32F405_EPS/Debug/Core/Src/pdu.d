@@ -35,7 +35,7 @@ Core/Src/pdu.o: ../Core/Src/pdu.c ../Core/Inc/pdu.h ../Core/Inc/main.h \
  /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h \
  /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
- ../Core/Inc/adc.h ../Core/Inc/usart.h
+ ../Core/Inc/adc.h ../Core/Inc/usart.h ../Core/Inc/i2c.h
 ../Core/Inc/pdu.h:
 ../Core/Inc/main.h:
 /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -76,3 +76,4 @@ Core/Src/pdu.o: ../Core/Src/pdu.c ../Core/Inc/pdu.h ../Core/Inc/main.h \
 /Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h:
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
+../Core/Inc/i2c.h:

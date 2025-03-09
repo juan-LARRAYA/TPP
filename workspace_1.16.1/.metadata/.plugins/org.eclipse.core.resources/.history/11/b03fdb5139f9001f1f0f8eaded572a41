@@ -1,0 +1,38 @@
+/*
+ * pdu.c
+ *
+ *  Created on: Mar 2, 2025
+ *      Author: apple
+ */
+#include "pdu.h"
+#include "adc.h"
+#include "usart.h"
+#include "i2c.h"
+#include <stdio.h>
+#include <string.h>
+
+#define VOLTAGE_STM32 3.3
+#define ADC_RESOLUTION 4095.0 	//2^12 - 1
+
+void updatePDU(PDU_Channel *pdu) {
+	//if (strcmp(pdu->label, "VBatOut") != 0)//Para que no se rompa el codigo, ya que bat out es una salida q no tiene con el adc
+
+	// Leer valores de voltaje y corriente del ADC
+	pdu->voltage = readADC(pdu->hadc, pdu->v_channel) * 2 * VOLTAGE_STM32 / ADC_RESOLUTION;
+	pdu->current = readADC(pdu->hadc, pdu->i_channel) * VOLTAGE_STM32 / ADC_RESOLUTION;
+    // Enviar datos por UART
+    char buffer[STR_LEN];
+    snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A\n", pdu->label, pdu->voltage, pdu->current);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+}
+
+// Habilitar la salida GPIO asociada a la fuente
+void enablePDU(PDU_Channel *pdu) {
+    HAL_GPIO_WritePin(pdu->gpio_port, pdu->gpio_pin, GPIO_PIN_SET);
+}
+
+// Deshabilitar la salida GPIO asociada a la fuente
+void disablePDU(PDU_Channel *pdu) {
+    HAL_GPIO_WritePin(pdu->gpio_port, pdu->gpio_pin, GPIO_PIN_RESET);
+}
