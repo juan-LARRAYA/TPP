@@ -19,8 +19,8 @@ typedef struct {
     ADC_HandleTypeDef *hadc;  // ADC usado para la lectura
     uint32_t v_channel;       // Canal ADC para voltaje
     uint32_t i_channel;       // Canal ADC para corriente
-    float voltage;            // Última tensión medida
-    float current;            // Última corriente medida
+    uint16_t voltage;            // Última tensión medida
+    uint16_t current;            // Última corriente medida
     const char *label;        // Nombre para impresión (ej. "V5", "V3bis")
 
     GPIO_TypeDef *gpio_port;  // Puerto GPIO para salida de habilitación
@@ -28,7 +28,9 @@ typedef struct {
 } PDU_Channel;
 
 // Funciones
+PDU_Channel PDU_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channel, uint32_t i_channel, GPIO_TypeDef *gpio_port, uint16_t gpio_pin);
 void updatePDU(PDU_Channel *pdu);
+void printPDUData(PDU_Channel *pdu);
 void enablePDU(PDU_Channel *pdu);
 void disablePDU(PDU_Channel *pdu);
 

@@ -1,0 +1,10 @@
+20:01:33 **** Incremental Build of configuration Debug for project Prueba ADC ****
+make -j7 all 
+arm-none-eabi-size  Prueba\ ADC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13352	     92	   2124	  15568	   3cd0	Prueba ADC.elf
+Finished building: default.size.stdout
+ 
+
+20:01:34 Build Finished. 0 errors, 0 warnings. (took 1s.109ms)
+

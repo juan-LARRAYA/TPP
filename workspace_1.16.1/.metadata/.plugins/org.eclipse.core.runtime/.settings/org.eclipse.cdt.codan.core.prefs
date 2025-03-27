@@ -50,7 +50,7 @@ org.eclipse.cdt.codan.internal.checkers.InvalidTemplateArgumentsProblem=Error
 org.eclipse.cdt.codan.internal.checkers.InvalidTemplateArgumentsProblem.params={launchModes\=>{RUN_ON_FULL_BUILD\=>true,RUN_ON_INC_BUILD\=>true,RUN_ON_FILE_OPEN\=>false,RUN_ON_FILE_SAVE\=>false,RUN_AS_YOU_TYPE\=>true,RUN_ON_DEMAND\=>true},suppression_comment\=>"@suppress(\\"Invalid template argument\\")"}
 org.eclipse.cdt.codan.internal.checkers.LabelStatementNotFoundProblem=Error
 org.eclipse.cdt.codan.internal.checkers.LabelStatementNotFoundProblem.params={launchModes\=>{RUN_ON_FULL_BUILD\=>true,RUN_ON_INC_BUILD\=>true,RUN_ON_FILE_OPEN\=>false,RUN_ON_FILE_SAVE\=>false,RUN_AS_YOU_TYPE\=>true,RUN_ON_DEMAND\=>true},suppression_comment\=>"@suppress(\\"Label statement not found\\")"}
-org.eclipse.cdt.codan.internal.checkers.MagicNumberProblem=Warning
+org.eclipse.cdt.codan.internal.checkers.MagicNumberProblem=-Warning
 org.eclipse.cdt.codan.internal.checkers.MagicNumberProblem.params={launchModes\=>{RUN_ON_FULL_BUILD\=>true,RUN_ON_INC_BUILD\=>true,RUN_ON_FILE_OPEN\=>false,RUN_ON_FILE_SAVE\=>false,RUN_AS_YOU_TYPE\=>true,RUN_ON_DEMAND\=>true},suppression_comment\=>"@suppress(\\"Avoid magic numbers\\")",checkArray\=>true,checkOperatorParen\=>true,exceptions\=>(1,0,-1,2,1.0,0.0,-1.0)}
 org.eclipse.cdt.codan.internal.checkers.MemberDeclarationNotFoundProblem=Error
 org.eclipse.cdt.codan.internal.checkers.MemberDeclarationNotFoundProblem.params={launchModes\=>{RUN_ON_FULL_BUILD\=>true,RUN_ON_INC_BUILD\=>true,RUN_ON_FILE_OPEN\=>false,RUN_ON_FILE_SAVE\=>false,RUN_AS_YOU_TYPE\=>true,RUN_ON_DEMAND\=>true},suppression_comment\=>"@suppress(\\"Member declaration not found\\")"}

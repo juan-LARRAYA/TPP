@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define activador_GPIO_Port GPIOC
 #define Vpanel_Pin GPIO_PIN_1
 #define Vpanel_GPIO_Port GPIOA
+#define prueba_adc_Pin GPIO_PIN_5
+#define prueba_adc_GPIO_Port GPIOA
 #define Ipanel_Pin GPIO_PIN_6
 #define Ipanel_GPIO_Port GPIOA
 #define PwmMppt_Pin GPIO_PIN_8

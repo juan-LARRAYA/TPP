@@ -49,7 +49,7 @@ extern "C" {
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 #define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
-#define STR_LEN 50
+#define STR_LEN 100
 
 
 /* USER CODE END EM */
@@ -62,38 +62,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define CurrXMPPT_Pin GPIO_PIN_0
-#define CurrXMPPT_GPIO_Port GPIOC
-#define VoltXMPPT_Pin GPIO_PIN_1
-#define VoltXMPPT_GPIO_Port GPIOC
-#define CurrYMPPT_Pin GPIO_PIN_2
-#define CurrYMPPT_GPIO_Port GPIOC
-#define VoltYMPPT_Pin GPIO_PIN_3
-#define VoltYMPPT_GPIO_Port GPIOC
 #define MPPTYControl_Pin GPIO_PIN_0
 #define MPPTYControl_GPIO_Port GPIOA
-#define CurrZMPPT_Pin GPIO_PIN_1
-#define CurrZMPPT_GPIO_Port GPIOA
-#define VoltZMPPT_Pin GPIO_PIN_2
-#define VoltZMPPT_GPIO_Port GPIOA
 #define MPPTZControl_Pin GPIO_PIN_3
 #define MPPTZControl_GPIO_Port GPIOA
-#define Curr5VBis_Pin GPIO_PIN_4
-#define Curr5VBis_GPIO_Port GPIOA
-#define Volt5VBis_Pin GPIO_PIN_5
-#define Volt5VBis_GPIO_Port GPIOA
-#define Volt3_3V_Pin GPIO_PIN_6
-#define Volt3_3V_GPIO_Port GPIOA
-#define Curr3_3V_Pin GPIO_PIN_7
-#define Curr3_3V_GPIO_Port GPIOA
-#define Volt5V_Pin GPIO_PIN_4
-#define Volt5V_GPIO_Port GPIOC
-#define Curr5V_Pin GPIO_PIN_5
-#define Curr5V_GPIO_Port GPIOC
-#define Volt3_3VBis_Pin GPIO_PIN_0
-#define Volt3_3VBis_GPIO_Port GPIOB
-#define Curr3_3Vbis_Pin GPIO_PIN_1
-#define Curr3_3Vbis_GPIO_Port GPIOB
 #define Enable5V_Pin GPIO_PIN_2
 #define Enable5V_GPIO_Port GPIOB
 #define Enable3_3VBis_Pin GPIO_PIN_10

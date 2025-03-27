@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="SearchDialog">
-		<item key="PREVIOUS_PAGE" value="org.eclipse.cdt.ui.pdomSearchPage"/>
+		<item key="PREVIOUS_PAGE" value="org.eclipse.search.internal.ui.text.TextSearchPage"/>
 	</section>
 	<section name="Search">
 		<list key="Search.processedPageIds">
@@ -19,11 +19,22 @@
 	<section name="DialogBounds_SearchDialog">
 		<item key="DIALOG_X_ORIGIN" value="675"/>
 		<item key="DIALOG_Y_ORIGIN" value="225"/>
-		<item key="DIALOG_WIDTH" value="570"/>
-		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_WIDTH" value="501"/>
+		<item key="DIALOG_HEIGHT" value="480"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.pdomSearchViewPage">
 		<item key="showEnclosingDefinitions" value="true"/>
+	</section>
+	<section name="TextSearchPage">
+		<item key="CASE_SENSITIVE" value="false"/>
+		<item key="REG_EX_SEARCH" value="false"/>
+		<item key="WHOLE_WORD" value="false"/>
+		<item key="SEARCH_DERIVED" value="false"/>
+		<item key="SEARCH_IN_BINARIES" value="false"/>
+		<item key="HISTORY_SIZE" value="0"/>
+		<section name="EXTENSIONS">
+			<item key="0" value="*"/>
+		</section>
 	</section>
 </section>

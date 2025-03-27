@@ -14,9 +14,25 @@
 #define MAX_DUTY 255
 
 
+MPPT_Channel MPPT_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channel, uint32_t i_channel, TIM_HandleTypeDef *htim, uint32_t tim_channel){
+    MPPT_Channel newMppt = {
+        .hadc = hadc,
+        .v_channel = v_channel,
+        .i_channel = i_channel,
+        .htim = htim,
+        .tim_channel = tim_channel,
+        .voltage = 0,
+        .current = 0,
+        .power = 0,
+        .prevPower = 0,
+        .dutyCycle = 0,
+        .label = label
+    };
+	return newMppt;
+}
 
 
-void mppt_algorithm(uint8_t *dutyCycle, const float *power, float *prevPower) {
+void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower) {
     const uint8_t deltaDuty = MAX_DUTY / 100;  // Incremento/decremento del Duty Cycle
 
     if (*power > *prevPower) {
@@ -54,11 +70,9 @@ void updateMPPT(MPPT_Channel *mppt) {
 }
 
 
-void printMPPTData(MPPT_Channel *mppt, const char *label) {
-
+void printMPPTData(MPPT_Channel *mppt) {
     char buffer[STR_LEN];
-    snprintf(buffer, STR_LEN, "%s: %.2f V, %.2f A, %.2f W\n",
-             label, mppt->voltage, mppt->current, mppt->power);
+    snprintf(buffer, STR_LEN, "%s: %u V, %u A, %u W\n", mppt->label, mppt->voltage, mppt->current, mppt->power);
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 

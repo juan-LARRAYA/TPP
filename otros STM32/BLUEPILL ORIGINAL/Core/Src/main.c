@@ -73,55 +73,11 @@ int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bi
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
 
-void mppt(int *dutyCycle, float *power, float *previousPower);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel) {
-	ADC_ChannelConfTypeDef sConfig = { 0 };
-
-	// Configurar el canal que se desea leer
-	sConfig.Channel = channel;
-	sConfig.Rank = ADC_REGULAR_RANK_1;
-	sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-
-	if (HAL_ADC_ConfigChannel(hadc, &sConfig) != HAL_OK) {
-		Error_Handler(); // Maneja errores de configuración
-	}
-
-	// Inicia la conversión del ADC
-	HAL_ADC_Start(hadc);
-
-	// Espera hasta que la conversión termine
-	if (HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY) == HAL_OK) {
-		// Retorna el valor convertido
-		return HAL_ADC_GetValue(hadc);
-	}
-
-	return 0; // Retorna 0 en caso de error
-}
-
-void mppt(int *dutyCycle, float *power, float *previousPower) {
-	const int deltaDuty = 15;    // Incremento o decremento del Duty Cycle
-	if (*power > *previousPower) {
-		if (*dutyCycle < 255)
-			*dutyCycle += deltaDuty; // Si la potencia ha aumentado, continuar ajustando en la misma dirección
-	} else {
-		if (*dutyCycle > 0)
-			*dutyCycle -= deltaDuty; // Si la potencia ha disminuido, invertir la dirección del ajuste
-	}
-
-	if (*dutyCycle < 0)
-		*dutyCycle = 0; // Asegurar que el Duty Cycle esté dentro de los límites permitidos (0-255)
-	if (*dutyCycle > 255)
-		*dutyCycle = 255;
-
-	*previousPower = *power; // Actualizar `previousPower` con el valor actual de `power`
-}
 
 /* USER CODE END 0 */
 
@@ -159,52 +115,18 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-	// Iniciar PWM
-	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	//HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	while (1) {
-		// Leer voltaje y corriente usando ADC
-		V_in = readADC(&hadc1, VPANEL_CHANNEL) * (3.3 / 4095.0);
-		I_in = readADC(&hadc1, IPANEL_CHANNEL) * (3.3 / 4095.0);
 
-		// Calcular potencia
-		power = V_in * I_in;
-
-		// Algoritmo MPPT
-		int i =0;
-		if(i==0) power = 0.5;
-		if(i==10) power = 1.5;
-		if(i>10) i = 0;
-		i++;
-
-		mppt(&dutyCycle, &power, &previousPower);
-
-
-		// Ajustar ciclo de trabajo del PWM
-		//dutyCycle = 150;
-		__HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dutyCycle);
-		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, dutyCycle);
-		// Imprimir datos al puerto serie
-		char buffer[100];
-		sprintf(buffer, "V_in: %.2f V, I_in: %.2f A, Power: %.2f W\n", V_in, I_in, power); // @suppress("Float formatting support")
-		HAL_UART_Transmit(&huart1, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		// Guardar la potencia anterior
-		previousPower = power;
-
-		//char prueba[27]="welcome to the jungle! \n\r";
-		//HAL_UART_Transmit(&huart1, (uint8_t *)prueba, 27, 1000);
-//
 //		Para prender y apagar el led que viene en la bluepil
 		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
-		HAL_Delay(1000); // 1 segundo de delay
+		HAL_Delay(500); // 1 segundo de delay
 		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-		HAL_Delay(1000); // 1 segundo de delay
+		HAL_Delay(500); // 1 segundo de delay
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

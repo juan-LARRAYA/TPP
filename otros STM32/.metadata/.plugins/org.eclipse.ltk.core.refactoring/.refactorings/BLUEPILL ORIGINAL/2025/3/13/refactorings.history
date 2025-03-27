@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf&apos; to &apos;BLUEPILL.elf&apos;" description="Rename resource &apos;BLUEPILL ORIGINAL.elf&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Debug/BLUEPILL ORIGINAL.elf" name="BLUEPILL.elf" stamp="1742843436464" updateReferences="true"/>
+</session>

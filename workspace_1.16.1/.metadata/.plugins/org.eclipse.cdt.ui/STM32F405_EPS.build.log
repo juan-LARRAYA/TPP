@@ -1,16 +1,6 @@
-19:56:45 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+22:14:41 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
 make -j7 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:213:21: warning: unused variable 'pdu_BatOut' [-Wunused-variable]
-  213 |         PDU_Channel pdu_BatOut = {
-      |                     ^~~~~~~~~~
-../Core/Src/main.c:202:21: warning: unused variable 'pdu_V3bis' [-Wunused-variable]
-  202 |         PDU_Channel pdu_V3bis = {
-      |                     ^~~~~~~~~
-../Core/Src/main.c:169:21: warning: unused variable 'pdu_V5' [-Wunused-variable]
-  169 |         PDU_Channel pdu_V5 = {
-      |                     ^~~~~~
 arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: STM32F405_EPS.elf
  
@@ -19,15 +9,15 @@ arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
 arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
 arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
    text	   data	    bss	    dec	    hex	filename
-  38656	    468	   3828	  42952	   a7c8	STM32F405_EPS.elf
+  42928	    532	   4060	  47520	   b9a0	STM32F405_EPS.elf
 Finished building: default.size.stdout
  
-Finished building: STM32F405_EPS.bin
 Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
  
  
 Finished building: STM32F405_EPS.list
  
 
-19:56:47 Build Finished. 0 errors, 3 warnings. (took 1s.645ms)
+22:14:42 Build Finished. 0 errors, 0 warnings. (took 1s.326ms)
 

@@ -7,10 +7,10 @@
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialog">
-		<item key="DIALOG_X_ORIGIN" value="742"/>
-		<item key="DIALOG_Y_ORIGIN" value="157"/>
+		<item key="DIALOG_X_ORIGIN" value="504"/>
+		<item key="DIALOG_Y_ORIGIN" value="64"/>
 		<item key="DIALOG_WIDTH" value="936"/>
-		<item key="DIALOG_HEIGHT" value="810"/>
+		<item key="DIALOG_HEIGHT" value="786"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
 	</section>
 	<section name="org.eclipse.ui.preferences.keysPreferencePage">
@@ -21,5 +21,7 @@
 	<section name="PreferencesImportWizard">
 	</section>
 	<section name="PreferencesExportWizard">
+	</section>
+	<section name="NewWizardAction">
 	</section>
 </section>
