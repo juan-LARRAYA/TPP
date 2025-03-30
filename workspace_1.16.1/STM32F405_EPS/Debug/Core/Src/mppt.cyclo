@@ -1,4 +1,5 @@
 ../Core/Src/mppt.c:17:14:MPPT_Create	1
-../Core/Src/mppt.c:35:6:mppt_algorithm	4
-../Core/Src/mppt.c:57:6:updateMPPT	1
-../Core/Src/mppt.c:73:6:printMPPTData	1
+../Core/Src/mppt.c:50:6:duty_limit	2
+../Core/Src/mppt.c:61:6:mppt_algorithm	4
+../Core/Src/mppt.c:90:6:updateMPPT	4
+../Core/Src/mppt.c:102:6:printMPPTData	1

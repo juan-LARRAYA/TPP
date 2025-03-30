@@ -30,21 +30,9 @@ PDU_Channel PDU_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channel,
 }
 
 
-
-
-void updatePDU(PDU_Channel *pdu) {
-	//if (strcmp(pdu->label, "VBatOut") != 0)//Para que no se rompa el codigo, ya que bat out es una salida q no tiene con el adc
-
-	// Leer valores de voltaje y corriente del ADC
-	pdu->voltage = readADC(pdu->hadc, pdu->v_channel) * 2 * VOLTAGE_STM32 / ADC_RESOLUTION;
-    HAL_Delay(2);  // 2 ms debería ser suficiente
-	pdu->current = readADC(pdu->hadc, pdu->i_channel) * VOLTAGE_STM32 / ADC_RESOLUTION;
-    HAL_Delay(2);  // 2 ms debería ser suficiente
-}
-
 void printPDUData(PDU_Channel *pdu) {
     char buffer[STR_LEN];
-    snprintf(buffer, STR_LEN, "%s: %d V, %d A\n", pdu->label, pdu->voltage, pdu->current);
+    snprintf(buffer, STR_LEN, "%s: %d mV, %d mA\n", pdu->label, pdu->voltage, pdu->current);
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 

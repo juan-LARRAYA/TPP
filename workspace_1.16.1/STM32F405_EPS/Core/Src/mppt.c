@@ -25,29 +25,62 @@ MPPT_Channel MPPT_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channe
         .current = 0,
         .power = 0,
         .prevPower = 0,
-        .dutyCycle = 0,
-        .label = label
+        .dutyCycle = MAX_DUTY * 0.1,
+        .ultimaVariacion = 0,
+		.label = label
     };
 	return newMppt;
 }
 
-
+/*
 void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower) {
-    const uint8_t deltaDuty = MAX_DUTY / 100;  // Incremento/decremento del Duty Cycle
+    const uint8_t deltaDuty = MAX_DUTY / 50;  // Incremento/decremento del Duty Cycle
 
     if (*power > *prevPower) {
-        if (*dutyCycle <= MAX_DUTY - deltaDuty) {
             *dutyCycle += deltaDuty;
-        } else {
-            *dutyCycle = MAX_DUTY; // Límite máximo
-        }
+            *dutyCycle = *dutyCycle % MAX_DUTY;
+
     } else {
-        if (*dutyCycle >= deltaDuty) {
             *dutyCycle -= deltaDuty;
-        } else {
-            *dutyCycle = 0; // Límite mínimo
-        }
     }
+
+    *prevPower = *power; // Actualizar `prevPower` con el nuevo valor
+}
+*/
+void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+    // Límite de duty cycle
+    if (*dutyCycle > MAX_DUTY) {
+        *dutyCycle = MAX_DUTY;
+    }
+    if (*dutyCycle < deltaDuty) {
+        *dutyCycle = deltaDuty;
+    }
+
+}
+
+void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t *ultimaVariacion) {
+    const uint8_t deltaDuty = MAX_DUTY / 50;  // Incremento/decremento del Duty Cycle
+
+    if (*power > *prevPower) { //si la potencia subio hace lo mismo que antes
+    	if(*ultimaVariacion == 1){
+    		*dutyCycle += deltaDuty;
+    	} else {
+    		*dutyCycle -= deltaDuty;
+
+    	}
+    } else {  //si la potencia subio hace lo mismo que antes
+       	if(*ultimaVariacion){
+        	*dutyCycle -= deltaDuty;
+        	*ultimaVariacion = 0;
+		}else{
+			*dutyCycle += deltaDuty;
+			*ultimaVariacion = 1;
+		}
+    }
+
+
+
+    duty_limit( &dutyCycle, deltaDuty);
 
     *prevPower = *power; // Actualizar `prevPower` con el nuevo valor
 }
@@ -55,24 +88,21 @@ void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPow
 
 
 void updateMPPT(MPPT_Channel *mppt) {
-    // Leer valores de voltaje y corriente del ADC
-    mppt->voltage = readADC(mppt->hadc, mppt->v_channel);//v = 2*vadc
-    mppt->current = readADC(mppt->hadc, mppt->i_channel);//0.033xi*50=vadc ->> i = vadc/(50*0.33)
-
-    // Calcular potencia
-    mppt->power = mppt->voltage * mppt->current;
+	// Calcular potencia
+    mppt->power = mppt->voltage * mppt->current/ 1000;
 
     // Aplicar algoritmo MPPT
-//    mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower);
+    mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower,  &mppt->ultimaVariacion);
 
     // Actualizar el PWM en el canal correspondiente
-//    __HAL_TIM_SET_COMPARE(mppt->htim, mppt->tim_channel, mppt->dutyCycle);
+    __HAL_TIM_SET_COMPARE(mppt->htim, mppt->tim_channel, mppt->dutyCycle);
 }
 
 
 void printMPPTData(MPPT_Channel *mppt) {
     char buffer[STR_LEN];
-    snprintf(buffer, STR_LEN, "%s: %u V, %u A, %u W\n", mppt->label, mppt->voltage, mppt->current, mppt->power);
+    sprintf(buffer,"%s: %u mV, %u mA, %u mW, %u \n", mppt->label, mppt->voltage, mppt->current, mppt->power, mppt->dutyCycle);
+	//snprintf
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 }
 
