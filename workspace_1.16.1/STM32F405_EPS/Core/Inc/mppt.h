@@ -35,9 +35,12 @@ typedef struct {
 // Declaración de la función MPPT
 MPPT_Channel MPPT_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channel, uint32_t i_channel, TIM_HandleTypeDef *htim, uint32_t tim_channel);
 
-void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t *ultimaVariacion);
+//void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t *ultimaVariacion);
+void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint16_t * voltage);
+
 void updateMPPT(MPPT_Channel *mppt);
 void printMPPTData(MPPT_Channel *mppt);
+void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty);
 
 
 #ifdef __cplusplus

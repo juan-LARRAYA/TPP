@@ -1,21 +1,5 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -50,7 +34,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DELAY 500
+#define DELAY 200
 
 /* USER CODE END PM */
 
@@ -74,8 +58,7 @@
   BQ76905_Device bms = { .hi2c = &hi2c1 };
 
   uint16_t rawValues[14];
-  uint16_t adcVal2[6];
-  uint16_t adcVal3[2];
+
 
   double conversionFactor = 3.3 / 4.095;
 
@@ -156,21 +139,21 @@ int main(void)
    pdu_BatOut = PDU_Create("VBatOut", NULL, 0, 0, GPIOA, GPIO_PIN_9);
 
 
-  HAL_TIM_PWM_Start(mpptZ.htim, mpptZ.tim_channel);
+  //HAL_TIM_PWM_Start(mpptZ.htim, mpptZ.tim_channel);
   HAL_TIM_PWM_Start(mpptY.htim, mpptY.tim_channel);
-  HAL_TIM_PWM_Start(mpptX.htim, mpptX.tim_channel);
-  __HAL_TIM_SET_COMPARE(mpptX.htim, mpptX.tim_channel, mpptX.dutyCycle); //mpptX.htim->CCR4=255*0.5 (SI ES TIMER 4)
+  //HAL_TIM_PWM_Start(mpptX.htim, mpptX.tim_channel);
+  //__HAL_TIM_SET_COMPARE(mpptX.htim, mpptX.tim_channel, mpptX.dutyCycle); //mpptX.htim->CCR4=255*0.5 (SI ES TIMER 4)
   __HAL_TIM_SET_COMPARE(mpptY.htim, mpptY.tim_channel, mpptY.dutyCycle); //mpptY.htim->CCR1=255*0.5 (SI ES TIMER 1)
-  __HAL_TIM_SET_COMPARE(mpptZ.htim, mpptZ.tim_channel, mpptZ.dutyCycle); //mpptZ.htim->CCR1=255*0.5 (SI ES TIMER 1)
+  //__HAL_TIM_SET_COMPARE(mpptZ.htim, mpptZ.tim_channel, mpptZ.dutyCycle); //mpptZ.htim->CCR1=255*0.5 (SI ES TIMER 1)
 
 //Configuro las salidas
-//  enablePDU(&pdu_V3bis);				//a veces prende y a veces no
+  disablePDU(&pdu_V3bis);				//a veces prende y a veces no
 
-  enablePDU(&pdu_V3);
-  enablePDU(&pdu_V5bis);
+  //enablePDU(&pdu_V3);
+  //enablePDU(&pdu_V5bis);
 
-//  enablePDU(&pdu_V5);		//5V  		//NO ANDA Y METE RUIDO
-//  enablePDU(&pdu_BatOut);
+  disablePDU(&pdu_V5);		//5V  		//NO ANDA Y METE RUIDO
+  disablePDU(&pdu_BatOut);
 
   BQ76905_Configure(&bms);
 
@@ -204,9 +187,9 @@ int main(void)
 		pdu_V5.current = (uint16_t) rawValues[13] * 0.606 * conversionFactor;
 
 	  	//MPPT
-//        updateMPPT(&mpptX);
-//        updateMPPT(&mpptY);
-//        updateMPPT(&mpptZ);
+        //updateMPPT(&mpptX);
+        updateMPPT(&mpptY);
+        //updateMPPT(&mpptZ);
 
 	if(counter == 2){
 	    char buffer[STR_LEN];
@@ -243,7 +226,8 @@ int main(void)
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA //por ahora prendo un led para debuging
 		//MODO BAJO CONSUMO
-    	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+    	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+        //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
     	HAL_Delay(DELAY);
 
 

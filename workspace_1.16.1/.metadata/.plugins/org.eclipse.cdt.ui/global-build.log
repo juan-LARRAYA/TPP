@@ -1967,3 +1967,1743 @@ arm-none-eabi-size  STM32F405_EPS.elf
   42744	    532	   4060	  47336	   b8e8	STM32F405_EPS.elf
 Finished building: default.size.stdout
  
+19:29:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    532	   4060	  47328	   b8e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:32:04 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42744	    532	   4060	  47336	   b8e8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:32:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42744	    532	   4060	  47336	   b8e8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:33:25 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    532	   4060	  47328	   b8e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:34:38 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42736	    532	   4060	  47328	   b8e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:34:50 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42736	    532	   4060	  47328	   b8e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:36:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42728	    532	   4060	  47320	   b8d8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:36:46 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42728	    532	   4060	  47320	   b8d8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:38:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42728	    532	   4060	  47320	   b8d8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:38:54 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:39:07 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:44:31 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:45:36 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:48:11 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:48:15 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:48:44 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:50:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:50:35 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:51:25 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:51:57 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/pdu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pdu.d" -MT"Core/Src/pdu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pdu.o"
+../Core/Src/pdu.c:46:6: error: redefinition of 'enablePDU'
+   46 | void enablePDU(PDU_Channel *pdu) {
+      |      ^~~~~~~~~
+../Core/Src/pdu.c:41:6: note: previous definition of 'enablePDU' with type 'void(PDU_Channel *)'
+   41 | void enablePDU(PDU_Channel *pdu) {
+      |      ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:64: Core/Src/pdu.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+19:52:17 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pdu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pdu.d" -MT"Core/Src/pdu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pdu.o"
+../Core/Src/pdu.c:46:6: error: redefinition of 'enablePDU'
+   46 | void enablePDU(PDU_Channel *pdu) {
+      |      ^~~~~~~~~
+../Core/Src/pdu.c:41:6: note: previous definition of 'enablePDU' with type 'void(PDU_Channel *)'
+   41 | void enablePDU(PDU_Channel *pdu) {
+      |      ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:64: Core/Src/pdu.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+19:52:30 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/pdu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/pdu.d" -MT"Core/Src/pdu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/pdu.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+19:53:29 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:54:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:54:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:55:10 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:55:19 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:55:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:55:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:56:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:58:21 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:58:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+19:59:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+11:30:06 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42784	    532	   4060	  47376	   b910	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:31:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    532	   4060	  47392	   b920	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:33:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    532	   4060	  47392	   b920	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:34:58 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    532	   4060	  47392	   b920	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:35:28 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    532	   4060	  47392	   b920	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:37:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42832	    532	   4060	  47424	   b940	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:42:05 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43192	    532	   4060	  47784	   baa8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+11:58:39 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43192	    532	   4060	  47784	   baa8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:01:58 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43128	    532	   4060	  47720	   ba68	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:09:00 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42768	    532	   4060	  47360	   b900	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:09:49 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42768	    532	   4060	  47360	   b900	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:11:25 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42768	    532	   4060	  47360	   b900	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:11:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42768	    532	   4060	  47360	   b900	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:12:54 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42768	    532	   4060	  47360	   b900	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:54:44 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42600	    532	   4060	  47192	   b858	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+12:55:52 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42600	    532	   4060	  47192	   b858	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+13:00:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42568	    532	   4060	  47160	   b838	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:01:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42632	    532	   4060	  47224	   b878	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:08:55 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42632	    532	   4060	  47224	   b878	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+13:10:18 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:247:9: error: unknown type name 'HAL_GPIO_'
+  247 |         HAL_GPIO_
+      |         ^~~~~~~~~
+../Core/Src/main.c:53:15: error: expected declaration specifiers or '...' before numeric constant
+   53 | #define DELAY 175
+      |               ^~~
+../Core/Src/main.c:248:19: note: in expansion of macro 'DELAY'
+  248 |         HAL_Delay(DELAY);
+      |                   ^~~~~
+make: *** [Core/Src/subdir.mk:64: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:11:45 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42616	    532	   4060	  47208	   b868	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:42:09 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42616	    532	   4060	  47208	   b868	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:43:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42560	    532	   4060	  47152	   b830	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:47:00 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42480	    532	   4060	  47072	   b7e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:49:44 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42536	    532	   4060	  47128	   b818	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:36:11 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+../Core/Src/mppt.c: In function 'printMPPTData':
+../Core/Src/mppt.c:110:20: warning: too many arguments for format [-Wformat-extra-args]
+  110 |     sprintf(buffer,"%u mW\n",mppt->power, mppt->dutyCycle);
+      |                    ^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42680	    532	   4060	  47272	   b8a8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:37:33 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:82:17: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   82 |     duty_limit( &dutyCycle, deltaDuty);
+      |                 ^~~~~~~~~~
+      |                 |
+      |                 uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42680	    532	   4060	  47272	   b8a8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:39:17 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42688	    532	   4060	  47280	   b8b0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:42:36 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42688	    532	   4060	  47280	   b8b0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:42:57 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42688	    532	   4060	  47280	   b8b0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+14:45:18 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:47:48 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:48:06 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+14:54:15 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:07:51 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:08:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+15:08:51 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:09:15 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:09:38 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:10:00 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:10:39 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:11:10 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:11:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:12:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:13:11 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:14:17 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:16:59 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:21:59 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:80:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   80 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:50:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   50 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43096	    532	   4060	  47688	   ba48	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:26:29 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'mppt_algorithm':
+../Core/Src/mppt.c:81:16: warning: passing argument 1 of 'duty_limit' from incompatible pointer type [-Wincompatible-pointer-types]
+   81 |     duty_limit(&dutyCycle, deltaDuty);
+      |                ^~~~~~~~~~
+      |                |
+      |                uint8_t ** {aka unsigned char **}
+../Core/Src/mppt.c:51:26: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+   51 | void duty_limit(uint8_t *dutyCycle,uint8_t deltaDuty){
+      |                 ~~~~~~~~~^~~~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43096	    532	   4060	  47688	   ba48	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:28:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43096	    532	   4060	  47688	   ba48	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:37:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43096	    532	   4060	  47688	   ba48	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:38:35 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43096	    532	   4060	  47688	   ba48	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+16:54:13 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'updateMPPT':
+../Core/Src/mppt.c:117:70: warning: passing argument 4 of 'mppt_algorithm' from incompatible pointer type [-Wincompatible-pointer-types]
+  117 |     mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower, &mppt->voltage);
+      |                                                                      ^~~~~~~~~~~~~~
+      |                                                                      |
+      |                                                                      uint16_t * {aka short unsigned int *}
+../Core/Src/mppt.c:62:95: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   62 | void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t * voltage) {
+      |                                                                                     ~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43032	    532	   4060	  47624	   ba08	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+16:56:09 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'updateMPPT':
+../Core/Src/mppt.c:117:70: warning: passing argument 4 of 'mppt_algorithm' from incompatible pointer type [-Wincompatible-pointer-types]
+  117 |     mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower, &mppt->voltage);
+      |                                                                      ^~~~~~~~~~~~~~
+      |                                                                      |
+      |                                                                      uint16_t * {aka short unsigned int *}
+../Core/Src/mppt.c:62:95: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   62 | void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t * voltage) {
+      |                                                                                     ~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43008	    532	   4060	  47600	   b9f0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+16:58:35 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'updateMPPT':
+../Core/Src/mppt.c:117:70: warning: passing argument 4 of 'mppt_algorithm' from incompatible pointer type [-Wincompatible-pointer-types]
+  117 |     mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower, &mppt->voltage);
+      |                                                                      ^~~~~~~~~~~~~~
+      |                                                                      |
+      |                                                                      uint16_t * {aka short unsigned int *}
+../Core/Src/mppt.c:62:95: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   62 | void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t * voltage) {
+      |                                                                                     ~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43008	    532	   4060	  47600	   b9f0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:00:34 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+../Core/Src/mppt.c: In function 'updateMPPT':
+../Core/Src/mppt.c:87:70: warning: passing argument 4 of 'mppt_algorithm' from incompatible pointer type [-Wincompatible-pointer-types]
+   87 |     mppt_algorithm(&mppt->dutyCycle, &mppt->power, &mppt->prevPower, &mppt->voltage);
+      |                                                                      ^~~~~~~~~~~~~~
+      |                                                                      |
+      |                                                                      uint16_t * {aka short unsigned int *}
+../Core/Src/mppt.c:62:95: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+   62 | void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPower, uint8_t * voltage) {
+      |                                                                                     ~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43008	    532	   4060	  47600	   b9f0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:02:40 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:11:49 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:12:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+17:15:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
