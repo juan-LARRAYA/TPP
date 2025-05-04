@@ -3,5 +3,5 @@
 ../Core/Src/bms.c:32:19:BQ76905_WriteChecksum	40	static
 ../Core/Src/bms.c:48:19:BQ76905_ReadRegister	40	static
 ../Core/Src/bms.c:56:6:BQ76905_Configure	32	static
-../Core/Src/bms.c:124:6:BQ76905_ReadData	24	static
-../Core/Src/bms.c:195:6:sendBMSDataI2C	104	static
+../Core/Src/bms.c:155:6:BQ76905_ReadData	24	static
+../Core/Src/bms.c:226:6:sendBMSDataI2C	104	static

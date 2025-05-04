@@ -58,29 +58,62 @@ void BQ76905_Configure(BQ76905_Device *bms) {
 
     // Entrar en modo CONFIG_UPDATE
     BQ76905_WriteSubcommand(bms, CONFIG_UPDATE);
+    //Curr Gain config
+    data[0] = 0x01;
+    data[1] = 0x00;
+    BQ76905_WriteRegister(bms, CURR_GAIN, data, 2);
+
+    data[0] = 0x0D;
+    BQ76905_WriteRegister(bms, REGOUT_CONFIG, data, 1);
 
     // Configurar VCell Mode (2 celdas)
     data[0] = 0x02;
     BQ76905_WriteRegister(bms, VCELL_MODE, data, 1);
 
-    // Habilita protecciones OCC, OCD, SCD y COV
-    data[0] = 0xE1;	//11100001
+    data[0] = 0x00;
+    BQ76905_WriteRegister(bms, MIN_TEMP_THERESHOLD_CB, data, 1);
+    data[0] = 0xFF;
+    BQ76905_WriteRegister(bms, MAX_TEMP_THERESHOLD_CB, data, 1);
+
+    // SIN PROTECCIONES, esto me puede estar molestando para abrir los mosfet
+    data[0] = 0x00;
     BQ76905_WriteRegister(bms, ENABLED_PROT_A, data, 1);
+    data[0] = 0x00;
+    BQ76905_WriteRegister(bms, ENABLED_PROT_B, data, 1);
+    data[0] = 0x00;
+    BQ76905_WriteRegister(bms, DSG_FET_PROTECTIONS_A, data, 1);
+    data[0] = 0x00;
+    BQ76905_WriteRegister(bms, CHG_FET_PROTECTIONS_A, data, 1);
+    data[0] = 0x00;
+    BQ76905_WriteRegister(bms, BOTH_FET_PROTECTIONS_A, data, 1);
 
-    // Umbral de bajo voltaje (en mV) 0x0B *256 + 0x8b = 3000 mV
-    data[0] = 0xB8;
-    data[1] = 0x0B;
-    BQ76905_WriteRegister(bms, CELL_UNDERVOLTAGE_THRESHOLD, data, 2);
+    //Pongo la corriente que puede pasar por los diodos de los fet al maximo 32700 = 0xBC + 0x7F * 256
+    data[0] = 0xBC;
+    data[1] = 0x7F;
 
-    BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_1, data, 1);
+    BQ76905_WriteRegister(bms, BODY_DIODE_THRESHOLD, data, 2);
 
-    data[0] = 50;
+    //LIMITES DE CORRIENTE
+    data[0] = 62;
     BQ76905_WriteRegister(bms, OVERCURRENT_CHARGE_THRESHOLD, data, 1);
-    data[0] = 75;
+    data[0] = 100;
     BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_1, data, 1);
-    data[0] = 75;
-
+    data[0] = 100;
     BQ76905_WriteRegister(bms, OVERCURRENT_DISCHARGE_2, data, 1);
+    data[0] = 0xFF;
+    BQ76905_WriteRegister(bms, SHORT_CIRCUIT_DISCHARGE, data, 1);
+
+    //Limites de temperatura
+    data[0] = 255;
+    BQ76905_WriteRegister(bms, OVERTEMP_CHARGE_THRESHOLD, data, 1);
+    data[0] = 255;
+    BQ76905_WriteRegister(bms, UNDERTEMP_CHARGE_THRESHOLD, data, 1);
+    data[0] = 255;
+    BQ76905_WriteRegister(bms, OVERTEMP_DISCHARGE_THRESHOLD, data, 1);
+    data[0] = 255;
+    BQ76905_WriteRegister(bms, UNDERTEMP_DISCHARGE_THRESHOLD, data, 1);
+    data[0] = 255;
+    BQ76905_WriteRegister(bms, INTERNAL_OVERTEMP_THRESHOLD, data, 1);
 
 
 
@@ -92,14 +125,12 @@ void BQ76905_Configure(BQ76905_Device *bms) {
 	// 5) Habilitar FET_EN con subcomando 0x0022
 	//----------------------------------------------------------------------------------------
 
-	/*
+
 	data[0] = 0x22;  // LSB
 	data[1] = 0x00;  // MSB
-	ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, data, 2, 100);
-	HAL_Delay(2);
-    BQ76905_WriteRegister(bms, FET_CONTROL, data, 2);
+	BQ76905_WriteRegister(bms, FET_CONTROL, data, 2);
 
-	*/
+
 
 	//----------------------------------------------------------------------------------------
 	// (Opcional) 6) Forzar manualmente DSG_ON: Comando directo 0x68 => 1 byte con bit0=1
@@ -265,7 +296,7 @@ void sendBMSDataI2C(BQ76905_Device *bms) {
     HAL_Delay(10);
 
     // 🔹 Protección por Corriente
-    snprintf(buffer, BUFFER_SIZE, "Overcurrent Charge: %d mA\n", bms->overcurrent_charge_threshold * 10);
+    snprintf(buffer, BUFFER_SIZE, "Overcurrent Charge threshold: %d mA\n", bms->overcurrent_charge_threshold * 10);
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
     HAL_Delay(10);
 

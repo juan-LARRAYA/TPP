@@ -11,7 +11,7 @@
 #include "i2c.h"
 
 
-#define MAX_DUTY 255
+#define MAX_DUTY htim2.Init.Period
 
 
 
@@ -26,7 +26,7 @@ MPPT_Channel MPPT_Create(char *label, ADC_HandleTypeDef *hadc, uint32_t v_channe
         .current = 0,
         .power = 0,
         .prevPower = 0,
-        .dutyCycle = MAX_DUTY * 0.23,
+        .dutyCycle = MAX_DUTY * 0.5,
         .ultimaVariacion = 0,
 		.label = label
     };
@@ -72,7 +72,6 @@ void mppt_algorithm(uint8_t *dutyCycle, const uint16_t *power, uint16_t *prevPow
 
 
     duty_limit(dutyCycle, deltaDuty);
-	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
 
     *prevPower = *power; // Actualizar `prevPower` con el nuevo valor
 }

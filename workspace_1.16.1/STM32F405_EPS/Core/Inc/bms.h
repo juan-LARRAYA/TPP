@@ -24,6 +24,7 @@ extern "C" {
 // Enumeración de registros con nombres representativos
 typedef enum {
 
+	/*****************COMANDS**********************/
 
 	SAFETY_ALERT_A 		     = 0x02,
 	SAFETY_STATUS_A 		 = 0x03,
@@ -67,13 +68,32 @@ typedef enum {
 	//CONFIG MODE
     BASE_SUBCOMMAND_ADDRESS  = 0x3E,   // Dirección base de subcomandos
 
+
+
+	/*****************SUBCOMANDS**********************/
     // Configuración y estado
     CONFIG_UPDATE            = 0x0090, // Entrar en modo configuración
     CONFIG_EXIT              = 0x0092, // Salir de modo configuración
-    VCELL_MODE               = 0x901B, // Configurar cantidad de celdas en el sistema
 
-    ENABLED_PROT_A           = 0x9024, // Protecciones habilitadas (Overcurrent, Short Circuit, etc.)
-    ENABLED_PROT_B           = 0x9025, // Protecciones
+	CURR_GAIN 				 = 0x9006, // Ganancia de corriente
+
+	REGOUT_CONFIG 			 = 0x9015, //configuracion del regulador
+
+	DA_CONFIG 				 = 0x9019,
+    VCELL_MODE               = 0x901B, // Configurar cantidad de celdas en el sistema
+	DEFAULT_ALARM_MASK		 = 0x901C,
+	FET_OPTIONS				 = 0x901E,
+	CHARGE_DETECTOR_TIME	 = 0x901F,
+	BALANCING_CONFIGURATION  = 0x9020,
+	MIN_TEMP_THERESHOLD_CB	 = 0x9021,
+	MAX_TEMP_THERESHOLD_CB	 = 0x9022,
+	MAX_INTERNAL_TEMP 		 = 0x9023,
+    ENABLED_PROT_A           = 0x9024, // Protecciones
+    ENABLED_PROT_B           = 0x9025,
+	DSG_FET_PROTECTIONS_A	 = 0x9026, // Protecciones de descarga
+	CHG_FET_PROTECTIONS_A	 = 0x9027, // Protecciones de carga
+	BOTH_FET_PROTECTIONS_A	 = 0x9028,
+	BODY_DIODE_THRESHOLD	 = 0x9029,
 
     // **NUEVOS REGISTROS: SUBCOMANDOS**
     CELL_UNDERVOLTAGE_THRESHOLD = 0x902E, // Umbral de protección por bajo voltaje de celda
@@ -84,13 +104,16 @@ typedef enum {
     SHORT_CIRCUIT_DISCHARGE      = 0x903C, // Protección de cortocircuito en descarga
     LATCH_LIMIT                  = 0x903E, // Límite de bloqueo de protección
     RECOVERY_TIME                = 0x903F, // Tiempo de recuperación tras una falla
-
     // Protección por temperatura
     OVERTEMP_CHARGE_THRESHOLD    = 0x9040, // Protección por sobretemperatura en carga
-    UNDERTEMP_CHARGE_THRESHOLD   = 0x9043, // Protección por baja temperatura en carga
+
+	UNDERTEMP_CHARGE_THRESHOLD   = 0x9043, // Protección por baja temperatura en carga
+
     OVERTEMP_DISCHARGE_THRESHOLD = 0x9046, // Protección por sobretemperatura en descarga
-    UNDERTEMP_DISCHARGE_THRESHOLD = 0x9049, // Protección por baja temperatura en descarga
-    INTERNAL_OVERTEMP_THRESHOLD  = 0x904C, // Protección por sobretemperatura interna
+
+	UNDERTEMP_DISCHARGE_THRESHOLD = 0x9049, // Protección por baja temperatura en descarga
+
+	INTERNAL_OVERTEMP_THRESHOLD  = 0x904C, // Protección por sobretemperatura interna
 
     // Configuración de Power Management
     SLEEP_CURRENT                = 0x904F, // Corriente en modo sleep
@@ -98,11 +121,6 @@ typedef enum {
     SHUTDOWN_STACK_VOLTAGE       = 0x9055, // Voltaje de la pila para apagado
     SHUTDOWN_TEMPERATURE         = 0x9057, // Temperatura de apagado
     AUTO_SHUTDOWN_TIME           = 0x9058, // Tiempo automático de apagado
-
-    // Configuración de Seguridad
-    SECURITY_SETTINGS            = 0x9059, // Configuración de seguridad
-    FULL_ACCESS_KEY_1            = 0x905A, // Clave de acceso total - Paso 1
-    FULL_ACCESS_KEY_2            = 0x905C  // Clave de acceso total - Paso 2
 
 } BQ76905_Registers;
 

@@ -1,5 +1,21 @@
-
-
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -147,13 +163,10 @@ int main(void)
   //__HAL_TIM_SET_COMPARE(mpptZ.htim, mpptZ.tim_channel, mpptZ.dutyCycle); //mpptZ.htim->CCR1=255*0.5 (SI ES TIMER 1)
 
 //Configuro las salidas
-  disablePDU(&pdu_V3bis);				//a veces prende y a veces no
 
-  //enablePDU(&pdu_V3);
-  //enablePDU(&pdu_V5bis);
-
-  disablePDU(&pdu_V5);		//5V  		//NO ANDA Y METE RUIDO
-  disablePDU(&pdu_BatOut);
+  enablePDU(&pdu_V3);
+  enablePDU(&pdu_V5bis);
+  enablePDU(&pdu_BatOut);
 
   BQ76905_Configure(&bms);
 
@@ -188,7 +201,7 @@ int main(void)
 
 	  	//MPPT
         //updateMPPT(&mpptX);
-        updateMPPT(&mpptY);
+        //updateMPPT(&mpptY);
         //updateMPPT(&mpptZ);
 
 	if(counter == 2){
@@ -197,21 +210,32 @@ int main(void)
 	    snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
 	  	HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
 
+	  	//imprimo el bit de alarma del bms
+	    // sprintf(buffer,"LA alarma esta en %u \n", HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8));
+	    //HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+/*
+	  	//imprimo VCELL_MODE
+	    uint8_t vcell;
+	    BQ76905_ReadRegister(&bms, VCELL_MODE, &vcell, 1);
+	    snprintf(buffer, STR_LEN, "VCELL_MODE %u \n", vcell);
+
+	    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+*/
+
+
+
 	    //5BIS DATOS
-	  	printPDUData(&pdu_V5bis);
+	  	//printPDUData(&pdu_V5bis);
 	    //3.3 DATOS
-	  	printPDUData(&pdu_V3);
-	    //5 DATOS
-	  	printPDUData(&pdu_V5);
-	    //3 bis
-	  	printPDUData(&pdu_V3bis);
+	  	//printPDUData(&pdu_V3);
 
 	    //X DATOS
-	    printMPPTData(&mpptX);
+	    //printMPPTData(&mpptX);
 	    //Y DATOS
-	    printMPPTData(&mpptY);
+	    //printMPPTData(&mpptY);
 	    //Z DATOS
-	    printMPPTData(&mpptZ);
+	    //printMPPTData(&mpptZ);
 
 	}
 	counter++;
@@ -221,13 +245,13 @@ int main(void)
 
 		//COMUNICACION BQ76905
         BQ76905_ReadData(&bms);
-        //sendBMSDataI2C(&bms);
+        sendBMSDataI2C(&bms);
 
 
 		//CALENTAMIENTO Y CONTROL DE TEMPERATURA //por ahora prendo un led para debuging
 		//MODO BAJO CONSUMO
     	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-        //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);
+        //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
     	HAL_Delay(DELAY);
 
 
@@ -274,8 +298,8 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {

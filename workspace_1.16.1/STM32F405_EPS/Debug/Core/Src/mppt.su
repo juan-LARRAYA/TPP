@@ -1,5 +1,5 @@
 ../Core/Src/mppt.c:18:14:MPPT_Create	72	static
 ../Core/Src/mppt.c:51:6:duty_limit	16	static
 ../Core/Src/mppt.c:62:6:mppt_algorithm	32	static
-../Core/Src/mppt.c:82:6:updateMPPT	16	static
-../Core/Src/mppt.c:94:6:printMPPTData	224	static
+../Core/Src/mppt.c:81:6:updateMPPT	16	static
+../Core/Src/mppt.c:93:6:printMPPTData	224	static

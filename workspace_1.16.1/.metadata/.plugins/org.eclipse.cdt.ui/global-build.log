@@ -3707,3 +3707,624 @@ Finished building: STM32F405_EPS.bin
  
 Finished building: STM32F405_EPS.list
  
+18:27:21 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+18:37:42 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+18:39:07 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:22:48 **** Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+13:25:16 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  43048	    532	   4060	  47640	   ba18	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+13:27:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43088	    532	   4060	  47680	   ba40	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:20:47 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:21:28 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42688	    532	   4060	  47280	   b8b0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:22:03 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    532	   4060	  47328	   b8e0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:23:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42672	    532	   4060	  47264	   b8a0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:23:32 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42976	    532	   4060	  47568	   b9d0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+14:23:51 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42976	    532	   4060	  47568	   b9d0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+14:36:31 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  43040	    532	   4060	  47632	   ba10	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+15:30:19 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/bms.c: In function 'BQ76905_Configure':
+../Core/Src/bms.c:100:9: error: 'ret' undeclared (first use in this function)
+  100 |         ret = HAL_I2C_Master_Transmit(&hi2c1, 0x10, data, 2, 100);
+      |         ^~~
+../Core/Src/bms.c:100:9: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:64: Core/Src/bms.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+15:31:06 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42696	    532	   4060	  47288	   b8b8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:23:49 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42680	    532	   4060	  47272	   b8a8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+17:35:07 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42704	    532	   4060	  47296	   b8c0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+23:34:31 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  42960	    532	   4060	  47552	   b9c0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+23:39:25 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42960	    532	   4060	  47552	   b9c0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+23:48:29 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44800	    532	   4060	  49392	   c0f0	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+23:59:34 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:205:52: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'uint8_t *' {aka 'unsigned char *'} [-Wformat=]
+  205 |             snprintf(buffer, STR_LEN, "VCELL_MODE %u \n", vreg);
+      |                                                   ~^      ~~~~
+      |                                                    |      |
+      |                                                    |      uint8_t * {aka unsigned char *}
+      |                                                    unsigned int
+      |                                                   %hhn
+../Core/Src/main.c:204:13: warning: 'vreg' is used uninitialized [-Wuninitialized]
+  204 |             BQ76905_ReadRegister(&bms, VCELL_MODE, vreg, 1);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:202:22: note: 'vreg' was declared here
+  202 |             uint8_t *vreg;
+      |                      ^~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44896	    532	   4060	  49488	   c150	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:00:04 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:204:52: warning: passing argument 3 of 'BQ76905_ReadRegister' from incompatible pointer type [-Wincompatible-pointer-types]
+  204 |             BQ76905_ReadRegister(&bms, VCELL_MODE, &vreg, 1);
+      |                                                    ^~~~~
+      |                                                    |
+      |                                                    uint8_t ** {aka unsigned char **}
+In file included from ../Core/Src/main.c:16:
+../Core/Inc/bms.h:183:93: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t **' {aka 'unsigned char **'}
+  183 | HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *rxData, uint8_t len);
+      |                                                                                    ~~~~~~~~~^~~~~~
+../Core/Src/main.c:205:52: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'uint8_t **' {aka 'unsigned char **'} [-Wformat=]
+  205 |             snprintf(buffer, STR_LEN, "VCELL_MODE %u \n", &vreg);
+      |                                                   ~^      ~~~~~
+      |                                                    |      |
+      |                                                    |      uint8_t ** {aka unsigned char **}
+      |                                                    unsigned int
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44896	    532	   4060	  49488	   c150	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:03:07 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44896	    532	   4060	  49488	   c150	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:04:25 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:205:13: warning: 'vcell' is used uninitialized [-Wuninitialized]
+  205 |             snprintf(buffer, STR_LEN, "VCELL_MODE %u \n", vcell);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:202:21: note: 'vcell' was declared here
+  202 |             uint8_t vcell;
+      |                     ^~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44848	    532	   4060	  49440	   c120	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:04:52 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:202:21: warning: unused variable 'vcell' [-Wunused-variable]
+  202 |             uint8_t vcell;
+      |                     ^~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44808	    532	   4060	  49400	   c0f8	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:05:50 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:202:21: warning: unused variable 'vcell' [-Wunused-variable]
+  202 |             uint8_t vcell;
+      |                     ^~~~~
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+00:08:19 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:29:14 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+13:29:30 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-size  STM32F405_EPS.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+16:03:08 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+16:04:18 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44608	    532	   4060	  49200	   c030	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.hex
+Finished building: STM32F405_EPS.bin
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
+16:10:45 **** Incremental Build of configuration Debug for project STM32F405_EPS ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/mppt.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/mppt.d" -MT"Core/Src/mppt.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/mppt.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F405xx -c -I../Core/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/Users/apple/STM32Cube/Repository/STM32Cube_FW_F4_V1.28.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc -o "STM32F405_EPS.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/apple/STM32CubeIDE/workspace_1.16.1/STM32F405_EPS/STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F405_EPS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: STM32F405_EPS.elf
+ 
+arm-none-eabi-size  STM32F405_EPS.elf 
+arm-none-eabi-objdump -h -S STM32F405_EPS.elf  > "STM32F405_EPS.list"
+arm-none-eabi-objcopy  -O ihex STM32F405_EPS.elf  "STM32F405_EPS.hex"
+arm-none-eabi-objcopy  -O binary STM32F405_EPS.elf  "STM32F405_EPS.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44640	    532	   4060	  49232	   c050	STM32F405_EPS.elf
+Finished building: default.size.stdout
+ 
+Finished building: STM32F405_EPS.bin
+Finished building: STM32F405_EPS.hex
+ 
+ 
+Finished building: STM32F405_EPS.list
+ 
