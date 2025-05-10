@@ -21,12 +21,16 @@
 #include "adc.h"
 #include "tim.h"
 #include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
+#include "usbd_cdc_if.h"
+#include "string.h"
+
 
 /* USER CODE END Includes */
 
@@ -67,6 +71,15 @@ float I_in = 0;
 float power = 0;
 float previousPower = 0;
 int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
+
+
+int myNum = 2024; // Integer (whole number)
+float myFloatNum = 5.98; // Floating point number
+char myLetter = 'D';
+uint8_t myUint = 21; // Same way for uint16_t or uint32_t
+uint8_t myArray[20] = {0};
+char charData[15]; // Data holder
+
 
 /* USER CODE END PV */
 
@@ -114,19 +127,48 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM1_Init();
   MX_TIM3_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	while (1) {
+while (1) {
+
+	sprintf(charData, "%s\n", "While reached");
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	sprintf(charData, "%d\n", myNum);
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	sprintf(charData, "%f\n", myFloatNum);
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	sprintf(charData, "%c\n", myLetter);
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	sprintf(charData, "%d\n", myUint);
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	myArray[5]=7;
+	sprintf(charData, "%d\n", myArray[5]);
+	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
+	HAL_Delay(100);
+
+	myNum++;
+
 
 //		Para prender y apagar el led que viene en la bluepil
-		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
-		HAL_Delay(500); // 1 segundo de delay
-		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-		HAL_Delay(500); // 1 segundo de delay
+	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
+	HAL_Delay(500); // 1 segundo de delay
+	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
+	HAL_Delay(500); // 1 segundo de delay
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -153,7 +195,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -168,12 +210,13 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV4;
+  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
