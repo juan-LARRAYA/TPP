@@ -37,12 +37,13 @@ extern I2C_HandleTypeDef hi2c1;
 extern I2C_HandleTypeDef hi2c3;
 
 /* USER CODE BEGIN Private defines */
+#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
 
 /* USER CODE END Private defines */
 
 void MX_I2C1_Init(void);
 void MX_I2C3_Init(void);
-
+void sendI2CMsg(const char* label, float value);
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */

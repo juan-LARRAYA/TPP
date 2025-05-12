@@ -1,21 +1,3 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
@@ -31,11 +13,8 @@
 #include "mppt.h"
 #include "bms.h"
 #include "pdu.h"
-
-
 #include <stdio.h>
 #include <string.h>
-
 
 /* USER CODE END Includes */
 
@@ -50,33 +29,13 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-#define DELAY 200
+#define DELAY 1000
 
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-//MPPT Variables
-  MPPT_Channel mpptX;
-  MPPT_Channel mpptY;
-  MPPT_Channel mpptZ;
-
-//PDU Variables
-  PDU_Channel pdu_V5;
-  PDU_Channel pdu_V5bis;
-  PDU_Channel pdu_V3;
-  PDU_Channel pdu_V3bis;
-  PDU_Channel pdu_BatOut;
-
-// BMS Variables
-  BQ76905_Device bms = { .hi2c = &hi2c1 };
-
-  uint16_t rawValues[14];
-
-
-  double conversionFactor = 3.3 / 4.095;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -101,7 +60,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 
 
 
-
 /* USER CODE END 0 */
 
 /**
@@ -110,20 +68,16 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
-
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
-
   /* Configure the system clock */
   SystemClock_Config();
 
@@ -143,18 +97,28 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-   mpptX = MPPT_Create("Eje_x", &hadc1, ADC_CHANNEL_11, ADC_CHANNEL_10, &htim4, TIM_CHANNEL_4);
-   mpptY = MPPT_Create("Eje_y", &hadc1, ADC_CHANNEL_13, ADC_CHANNEL_12, &htim2, TIM_CHANNEL_1);
-   mpptZ = MPPT_Create("Eje_z", &hadc1, ADC_CHANNEL_2, ADC_CHANNEL_1, &htim5, TIM_CHANNEL_1);
 
-//PDU Variables
-   pdu_V5 = PDU_Create("V5", &hadc1, ADC_CHANNEL_14, ADC_CHANNEL_15, GPIOB, GPIO_PIN_2);
-   pdu_V5bis = PDU_Create("V5Bis", &hadc1, ADC_CHANNEL_5, ADC_CHANNEL_4, GPIOB, GPIO_PIN_12);
-   pdu_V3 = PDU_Create("V3", &hadc1, ADC_CHANNEL_6, ADC_CHANNEL_7, GPIOB, GPIO_PIN_11);
-   pdu_V3bis = PDU_Create("V3Bis", &hadc1, ADC_CHANNEL_8, ADC_CHANNEL_9, GPIOB, GPIO_PIN_10);
-   pdu_BatOut = PDU_Create("VBatOut", NULL, 0, 0, GPIOA, GPIO_PIN_9);
+  //MPPT Variables
+  MPPT_Channel mpptX = MPPT_Create("Eje_x", &hadc1, ADC_CHANNEL_11, ADC_CHANNEL_10, &htim4, TIM_CHANNEL_4);
+  MPPT_Channel mpptY = MPPT_Create("Eje_y", &hadc1, ADC_CHANNEL_13, ADC_CHANNEL_12, &htim2, TIM_CHANNEL_1);
+  MPPT_Channel mpptZ = MPPT_Create("Eje_z", &hadc1, ADC_CHANNEL_2, ADC_CHANNEL_1, &htim5, TIM_CHANNEL_1);
+
+  //PDU Variables
+  PDU_Channel pdu_V5 = PDU_Create("V5", &hadc1, ADC_CHANNEL_14, ADC_CHANNEL_15, GPIOB, GPIO_PIN_2);
+  PDU_Channel pdu_V5bis = PDU_Create("V5Bis", &hadc1, ADC_CHANNEL_5, ADC_CHANNEL_4, GPIOB, GPIO_PIN_12);
+  PDU_Channel pdu_V3 = PDU_Create("V3", &hadc1, ADC_CHANNEL_6, ADC_CHANNEL_7, GPIOB, GPIO_PIN_11);
+  PDU_Channel pdu_V3bis = PDU_Create("V3Bis", &hadc1, ADC_CHANNEL_8, ADC_CHANNEL_9, GPIOB, GPIO_PIN_10);
+  PDU_Channel pdu_BatOut = PDU_Create("VBatOut", NULL, 0, 0, GPIOA, GPIO_PIN_9);
+
+  // BMS Variables
+  //BQ29330_Device bms = { .hi2c = &hi2c1 };
+
+  //ADC Variables
+  uint16_t rawValues[14];
+  HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 14);
 
 
+  //start PWMs
   //HAL_TIM_PWM_Start(mpptZ.htim, mpptZ.tim_channel);
   HAL_TIM_PWM_Start(mpptY.htim, mpptY.tim_channel);
   //HAL_TIM_PWM_Start(mpptX.htim, mpptX.tim_channel);
@@ -162,16 +126,13 @@ int main(void)
   __HAL_TIM_SET_COMPARE(mpptY.htim, mpptY.tim_channel, mpptY.dutyCycle); //mpptY.htim->CCR1=255*0.5 (SI ES TIMER 1)
   //__HAL_TIM_SET_COMPARE(mpptZ.htim, mpptZ.tim_channel, mpptZ.dutyCycle); //mpptZ.htim->CCR1=255*0.5 (SI ES TIMER 1)
 
-//Configuro las salidas
-
+  //Configuro las salidas
   enablePDU(&pdu_V3);
   enablePDU(&pdu_V5bis);
   enablePDU(&pdu_BatOut);
+  disablePDU(&pdu_V5);
+  disablePDU(&pdu_V3bis);
 
-  BQ76905_Configure(&bms);
-
-  HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 14);
-  uint8_t counter = 0;
 
   /* USER CODE END 2 */
 
@@ -179,81 +140,80 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  	 //crear funcion para esto
-		while(!convCompleted);
-		mpptZ.current = (uint16_t)rawValues[0] * 0.606 * conversionFactor;
-		mpptZ.voltage = (uint16_t)rawValues[1] * 2 * conversionFactor; //las tensiones se multiplican x2
 
-		pdu_V5bis.current = (uint16_t) rawValues[2] * 0.606 * conversionFactor;
-		pdu_V5bis.voltage = (uint16_t) rawValues[3] * 2 * conversionFactor; //las tensiones se multiplican x2
-		pdu_V3.voltage = (uint16_t)rawValues[4] * 2 * conversionFactor; //las tensiones se multiplican x2
-		pdu_V3.current = (uint16_t)rawValues[5] * 0.606 * conversionFactor;
-		pdu_V3bis.voltage = (uint16_t)rawValues[6] * 2 * conversionFactor;
-		pdu_V3bis.current = (uint16_t)rawValues[7]* 0.606 * conversionFactor; //factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
+	//read all adcs
+	while(!convCompleted);
+	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
+	//las tensiones se multiplican x2
+	mpptZ.current = currentScale(rawValues[0]);
+	mpptZ.voltage = voltageScale(rawValues[1]);
 
-		mpptX.current = (uint16_t)rawValues[8] * 0.606 * conversionFactor;
-		mpptX.voltage = (uint16_t)rawValues[9] * 2 * conversionFactor;
-		mpptY.current = (uint16_t) rawValues[10] * 0.606 * conversionFactor;//* 0.606 * conversionFactor;// * 0.606; //factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
-		mpptY.voltage = (uint16_t) rawValues[11] * 2 * conversionFactor;
+	pdu_V5bis.current = currentScale(rawValues[2]);
+	pdu_V5bis.voltage = voltageScale(rawValues[3]);
+	pdu_V3.voltage = voltageScale(rawValues[4]);
+	pdu_V3.current = currentScale(rawValues[5]);
+	pdu_V3bis.voltage = voltageScale(rawValues[6]);
+	pdu_V3bis.current = currentScale(rawValues[7]);
 
-		pdu_V5.voltage = (uint16_t) rawValues[12] * 2 * conversionFactor;
-		pdu_V5.current = (uint16_t) rawValues[13] * 0.606 * conversionFactor;
+	mpptX.current = currentScale(rawValues[8]);
+	mpptX.voltage = voltageScale(rawValues[9]);
+	mpptY.current = currentScale(rawValues[10]);
+	mpptY.voltage = voltageScale(rawValues[11]);
 
-	  	//MPPT
-        //updateMPPT(&mpptX);
-        //updateMPPT(&mpptY);
-        //updateMPPT(&mpptZ);
+	pdu_V5.voltage = voltageScale(rawValues[12]);
+	pdu_V5.current =  currentScale(rawValues[13]);
 
-	if(counter == 2){
-	    char buffer[STR_LEN];
-
-	    snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
-	  	HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
-
-	  	//imprimo el bit de alarma del bms
-	    // sprintf(buffer,"LA alarma esta en %u \n", HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8));
-	    //HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-/*
-	  	//imprimo VCELL_MODE
-	    uint8_t vcell;
-	    BQ76905_ReadRegister(&bms, VCELL_MODE, &vcell, 1);
-	    snprintf(buffer, STR_LEN, "VCELL_MODE %u \n", vcell);
-
-	    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-*/
+	// Imprimo cosas
+	char buffer[STR_LEN];
+	snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
+	HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
+	//imprimo el bit de alarma del bms
+	// sprintf(buffer,"LA alarma esta en %u \n", HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8));
+	//HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
 
+	//5BIS DATOS
+	//printPDUData(&pdu_V5bis);
+	//3.3 DATOS
+	//printPDUData(&pdu_V3);
 
-	    //5BIS DATOS
-	  	//printPDUData(&pdu_V5bis);
-	    //3.3 DATOS
-	  	//printPDUData(&pdu_V3);
+	//X DATOS
+	printMPPTData(&mpptX);
+	//Y DATOS
+	printMPPTData(&mpptY);
+	//Z DATOS
+	printMPPTData(&mpptZ);
 
-	    //X DATOS
-	    //printMPPTData(&mpptX);
-	    //Y DATOS
-	    //printMPPTData(&mpptY);
-	    //Z DATOS
-	    //printMPPTData(&mpptZ);
-
-	}
-	counter++;
-	counter = counter%3;
+  	//MPPT
+    //updateMPPT(&mpptX);
+    //updateMPPT(&mpptY);
+    //updateMPPT(&mpptZ);
 
 
 
-		//COMUNICACION BQ76905
-        BQ76905_ReadData(&bms);
-        sendBMSDataI2C(&bms);
+	//BMS 29330
+
+	float shuntVoltage = INA219_ReadShuntVoltage();
+	float busVoltage = INA219_ReadBusVoltage();
+	float current_mA = INA219_ReadCurrent();
+	float power_mW = INA219_ReadPower();
+	float loadVoltage = busVoltage + (shuntVoltage / 1000.0f);
+	sendI2CMsg("Bus Voltage: ", busVoltage);
+	sendI2CMsg("Shunt Voltage: ", shuntVoltage);
+	sendI2CMsg("Load Voltage: ", loadVoltage);
+	sendI2CMsg("Current: ", current_mA);
+	sendI2CMsg("Power: ", power_mW);
 
 
-		//CALENTAMIENTO Y CONTROL DE TEMPERATURA //por ahora prendo un led para debuging
-		//MODO BAJO CONSUMO
-    	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-        //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
-    	HAL_Delay(DELAY);
+	//CALENTAMIENTO Y CONTROL DE TEMPERATURA //por ahora prendo un led para debuging
+	//MODO BAJO CONSUMO
 
+
+	//prendo y apago el led
+	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
+	//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+
+	HAL_Delay(DELAY);
 
     /* USER CODE END WHILE */
 
@@ -308,31 +268,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-/*
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
-{	// me falta multiplicar por  * 3.3 / 4.09a para obtener la respuesta bien
-	uint8_t convFactor = 1;
-	pdu_V5bis.current = (uint16_t) adcVal1[0] * convFactor; // * 0.606;
-	pdu_V5bis.voltage = (uint16_t) adcVal1[1] * convFactor * 2; //las tensiones se multiplican x2
-	mpptY.current = (uint16_t) adcVal1[2] * convFactor;// * 0.606; //factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
-	mpptY.voltage = (uint16_t) adcVal1[3] * convFactor * 2;
-	pdu_V5.voltage = (uint16_t) adcVal1[4] * convFactor * 2;
-	pdu_V5.current = (uint16_t)adcVal1[5] * convFactor; // * 0.606;
-
-	pdu_V3.voltage = (uint16_t)adcVal2[0] * convFactor * 2; //las tensiones se multiplican x2
-	pdu_V3.current = (uint16_t)adcVal2[1] * convFactor;// * 0.606;
-	pdu_V3bis.voltage = (uint16_t)adcVal2[2] * convFactor * 2;
-	pdu_V3bis.current = (uint16_t)adcVal2[3] * convFactor * 0.606; //factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
-	mpptX.current = (uint16_t)adcVal2[4] * convFactor; // * 0.606;
-	mpptX.voltage = (uint16_t)adcVal2[5] * convFactor * 2;
-
-	mpptZ.current = (uint16_t)adcVal3[0] * convFactor; // * 0.606;
-	mpptZ.voltage = (uint16_t)adcVal3[1] * convFactor * 2; //las tensiones se multiplican x2
-
-}
-*/
-
 
 
 /* USER CODE END 4 */

@@ -35,6 +35,7 @@ extern "C" {
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
+#define CONVERSION_FACTOR (3.3 / 4.095)
 
 /* USER CODE END Private defines */
 
@@ -42,6 +43,8 @@ void MX_ADC1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 uint32_t readADC(ADC_HandleTypeDef *hadc, uint32_t channel);
+uint16_t currentScale(uint16_t rawValue);
+uint16_t voltageScale(uint16_t rawValue);
 
 /* USER CODE END Prototypes */
 

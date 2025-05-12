@@ -2,3 +2,4 @@
 ../Core/Src/i2c.c:65:6:MX_I2C3_Init	2
 ../Core/Src/i2c.c:94:6:HAL_I2C_MspInit	3
 ../Core/Src/i2c.c:156:6:HAL_I2C_MspDeInit	3
+../Core/Src/i2c.c:202:6:sendI2CMsg	1

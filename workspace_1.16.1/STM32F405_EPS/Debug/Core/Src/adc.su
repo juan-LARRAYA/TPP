@@ -2,3 +2,5 @@
 ../Core/Src/adc.c:62:6:MX_ADC1_Init	24	static
 ../Core/Src/adc.c:226:6:HAL_ADC_MspInit	56	static
 ../Core/Src/adc.c:302:6:HAL_ADC_MspDeInit	16	static
+../Core/Src/adc.c:349:10:currentScale	16	static
+../Core/Src/adc.c:352:10:voltageScale	16	static

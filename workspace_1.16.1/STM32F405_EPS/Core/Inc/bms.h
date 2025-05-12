@@ -16,115 +16,32 @@ extern "C" {
 #include "main.h"
 #include <stdint.h>
 
-#define BQ76905_I2C_ADDR 0x10			// Dirección I2C del BQ76905
-#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
+#define BQ29330_I2C_ADDR 0x10			// Dirección I2C del BQ29330
 #define MAX_CELLS 5  					// Cantidad total de celdas
-
+#define INA219_ADDRESS         (0x40 << 1)  // Dirección 7-bit del INA219
+#define INA219_REG_BUS_VOLTAGE 0x02
+#define INA219_REG_SHUNT_VOLTAGE 0x01
+#define INA219_REG_CURRENT     0x04
+#define INA219_REG_POWER       0x03
 
 // Enumeración de registros con nombres representativos
+
 typedef enum {
-
-	/*****************COMANDS**********************/
-
-	SAFETY_ALERT_A 		     = 0x02,
-	SAFETY_STATUS_A 		 = 0x03,
-	SAFETY_ALERT_B 		     = 0x04,
-	SAFETY_STATUS_B 		 = 0x05,
-
-
-    BATTERY_STATUS           = 0x12,   // Estado de la batería
-    // Voltajes de celdas (mV)
-    CELL1_VOLTAGE            = 0x14,
-    CELL2_VOLTAGE            = 0x16,
-    CELL3_VOLTAGE            = 0x18,
-    CELL4_VOLTAGE            = 0x1A,
-    CELL5_VOLTAGE            = 0x1C,
-
-
-    // Otros voltajes
-    REG18_VOLTAGE            = 0x22,   // Regulador interno de 1.8V
-    VSS_VOLTAGE              = 0x24,   // Medición de tierra usando ADC
-    STACK_VOLTAGE            = 0x26,   // Voltaje de la pila completa (pack de baterías)
-
-    // Temperatura e indicadores térmicos
-    INT_TEMPERATURE          = 0x28,   // Temperatura interna del BQ76905
-    TS_MEASUREMENT           = 0x2A,   // Medición del pin de sensor térmico (TS)
-
-    // Medición de corriente
-    RAW_CURRENT              = 0x36,   // Medición cruda de corriente en 32 bits
-    CURRENT_MEASUREMENT      = 0x3A,   // Medición de corriente CC2 en 16 bits
-    CC1_CURRENT_MEASUREMENT  = 0x3C,   // Medición de corriente CC1 en 16 bits
-
-    // Alarmas y control de salida
-    ALARM_STATUS             = 0x62,   // Estado de alarmas activas
-    ALARM_RAW_STATUS         = 0x64,   // Estado en tiempo real de alarmas
-    ALARM_ENABLE             = 0x66,   // Habilitar alarmas
-    FET_CONTROL              = 0x68,   // Control de FETs
-    REGOUT_CONTROL           = 0x69,   // Control de salida de regulador de voltaje
-    DSG_FET_PWM_CONTROL      = 0x6A,   // Control PWM del FET de descarga
-    CHG_FET_PWM_CONTROL      = 0x6C,   // Control PWM del FET de carga
-
-
-	//CONFIG MODE
-    BASE_SUBCOMMAND_ADDRESS  = 0x3E,   // Dirección base de subcomandos
-
-
-
-	/*****************SUBCOMANDS**********************/
-    // Configuración y estado
-    CONFIG_UPDATE            = 0x0090, // Entrar en modo configuración
-    CONFIG_EXIT              = 0x0092, // Salir de modo configuración
-
-	CURR_GAIN 				 = 0x9006, // Ganancia de corriente
-
-	REGOUT_CONFIG 			 = 0x9015, //configuracion del regulador
-
-	DA_CONFIG 				 = 0x9019,
-    VCELL_MODE               = 0x901B, // Configurar cantidad de celdas en el sistema
-	DEFAULT_ALARM_MASK		 = 0x901C,
-	FET_OPTIONS				 = 0x901E,
-	CHARGE_DETECTOR_TIME	 = 0x901F,
-	BALANCING_CONFIGURATION  = 0x9020,
-	MIN_TEMP_THERESHOLD_CB	 = 0x9021,
-	MAX_TEMP_THERESHOLD_CB	 = 0x9022,
-	MAX_INTERNAL_TEMP 		 = 0x9023,
-    ENABLED_PROT_A           = 0x9024, // Protecciones
-    ENABLED_PROT_B           = 0x9025,
-	DSG_FET_PROTECTIONS_A	 = 0x9026, // Protecciones de descarga
-	CHG_FET_PROTECTIONS_A	 = 0x9027, // Protecciones de carga
-	BOTH_FET_PROTECTIONS_A	 = 0x9028,
-	BODY_DIODE_THRESHOLD	 = 0x9029,
-
-    // **NUEVOS REGISTROS: SUBCOMANDOS**
-    CELL_UNDERVOLTAGE_THRESHOLD = 0x902E, // Umbral de protección por bajo voltaje de celda
-    CELL_OVERVOLTAGE_THRESHOLD  = 0x9032, // Umbral de protección por sobrevoltaje de celda
-    OVERCURRENT_CHARGE_THRESHOLD = 0x9036, // Protección de sobrecorriente en carga
-    OVERCURRENT_DISCHARGE_1      = 0x9038, // Protección de sobrecorriente en descarga 1
-    OVERCURRENT_DISCHARGE_2      = 0x903A, // Protección de sobrecorriente en descarga 2
-    SHORT_CIRCUIT_DISCHARGE      = 0x903C, // Protección de cortocircuito en descarga
-    LATCH_LIMIT                  = 0x903E, // Límite de bloqueo de protección
-    RECOVERY_TIME                = 0x903F, // Tiempo de recuperación tras una falla
-    // Protección por temperatura
-    OVERTEMP_CHARGE_THRESHOLD    = 0x9040, // Protección por sobretemperatura en carga
-
-	UNDERTEMP_CHARGE_THRESHOLD   = 0x9043, // Protección por baja temperatura en carga
-
-    OVERTEMP_DISCHARGE_THRESHOLD = 0x9046, // Protección por sobretemperatura en descarga
-
-	UNDERTEMP_DISCHARGE_THRESHOLD = 0x9049, // Protección por baja temperatura en descarga
-
-	INTERNAL_OVERTEMP_THRESHOLD  = 0x904C, // Protección por sobretemperatura interna
-
-    // Configuración de Power Management
-    SLEEP_CURRENT                = 0x904F, // Corriente en modo sleep
-    SHUTDOWN_CELL_VOLTAGE        = 0x9053, // Voltaje de celda para apagado
-    SHUTDOWN_STACK_VOLTAGE       = 0x9055, // Voltaje de la pila para apagado
-    SHUTDOWN_TEMPERATURE         = 0x9057, // Temperatura de apagado
-    AUTO_SHUTDOWN_TIME           = 0x9058, // Tiempo automático de apagado
-
-} BQ76905_Registers;
-
-// Estructura para almacenar datos del BQ76905
+    BQ29330_STATUS_REG       = 0x00,
+    BQ29330_CONTROL_REG      = 0x01,
+    BQ29330_PROTECT1_REG     = 0x02,
+    BQ29330_PROTECT2_REG     = 0x03,
+    BQ29330_OVERCURRENT_REG  = 0x04,
+    BQ29330_CELLBAL_REG      = 0x05,
+    BQ29330_ADCONFIG_REG     = 0x06,
+    BQ29330_ADCIN1_REG       = 0x07,
+    BQ29330_ADCIN2_REG       = 0x08,
+    BQ29330_CELL1_REG        = 0x09,
+    BQ29330_CELL2_REG        = 0x0A,
+    BQ29330_CELL3_REG        = 0x0B,
+    BQ29330_CELL4_REG        = 0x0C
+} BQ29330_Registers;
+// Estructura para almacenar datos del BQ29330
 typedef struct {
     I2C_HandleTypeDef *hi2c;  // Interfaz I2C utilizada
 
@@ -133,17 +50,14 @@ typedef struct {
 
     // Voltajes generales
     uint16_t stack_voltage;      // Voltaje total del pack
-    uint16_t reg18_voltage;      // Voltaje del regulador interno
-    uint16_t vss_voltage;        // Medición de referencia de tierra
 
     // Temperatura
-    int16_t internal_temperature; // Temperatura interna del BQ76905
+    int16_t internal_temperature; // Temperatura interna del BQ29330
     uint16_t ts_measurement;      // Medición del sensor térmico externo
 
     // Corriente
     int32_t raw_current;         // Medición de corriente cruda en 32 bits
     int16_t current;             // Medición de corriente CC2 en 16 bits
-    int16_t cc1_current;         // Medición de corriente CC1 en 16 bits
 
     // Estados y protecciones
     uint8_t battery_status;      // Estado general de la batería
@@ -168,22 +82,21 @@ typedef struct {
     uint8_t undertemp_discharge_threshold;
     uint8_t internal_overtemp_threshold;
 
-
     //registros
     uint8_t fet_control;
 
 
-} BQ76905_Device;
+} BQ29330_Device;
 
 
-// Funciones para configurar y leer datos del BQ76905
-HAL_StatusTypeDef BQ76905_WriteSubcommand(BQ76905_Device *bms, BQ76905_Registers subcmd);
-HAL_StatusTypeDef BQ76905_WriteRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *data, uint8_t len);
-HAL_StatusTypeDef BQ76905_WriteChecksum(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *data, uint8_t len);
-HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers reg, uint8_t *rxData, uint8_t len);
-void BQ76905_Configure(BQ76905_Device *bms);
-void BQ76905_ReadData(BQ76905_Device *bms);
-void sendBMSDataI2C(BQ76905_Device *bms);
+
+// Funciones para configurar y leer datos del BQ29330
+
+void sendBMSDataI2C(BQ29330_Device *bms);
+float INA219_ReadBusVoltage(void);
+float INA219_ReadShuntVoltage(void);
+float INA219_ReadCurrent(void);
+float INA219_ReadPower(void);
 
 
 

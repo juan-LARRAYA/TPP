@@ -63,7 +63,6 @@ void BQ76905_Configure(BQ76905_Device *bms) {
     data[1] = 0x00;
     BQ76905_WriteRegister(bms, CURR_GAIN, data, 2);
 
-
     data[0] = 0x0D;
     BQ76905_WriteRegister(bms, REGOUT_CONFIG, data, 1);
 
@@ -94,9 +93,7 @@ void BQ76905_Configure(BQ76905_Device *bms) {
 
     BQ76905_WriteRegister(bms, BODY_DIODE_THRESHOLD, data, 2);
 
-
-
-
+    //LIMITES DE CORRIENTE
     data[0] = 62;
     BQ76905_WriteRegister(bms, OVERCURRENT_CHARGE_THRESHOLD, data, 1);
     data[0] = 100;
@@ -299,7 +296,7 @@ void sendBMSDataI2C(BQ76905_Device *bms) {
     HAL_Delay(10);
 
     // 🔹 Protección por Corriente
-    snprintf(buffer, BUFFER_SIZE, "Overcurrent Charge: %d mA\n", bms->overcurrent_charge_threshold * 10);
+    snprintf(buffer, BUFFER_SIZE, "Overcurrent Charge threshold: %d mA\n", bms->overcurrent_charge_threshold * 10);
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
     HAL_Delay(10);
 
@@ -323,6 +320,54 @@ void sendBMSDataI2C(BQ76905_Device *bms) {
     // 🟢 Fin del mensaje
     snprintf(buffer, BUFFER_SIZE, "--------------------------\n");
     HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+}
+
+
+void INA219_Init(void)
+{
+    // Aquí podrías configurar registros de calibración si fuera necesario
+    // Por defecto, se asume calibración 32V, 2A
+}
+
+float INA219_ReadBusVoltage(void)
+{
+    uint8_t buffer[2];
+    uint16_t raw;
+
+    HAL_I2C_Mem_Read(&hi2c1, INA219_ADDRESS, INA219_REG_BUS_VOLTAGE, 1, buffer, 2, HAL_MAX_DELAY);
+    raw = (buffer[0] << 8) | buffer[1];
+    raw >>= 3;  // los 3 bits LSB no son válidos
+    return raw * 0.004f;  // resolución 4 mV
+}
+
+float INA219_ReadShuntVoltage(void)
+{
+    uint8_t buffer[2];
+    int16_t raw;
+
+    HAL_I2C_Mem_Read(&hi2c1, INA219_ADDRESS, INA219_REG_SHUNT_VOLTAGE, 1, buffer, 2, HAL_MAX_DELAY);
+    raw = (int16_t)((buffer[0] << 8) | buffer[1]);
+    return raw * 0.01f;  // resolución 10 uV
+}
+
+float INA219_ReadCurrent(void)
+{
+    uint8_t buffer[2];
+    int16_t raw;
+
+    HAL_I2C_Mem_Read(&hi2c1, INA219_ADDRESS, INA219_REG_CURRENT, 1, buffer, 2, HAL_MAX_DELAY);
+    raw = (int16_t)((buffer[0] << 8) | buffer[1]);
+    return raw * 1.0f;  // depende de la calibración
+}
+
+float INA219_ReadPower(void)
+{
+    uint8_t buffer[2];
+    uint16_t raw;
+
+    HAL_I2C_Mem_Read(&hi2c1, INA219_ADDRESS, INA219_REG_POWER, 1, buffer, 2, HAL_MAX_DELAY);
+    raw = (buffer[0] << 8) | buffer[1];
+    return raw * 20.0f;  // resolución depende de calibración: 20 mW/LSB para default
 }
 
 

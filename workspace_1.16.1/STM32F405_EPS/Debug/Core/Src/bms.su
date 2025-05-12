@@ -1,7 +1,9 @@
-../Core/Src/bms.c:7:19:BQ76905_WriteSubcommand	32	static
-../Core/Src/bms.c:14:19:BQ76905_WriteRegister	72	static
-../Core/Src/bms.c:32:19:BQ76905_WriteChecksum	40	static
-../Core/Src/bms.c:48:19:BQ76905_ReadRegister	40	static
-../Core/Src/bms.c:56:6:BQ76905_Configure	32	static
-../Core/Src/bms.c:155:6:BQ76905_ReadData	24	static
-../Core/Src/bms.c:226:6:sendBMSDataI2C	104	static
+../Core/Src/bms.c:9:19:BQ29330_ReadRegister	40	static
+../Core/Src/bms.c:17:6:BQ29330_Configure	16	static
+../Core/Src/bms.c:23:6:BQ29330_ReadData	16	static
+../Core/Src/bms.c:27:6:sendBMSDataI2C	88	static
+../Core/Src/bms.c:46:6:INA219_Init	4	static
+../Core/Src/bms.c:52:7:INA219_ReadBusVoltage	32	static
+../Core/Src/bms.c:63:7:INA219_ReadShuntVoltage	32	static
+../Core/Src/bms.c:73:7:INA219_ReadCurrent	32	static
+../Core/Src/bms.c:83:7:INA219_ReadPower	32	static

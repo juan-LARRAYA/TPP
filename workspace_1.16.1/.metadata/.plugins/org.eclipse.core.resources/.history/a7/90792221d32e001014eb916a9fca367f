@@ -19,7 +19,11 @@ extern "C" {
 #define BQ76905_I2C_ADDR 0x10			// Dirección I2C del BQ76905
 #define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
 #define MAX_CELLS 5  					// Cantidad total de celdas
-
+#define INA219_ADDRESS         (0x40 << 1)  // Dirección 7-bit del INA219
+#define INA219_REG_BUS_VOLTAGE 0x02
+#define INA219_REG_SHUNT_VOLTAGE 0x01
+#define INA219_REG_CURRENT     0x04
+#define INA219_REG_POWER       0x03
 
 // Enumeración de registros con nombres representativos
 typedef enum {
@@ -122,11 +126,6 @@ typedef enum {
     SHUTDOWN_TEMPERATURE         = 0x9057, // Temperatura de apagado
     AUTO_SHUTDOWN_TIME           = 0x9058, // Tiempo automático de apagado
 
-    // Configuración de Seguridad
-    SECURITY_SETTINGS            = 0x9059, // Configuración de seguridad
-    FULL_ACCESS_KEY_1            = 0x905A, // Clave de acceso total - Paso 1
-    FULL_ACCESS_KEY_2            = 0x905C  // Clave de acceso total - Paso 2
-
 } BQ76905_Registers;
 
 // Estructura para almacenar datos del BQ76905
@@ -189,6 +188,10 @@ HAL_StatusTypeDef BQ76905_ReadRegister(BQ76905_Device *bms, BQ76905_Registers re
 void BQ76905_Configure(BQ76905_Device *bms);
 void BQ76905_ReadData(BQ76905_Device *bms);
 void sendBMSDataI2C(BQ76905_Device *bms);
+float INA219_ReadBusVoltage(void);
+float INA219_ReadShuntVoltage(void);
+float INA219_ReadCurrent(void);
+float INA219_ReadPower(void);
 
 
 

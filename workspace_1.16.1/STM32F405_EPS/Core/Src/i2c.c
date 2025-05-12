@@ -199,5 +199,10 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
+void sendI2CMsg(const char* label, float value) {
+    char buffer[BUFFER_SIZE];
+    snprintf(buffer, BUFFER_SIZE, "%s %.2f\r\n", label, value);
+    HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+    HAL_Delay(10);
+}
 /* USER CODE END 1 */
