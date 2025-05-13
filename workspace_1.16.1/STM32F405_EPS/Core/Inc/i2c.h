@@ -43,8 +43,8 @@ extern I2C_HandleTypeDef hi2c3;
 
 void MX_I2C1_Init(void);
 void MX_I2C3_Init(void);
-void sendI2CMsg(const char* label, float value);
 /* USER CODE BEGIN Prototypes */
+void sendI2CMsg(const char* label, float value);
 
 /* USER CODE END Prototypes */
 
