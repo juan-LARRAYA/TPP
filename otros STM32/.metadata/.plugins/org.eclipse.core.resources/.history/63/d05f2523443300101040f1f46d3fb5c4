@@ -1,24 +1,26 @@
 /* USER CODE BEGIN Header */
 /**
- ******************************************************************************
- * @file           : main.c
- * @brief          : Main program body
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2024 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -26,27 +28,17 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stdio.h"
-#include "string.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-//Aquí defines nuevos tipos de datos (typedef)
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//definir macros #define
-#define ACTIVADOR_PIN GPIO_PIN_13
-#define ACTIVADOR_PORT GPIOC
-
-#define VPANEL_CHANNEL ADC_CHANNEL_1
-#define IPANEL_CHANNEL ADC_CHANNEL_6
-
-#define PWM_TIMER &htim1
-
+#define DELAY 200
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -57,17 +49,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//defini aca las varaibles privadas
-const int pwmPin = PwmMppt_Pin;    // Cambia por el pin que estés usando
-const int pinVoltageInput = Vpanel_Pin; // Entrada analógica para medir el voltaje de entrada A0
-const int pinCurrentInput = Ipanel_Pin; // Entrada analógica para medir la corriente de entrada A1
-
-// Variables globales
-float V_in = 0;
-float I_in = 0;
-float power = 0;
-float previousPower = 0;
-int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
 
 /* USER CODE END PV */
 
@@ -79,6 +60,12 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t convCompleted=0;
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	convCompleted=1;
+}
 
 /* USER CODE END 0 */
 
@@ -111,28 +98,102 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   MX_TIM1_Init();
-  MX_TIM3_Init();
   MX_USB_DEVICE_Init();
+  MX_I2C1_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
+
+  //start PWMs
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period/2);
+
+
+  //ADC Variables
+   uint16_t rawValues[14];
+   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 14);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	while (1) {
-
-//		Para prender y apagar el led que viene en la bluepil
-		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
-		HAL_Delay(500); // 1 segundo de delay
-		HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-		HAL_Delay(500); // 1 segundo de delay
+  while (1)
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	}
+
+	//read all adcs
+	while(!convCompleted);
+	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
+	//las tensiones se multiplican x2
+	uint16_t current = currentScale(rawValues[0]);
+	uint16_t voltage_bat1 = voltageScale(rawValues[1]);
+	uint16_t voltage_bat2 = voltageScale(rawValues[2]);
+
+	// Imprimo cosas
+	char buffer[STR_LEN];
+	snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
+	HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
+/*
+    sprintf(buffer,"Corriente: %u \n", current);
+	HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+*/
+	//FORMA NUEVA DE IMPRIMIR LLAMANDO A UNA FUNCION SI NO ANDA USAR LA FORMA VIEJA
+	sendI2CMsg("Corriente: ", current);
+	sendI2CMsg("Tension bat 1: ", voltage_bat1);
+	sendI2CMsg("Tension bat 2: ", voltage_bat2);
+
+
+
+	//BMS 29330
+
+ //escribo
+    uint8_t buffer[2];
+    buffer[0] = reg; 		// Dirección del registro
+    buffer[1] = 0xFF;        // Dato a escribir
+    HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, &buffer, 2, HAL_MAX_DELAY);
+//leo
+    I2C_HandleTypeDef *hi2c;
+	uint8_t *valor_leido;
+
+	uint8_t reg = 0x03;
+
+	// Paso 1: Enviar la dirección del registro que queremos leer (0x03)
+	HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+
+
+	// Paso 2: Leer un byte desde el dispositivo (valor del registro FUNCTION_CONTROL)
+	HAL_I2C_Master_Receive(&hi2c1, BMS_I2C_ADDRESS, &valor_leido, 1, HAL_MAX_DELAY);
+
+	sendUsartMsg("FUNCTION_CONTROL : ", valor_leido);
+
+
+/*
+
+	uint16_t shuntVoltage = INA219_ReadShuntVoltage();
+	uint16_t busVoltage = INA219_ReadBusVoltage();
+	uint16_t current_mA = INA219_ReadCurrent();
+	uint16_t power_mW = INA219_ReadPower();
+	uint16_t loadVoltage = busVoltage + (shuntVoltage / 1000.0f);
+	sendI2CMsg("Bus Voltage: ", busVoltage);
+	sendI2CMsg("Shunt Voltage: ", shuntVoltage);
+	sendI2CMsg("Load Voltage: ", loadVoltage);
+	sendI2CMsg("Current: ", current_mA);
+	sendI2CMsg("Power: ", power_mW);
+
+*/
+
+
+
+
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_Delay(DELAY);
+
+  }
   /* USER CODE END 3 */
 }
 
@@ -194,10 +255,11 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-	/* User can add his own implementation to report the HAL error return state */
-	__disable_irq();
-	while (1) {
-	}
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
   /* USER CODE END Error_Handler_Debug */
 }
 

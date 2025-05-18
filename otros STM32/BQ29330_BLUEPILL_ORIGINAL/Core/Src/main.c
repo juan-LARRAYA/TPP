@@ -132,7 +132,7 @@ int main(void)
 	//las tensiones se multiplican x2
 	uint16_t current = currentScale(rawValues[0]);
 	uint16_t voltage_bat1 = voltageScale(rawValues[1]);
-	uint16_t voltage_bat2 = voltageScale(rawValues[1]);
+	uint16_t voltage_bat2 = voltageScale(rawValues[2]);
 
 	// Imprimo cosas
 	char buffer[STR_LEN];
@@ -148,7 +148,31 @@ int main(void)
 	sendI2CMsg("Tension bat 2: ", voltage_bat2);
 
 
+
 	//BMS 29330
+
+ //escribo
+    uint8_t buffer2[2];
+    buffer2[0] = 0x03;       // Dirección del registro FUNCTION_CONTROL
+    buffer2[1] = 0xFF;       // Valor a escribir (todos los bits en 1)
+    HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, buffer2, 2, HAL_MAX_DELAY);
+
+//leo
+
+	uint8_t reg = 0x03;
+	uint8_t valor_leido = 0;
+
+	// Enviar dirección del registro a leer
+	HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+
+	// Leer el valor del registro
+	HAL_I2C_Master_Receive(&hi2c1, BMS_I2C_ADDRESS, &valor_leido, 1, HAL_MAX_DELAY);
+
+	// Enviar por USART
+	sendUsartMsg("FUNCTION_CONTROL : ", valor_leido);
+
+
+/*
 
 	uint16_t shuntVoltage = INA219_ReadShuntVoltage();
 	uint16_t busVoltage = INA219_ReadBusVoltage();
@@ -161,15 +185,13 @@ int main(void)
 	sendI2CMsg("Current: ", current_mA);
 	sendI2CMsg("Power: ", power_mW);
 
+*/
+
 
 
 
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	HAL_Delay(DELAY);
-
-
-
-
 
   }
   /* USER CODE END 3 */

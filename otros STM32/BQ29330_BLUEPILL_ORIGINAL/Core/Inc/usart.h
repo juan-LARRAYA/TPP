@@ -35,6 +35,7 @@ extern "C" {
 extern UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN Private defines */
+void sendUsartMsg(const char* label, uint16_t value);
 
 /* USER CODE END Private defines */
 

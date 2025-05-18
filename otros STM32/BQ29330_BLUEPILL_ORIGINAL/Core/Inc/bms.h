@@ -16,9 +16,7 @@ extern "C" {
 #include "main.h"
 #include <stdint.h>
 
-#define BQ29330_I2C_ADDR 0x10			// Dirección I2C del BQ29330
-#define MAX_CELLS 5  					// Cantidad total de celdas
-#define INA219_ADDRESS         (0x40 << 1)  // Dirección 7-bit del INA219
+
 #define INA219_REG_BUS_VOLTAGE 0x02
 #define INA219_REG_SHUNT_VOLTAGE 0x01
 #define INA219_REG_CURRENT     0x04
@@ -27,20 +25,17 @@ extern "C" {
 // Enumeración de registros con nombres representativos
 
 typedef enum {
-    BQ29330_STATUS_REG       = 0x00,
-    BQ29330_CONTROL_REG      = 0x01,
-    BQ29330_PROTECT1_REG     = 0x02,
-    BQ29330_PROTECT2_REG     = 0x03,
-    BQ29330_OVERCURRENT_REG  = 0x04,
-    BQ29330_CELLBAL_REG      = 0x05,
-    BQ29330_ADCONFIG_REG     = 0x06,
-    BQ29330_ADCIN1_REG       = 0x07,
-    BQ29330_ADCIN2_REG       = 0x08,
-    BQ29330_CELL1_REG        = 0x09,
-    BQ29330_CELL2_REG        = 0x0A,
-    BQ29330_CELL3_REG        = 0x0B,
-    BQ29330_CELL4_REG        = 0x0C
+    BQ29330_STATUS      		= 0x00,
+    BQ29330_OUTPUT_CONTROL     	= 0x01,
+    BQ29330_STATE_CONTROL    	= 0x02,
+    BQ29330_FUNCTION_CONTROL    = 0x03,
+    BQ29330_CELL  				= 0x04,
+    BQ29330_OLV      			= 0x05,
+    BQ29330_OLD     			= 0x06,
+	BQ29330_SCC     			= 0x07,
+    BQ29330_SCD     			= 0x08
 } BQ29330_Registers;
+
 // Estructura para almacenar datos del BQ29330
 typedef struct {
     I2C_HandleTypeDef *hi2c;  // Interfaz I2C utilizada
@@ -97,6 +92,8 @@ uint16_t INA219_ReadBusVoltage(void);
 uint16_t INA219_ReadShuntVoltage(void);
 uint16_t INA219_ReadCurrent(void);
 uint16_t INA219_ReadPower(void);
+HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData);
+HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data);
 
 
 

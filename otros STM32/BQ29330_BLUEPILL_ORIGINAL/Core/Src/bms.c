@@ -5,12 +5,6 @@
 
 
 
-// Función para leer un registro
-HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Device *bms, BQ29330_Registers reg, uint8_t *rxData, uint8_t len) {
-    HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(bms->hi2c, BQ29330_I2C_ADDR, (uint8_t*)&reg, 1, HAL_MAX_DELAY);
-    if (ret != HAL_OK) return ret;
-    return HAL_I2C_Master_Receive(bms->hi2c, BQ29330_I2C_ADDR, rxData, len, HAL_MAX_DELAY);
-}
 
 
 // Función para configurar el BQ29330
@@ -19,10 +13,6 @@ void BQ29330_Configure(BQ29330_Device *bms) {
 
 }
 
-// Función para leer datos desde el BQ29330
-void BQ29330_ReadData(BQ29330_Device *bms) {
-    BQ29330_ReadRegister(bms, BQ29330_STATUS_REG, &bms->battery_status, 1);
-}
 
 void sendBMSDataI2C(BQ29330_Device *bms) {
     char buffer[BUFFER_SIZE];
@@ -89,5 +79,41 @@ uint16_t INA219_ReadPower(void)
     raw = (buffer[0] << 8) | buffer[1];
     return raw * 20.0f;  // resolución depende de calibración: 20 mW/LSB para default
 }
+
+
+// Función para leer un registro
+HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData) {
+    HAL_Delay(50);
+    HAL_StatusTypeDef ret = HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, (uint8_t*) & reg, 1, HAL_MAX_DELAY);
+    if (ret != HAL_OK) return ret;
+    return HAL_I2C_Master_Receive(&hi2c1, BMS_I2C_ADDRESS, rxData, 1, HAL_MAX_DELAY);
+}
+
+
+
+
+// Lee el valor actual del registro FUNCTION_CONTROL (0x03) del BQ29330
+HAL_StatusTypeDef BQ29330_ReadFunctionControl(I2C_HandleTypeDef *hi2c, uint8_t *valor_leido)
+{
+    uint8_t reg = 0x03;
+    // Paso 1: Enviar la dirección del registro que queremos leer (0x03)
+    HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(hi2c, BMS_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+    if (status != HAL_OK) return status;  // Si falla al enviar la dirección del registro, retornamos el error
+
+    // Paso 2: Leer un byte desde el dispositivo (valor del registro FUNCTION_CONTROL)
+    return HAL_I2C_Master_Receive(hi2c, BMS_I2C_ADDRESS, valor_leido, 1, HAL_MAX_DELAY);  // Devolver el estado de la operación y el valor leído en *valor_leido
+}
+
+
+
+// Función para escribir en un registro del BQ29330
+HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data)
+{
+    uint8_t buffer[2];
+    buffer[0] = reg; 		// Dirección del registro
+    buffer[1] = data;        // Dato a escribir
+    return HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, buffer, 2, HAL_MAX_DELAY);
+}
+
 
 
