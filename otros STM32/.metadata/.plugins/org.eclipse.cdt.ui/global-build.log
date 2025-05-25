@@ -458,3 +458,856 @@ arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf
   47736	    460	   6876	  55072	   d720	BQ29330_BLUEPILL_ORIGINAL.elf
 Finished building: default.size.stdout
  
+12:38:08 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47772	    460	   6876	  55108	   d744	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:04:56 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:170:35: error: 'status' undeclared (first use in this function); did you mean 'ITStatus'?
+  170 |         sendUsartMsg("status : ", status);
+      |                                   ^~~~~~
+      |                                   ITStatus
+../Core/Src/main.c:170:35: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:55: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:05:17 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47884	    460	   6876	  55220	   d7b4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:27:21 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:161:13: error: redeclaration of 'buffer2' with no linkage
+  161 |     uint8_t buffer2[2];
+      |             ^~~~~~~
+../Core/Src/main.c:155:13: note: previous declaration of 'buffer2' with type 'uint8_t[2]' {aka 'unsigned char[2]'}
+  155 |     uint8_t buffer2[2];
+      |             ^~~~~~~
+make: *** [Core/Src/subdir.mk:55: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:27:33 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47916	    460	   6876	  55252	   d7d4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:29:01 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47916	    460	   6876	  55252	   d7d4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:29:50 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47916	    460	   6876	  55252	   d7d4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:44:49 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47924	    460	   6876	  55260	   d7dc	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:50:41 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47960	    460	   6876	  55296	   d800	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:54:34 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/bms.c: In function 'BQ29330_ReadFunctionControl':
+../Core/Src/bms.c:99:81: error: incompatible type for argument 3 of 'HAL_I2C_Master_Transmit'
+   99 |     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, reg, 1, HAL_MAX_DELAY);
+      |                                                                                 ^~~
+      |                                                                                 |
+      |                                                                                 BQ29330_Registers
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:298,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Inc/bms.h:15,
+                 from ../Core/Src/bms.c:2:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:563:98: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'BQ29330_Registers'
+  563 | HAL_StatusTypeDef HAL_I2C_Master_Transmit(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                         ~~~~~~~~~^~~~~
+../Core/Src/bms.c:102:35: error: 'hi2c' undeclared (first use in this function); did you mean 'hi2c2'?
+  102 |     return HAL_I2C_Master_Receive(hi2c, BMS_I2C_ADDRESS, valor_leido, 1, HAL_MAX_DELAY);  // Devolver el estado de la operación y el valor leído en *valor_leido
+      |                                   ^~~~
+      |                                   hi2c2
+../Core/Src/bms.c:102:35: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/bms.c:103:1: warning: control reaches end of non-void function [-Wreturn-type]
+  103 | }
+      | ^
+make: *** [Core/Src/subdir.mk:55: Core/Src/bms.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:193:22: warning: implicit declaration of function 'BQ29330_ReadFunctionControl' [-Wimplicit-function-declaration]
+  193 |         statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:156:17: warning: unused variable 'buffer2' [-Wunused-variable]
+  156 |         uint8_t buffer2[2];
+      |                 ^~~~~~~
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:54:49 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+../Core/Src/bms.c: In function 'BQ29330_ReadFunctionControl':
+../Core/Src/bms.c:99:81: error: incompatible type for argument 3 of 'HAL_I2C_Master_Transmit'
+   99 |     HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, reg, 1, HAL_MAX_DELAY);
+      |                                                                                 ^~~
+      |                                                                                 |
+      |                                                                                 BQ29330_Registers
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:298,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Inc/bms.h:15,
+                 from ../Core/Src/bms.c:2:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:563:98: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'BQ29330_Registers'
+  563 | HAL_StatusTypeDef HAL_I2C_Master_Transmit(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                                         ~~~~~~~~~^~~~~
+make: *** [Core/Src/subdir.mk:55: Core/Src/bms.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:55:48 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+../Core/Src/bms.c: In function 'BQ29330_ReadFunctionControl':
+../Core/Src/bms.c:98:5: error: 'buffer' undeclared (first use in this function); did you mean 'setbuffer'?
+   98 |     buffer[0] = reg;            // Dirección del registro
+      |     ^~~~~~
+      |     setbuffer
+../Core/Src/bms.c:98:5: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:55: Core/Src/bms.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:55:57 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+../Core/Src/bms.c: In function 'BQ29330_ReadFunctionControl':
+../Core/Src/bms.c:98:29: error: invalid initializer
+   98 |         uint8_t buffer[0] = reg;                // Dirección del registro
+      |                             ^~~
+make: *** [Core/Src/subdir.mk:55: Core/Src/bms.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+13:56:40 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47944	    460	   6876	  55280	   d7f0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+13:57:12 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:191:22: warning: implicit declaration of function 'BQ29330_ReadFunctionControl' [-Wimplicit-function-declaration]
+  191 |         statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
+      |                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:156:17: warning: unused variable 'buffer2' [-Wunused-variable]
+  156 |         uint8_t buffer2[2];
+      |                 ^~~~~~~
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47992	    460	   6876	  55328	   d820	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+14:01:49 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../USB_DEVICE/Target/usbd_conf.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"USB_DEVICE/Target/usbd_conf.d" -MT"USB_DEVICE/Target/usbd_conf.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "USB_DEVICE/Target/usbd_conf.o"
+arm-none-eabi-gcc "../USB_DEVICE/App/usb_device.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"USB_DEVICE/App/usb_device.d" -MT"USB_DEVICE/App/usb_device.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "USB_DEVICE/App/usb_device.o"
+arm-none-eabi-gcc "../USB_DEVICE/App/usbd_cdc_if.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"USB_DEVICE/App/usbd_cdc_if.d" -MT"USB_DEVICE/App/usbd_cdc_if.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "USB_DEVICE/App/usbd_cdc_if.o"
+arm-none-eabi-gcc "../USB_DEVICE/App/usbd_desc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"USB_DEVICE/App/usbd_desc.d" -MT"USB_DEVICE/App/usbd_desc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "USB_DEVICE/App/usbd_desc.o"
+arm-none-eabi-gcc "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.d" -MT"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o"
+arm-none-eabi-gcc "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.d" -MT"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o"
+arm-none-eabi-gcc "../Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.d" -MT"Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o"
+arm-none-eabi-gcc "../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.d" -MT"Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.o"
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:167:17: warning: unused variable 'reg' [-Wunused-variable]
+  167 |         uint8_t reg = BQ29330_FUNCTION_CONTROL;
+      |                 ^~~
+../Core/Src/main.c:156:17: warning: unused variable 'buffer2' [-Wunused-variable]
+  156 |         uint8_t buffer2[2];
+      |                 ^~~~~~~
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  47980	    460	   6876	  55316	   d814	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+14:07:45 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48148	    460	   6876	  55484	   d8bc	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+14:56:26 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48448	    460	   6876	  55784	   d9e8	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+14:57:12 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48376	    460	   6876	  55712	   d9a0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+14:58:45 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48384	    460	   6876	  55720	   d9a8	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:09:49 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48392	    460	   6876	  55728	   d9b0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:13:13 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48392	    460	   6876	  55728	   d9b0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:15:00 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48440	    460	   6876	  55776	   d9e0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:15:35 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48440	    460	   6876	  55776	   d9e0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:16:18 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48440	    460	   6876	  55776	   d9e0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:24:56 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48448	    460	   6876	  55784	   d9e8	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:26:50 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48456	    460	   6876	  55792	   d9f0	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:34:35 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48464	    460	   6876	  55800	   d9f8	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+15:38:05 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  48464	    460	   6876	  55800	   d9f8	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+16:16:40 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:184:13: warning: implicit declaration of function 'delay_ms' [-Wimplicit-function-declaration]
+  184 |             delay_ms(300);                                         // let voltages equalise
+      |             ^~~~~~~~
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
+/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/Debug/../Core/Src/main.c:184: undefined reference to `delay_ms'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:68: BQ29330_BLUEPILL_ORIGINAL.elf] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+16:17:15 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+16:18:12 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+16:19:28 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+16:20:44 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+16:31:19 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+17:15:44 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+17:17:48 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+17:19:51 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+17:24:25 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48528	    460	   6876	  55864	   da38	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+17:25:55 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:02:59 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48504	    460	   6876	  55840	   da20	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:03:30 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  48504	    460	   6876	  55840	   da20	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+18:04:34 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:14:29 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:15:53 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48520	    460	   6876	  55856	   da30	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:19:12 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48520	    460	   6876	  55856	   da30	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:23:14 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48520	    460	   6876	  55856	   da30	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:24:20 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48520	    460	   6876	  55856	   da30	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:42:25 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:51:05 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48412	    460	   6876	  55748	   d9c4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+18:52:17 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:03:05 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48412	    460	   6876	  55748	   d9c4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:06:56 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48412	    460	   6876	  55748	   d9c4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:07:21 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48512	    460	   6876	  55848	   da28	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:12:46 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:182:13: error: called object 'valor_leido' is not a function or function pointer
+  182 |         if((valor_leido (1U << 4) )== 8){
+      |             ^~~~~~~~~~~
+../Core/Src/main.c:173:17: note: declared here
+  173 |         uint8_t valor_leido = 0;
+      |                 ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:55: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+19:13:01 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:182:38: warning: bitwise comparison always evaluates to false [-Wtautological-compare]
+  182 |         if((valor_leido & (1U << 4) )== 8){
+      |                                      ^~
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48412	    460	   6876	  55748	   d9c4	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:14:29 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48508	    460	   6876	  55844	   da24	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:49:53 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48508	    460	   6876	  55844	   da24	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 
+19:56:33 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BQ29330_BLUEPILL_ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BQ29330_BLUEPILL_ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BQ29330_BLUEPILL_ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BQ29330_BLUEPILL_ORIGINAL.elf
+ 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BQ29330_BLUEPILL_ORIGINAL.elf  > "BQ29330_BLUEPILL_ORIGINAL.list"
+   text	   data	    bss	    dec	    hex	filename
+  48524	    460	   6876	  55860	   da34	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BQ29330_BLUEPILL_ORIGINAL.list
+ 

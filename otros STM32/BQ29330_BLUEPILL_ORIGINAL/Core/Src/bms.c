@@ -93,15 +93,15 @@ HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData) {
 
 
 // Lee el valor actual del registro FUNCTION_CONTROL (0x03) del BQ29330
-HAL_StatusTypeDef BQ29330_ReadFunctionControl(I2C_HandleTypeDef *hi2c, uint8_t *valor_leido)
+HAL_StatusTypeDef BQ29330_ReadFunctionControl(BQ29330_Registers reg, uint8_t *valor_leido)
 {
-    uint8_t reg = 0x03;
+	uint8_t buffer[1];
+    buffer[0] = reg; 		// Dirección del registro
     // Paso 1: Enviar la dirección del registro que queremos leer (0x03)
-    HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(hi2c, BMS_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+    HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, buffer, 1, HAL_MAX_DELAY);
     if (status != HAL_OK) return status;  // Si falla al enviar la dirección del registro, retornamos el error
-
     // Paso 2: Leer un byte desde el dispositivo (valor del registro FUNCTION_CONTROL)
-    return HAL_I2C_Master_Receive(hi2c, BMS_I2C_ADDRESS, valor_leido, 1, HAL_MAX_DELAY);  // Devolver el estado de la operación y el valor leído en *valor_leido
+    return HAL_I2C_Master_Receive(&hi2c1, BMS_I2C_ADDRESS, valor_leido, 1, HAL_MAX_DELAY);  // Devolver el estado de la operación y el valor leído en *valor_leido
 }
 
 

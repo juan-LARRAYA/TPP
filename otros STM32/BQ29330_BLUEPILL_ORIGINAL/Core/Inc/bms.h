@@ -94,7 +94,7 @@ uint16_t INA219_ReadCurrent(void);
 uint16_t INA219_ReadPower(void);
 HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData);
 HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data);
-
+HAL_StatusTypeDef BQ29330_ReadFunctionControl(BQ29330_Registers reg, uint8_t *valor_leido);
 
 
 

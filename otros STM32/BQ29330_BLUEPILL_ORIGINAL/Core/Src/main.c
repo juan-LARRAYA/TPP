@@ -113,8 +113,11 @@ int main(void)
 
 
   //ADC Variables
-   uint16_t rawValues[14];
-   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 14);
+   uint16_t rawValues[3];
+   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 3);
+
+   //BMS
+   BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
 
   /* USER CODE END 2 */
 
@@ -152,24 +155,70 @@ int main(void)
 	//BMS 29330
 
  //escribo
-    uint8_t buffer2[2];
-    buffer2[0] = 0x03;       // Dirección del registro FUNCTION_CONTROL
-    buffer2[1] = 0xFF;       // Valor a escribir (todos los bits en 1)
-    HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, buffer2, 2, HAL_MAX_DELAY);
+
+
+    BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 0x0C);   // WDDIS = 1, all else = 0
+
+    BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x05); // VMEN|BAT
+    BQ29330_WriteRegister(BQ29330_CELL, 0x10); //
+    BQ29330_WriteRegister(BQ29330_OLV, 0x1F);              // 205 mV 0x1F
+    BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
+    BQ29330_WriteRegister(BQ29330_SCC, 0x00);              // 475 mV y 915 μs
+    BQ29330_WriteRegister(BQ29330_SCD, 0x00);              // idem for discharge
+
+
 
 //leo
-
-	uint8_t reg = 0x03;
+    // para separar entre medicion y medicion
 	uint8_t valor_leido = 0;
+	HAL_StatusTypeDef statusI2c;
+	sendUsartMsg("\n ", valor_leido);
 
-	// Enviar dirección del registro a leer
-	HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
+	sendUsartMsg("statusI2c : ", statusI2c);
+	sendUsartMsg("Estatus del bms : ", valor_leido);
 
-	// Leer el valor del registro
-	HAL_I2C_Master_Receive(&hi2c1, BMS_I2C_ADDRESS, &valor_leido, 1, HAL_MAX_DELAY);
+	//si es una falla de whatchog apagar
 
-	// Enviar por USART
+	if(valor_leido & (1U << 4) || (valor_leido && valor_leido != 16)){
+	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x07);
+	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
+		statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
+	    sendUsartMsg("Estatus del bms despues del latch: ", valor_leido);
+    }
+
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &valor_leido);
+	sendUsartMsg("OUTPUT_CONTROL : ", valor_leido);
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &valor_leido);
+	sendUsartMsg("STATE_CONTROL : ", valor_leido);
+
+	//mido el registro que escribi
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, &valor_leido);
 	sendUsartMsg("FUNCTION_CONTROL : ", valor_leido);
+
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_CELL, &valor_leido);
+	sendUsartMsg("CELL : ", valor_leido);
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLV, &valor_leido);
+	sendUsartMsg("OLV (Overload voltage threshold): ", valor_leido);
+
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &valor_leido);
+	sendUsartMsg("OLD (Overload delay time): ", valor_leido);
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &valor_leido);
+	sendUsartMsg("SCC (Short circuit in charge): ", valor_leido);
+
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &valor_leido);
+	sendUsartMsg("SCD (Short circuit in discharge): ", valor_leido);
+
+
+
+
+
 
 
 /*
