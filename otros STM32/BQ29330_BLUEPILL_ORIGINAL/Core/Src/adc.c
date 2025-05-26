@@ -167,10 +167,10 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 /* USER CODE BEGIN 1 */
 uint16_t currentScale(uint16_t rawValue){
-	  return  (uint16_t) rawValue * 0.606 * CONVERSION_FACTOR;
+	  return  (uint16_t) rawValue  * CONVERSION_FACTOR;
 }
 uint16_t voltageScale(uint16_t rawValue){
-	  return  (uint16_t) rawValue * 0.606 * CONVERSION_FACTOR;
+	  return  (uint16_t) rawValue * CONVERSION_FACTOR;
 }
 
 /* USER CODE END 1 */

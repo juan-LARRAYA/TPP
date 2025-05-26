@@ -134,8 +134,8 @@ int main(void)
 	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
 	//las tensiones se multiplican x2
 	uint16_t current = currentScale(rawValues[0]);
-	uint16_t voltage_bat1 = voltageScale(rawValues[1]);
-	uint16_t voltage_bat2 = voltageScale(rawValues[2]);
+	uint16_t voltage_bat1 = rawValues[1];//voltageScale(rawValues[1]);
+	uint16_t voltage_bat2 = rawValues[2];//voltageScale(rawValues[2]);
 
 	// Imprimo cosas
 	char buffer[STR_LEN];
@@ -147,8 +147,8 @@ int main(void)
 */
 	//FORMA NUEVA DE IMPRIMIR LLAMANDO A UNA FUNCION SI NO ANDA USAR LA FORMA VIEJA
 	sendI2CMsg("Corriente: ", current);
-	sendI2CMsg("Tension bat 1: ", voltage_bat1);
-	sendI2CMsg("Tension bat 2: ", voltage_bat2);
+	sendUsartMsg("Tension bat 1: ", voltage_bat1);
+	sendUsartMsg("Tension bat 2: ", voltage_bat2);
 
 
 
@@ -159,9 +159,9 @@ int main(void)
 
     BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 0x0C);   // WDDIS = 1, all else = 0
 
-    BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x05); // VMEN|BAT
-    BQ29330_WriteRegister(BQ29330_CELL, 0x10); //
-    BQ29330_WriteRegister(BQ29330_OLV, 0x1F);              // 205 mV 0x1F
+    BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x01); // VMEN||BAT
+    BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
+    BQ29330_WriteRegister(BQ29330_OLV, 0x00);              // 50 mV 0x00
     BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
     BQ29330_WriteRegister(BQ29330_SCC, 0x00);              // 475 mV y 915 μs
     BQ29330_WriteRegister(BQ29330_SCD, 0x00);              // idem for discharge
