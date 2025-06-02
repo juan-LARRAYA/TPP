@@ -22,10 +22,6 @@ void sendBMSDataI2C(BQ29330_Device *bms) {
     HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
     HAL_Delay(10);
 
-    // 🔹 Protección por Temperatura
-    snprintf(buffer, BUFFER_SIZE, "Battery status: %.2f °C\n", bms->battery_status * 0.1);
-    HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-    HAL_Delay(10);
 
     // 🟢 Fin del mensaje
     snprintf(buffer, BUFFER_SIZE, "--------------------------\n");

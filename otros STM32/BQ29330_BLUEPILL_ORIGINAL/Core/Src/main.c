@@ -38,7 +38,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define DELAY 200
+#define DELAY 1000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -107,17 +107,18 @@ int main(void)
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
 
-  //start PWMs
+  //start PWMs and set the duty to 50%
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, htim1.Init.Period/2);
 
 
   //ADC Variables
-   uint16_t rawValues[3];
+   uint16_t rawValues[2];
    HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 3);
 
    //BMS
    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
+   BQ29330_Device bq = { .hi2c = &hi2c1 };
 
   /* USER CODE END 2 */
 
@@ -133,9 +134,9 @@ int main(void)
 	while(!convCompleted);
 	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
 	//las tensiones se multiplican x2
-	uint16_t current = currentScale(rawValues[0]);
-	uint16_t voltage_bat1 = rawValues[1];//voltageScale(rawValues[1]);
-	uint16_t voltage_bat2 = rawValues[2];//voltageScale(rawValues[2]);
+	uint16_t cell_mas = rawValues[0] * CONVERSION_FACTOR;
+	uint16_t cell_menos = rawValues[1] * CONVERSION_FACTOR;
+	uint16_t difference = BMSVoltageCorrection(cell_mas - cell_menos); //correcion tener la tension de la celda
 
 	// Imprimo cosas
 	char buffer[STR_LEN];
@@ -146,78 +147,67 @@ int main(void)
 	HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 */
 	//FORMA NUEVA DE IMPRIMIR LLAMANDO A UNA FUNCION SI NO ANDA USAR LA FORMA VIEJA
-	sendI2CMsg("Corriente: ", current);
-	sendUsartMsg("Tension bat 1: ", voltage_bat1);
-	sendUsartMsg("Tension bat 2: ", voltage_bat2);
+	sendUsartMsg("Tension cell +: ", rawValues[0]);
+	sendUsartMsg("Tension cell -: ", rawValues[1]);
+	sendUsartMsg("Tension celda: ", difference);
 
 
 
 	//BMS 29330
 
- //escribo
-
-
+    //escribo
     BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 0x0C);   // WDDIS = 1, all else = 0
 
-    BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x01); // VMEN||BAT
-    BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
+    BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x01); // VMEN||BAT = 0
+    BQ29330_WriteRegister(BQ29330_CELL, n); 			   //
     BQ29330_WriteRegister(BQ29330_OLV, 0x00);              // 50 mV 0x00
     BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
     BQ29330_WriteRegister(BQ29330_SCC, 0x00);              // 475 mV y 915 μs
     BQ29330_WriteRegister(BQ29330_SCD, 0x00);              // idem for discharge
+    n++;
+    n = n%2;
 
 
+    //leo
+	HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
 
-//leo
-    // para separar entre medicion y medicion
-	uint8_t valor_leido = 0;
-	HAL_StatusTypeDef statusI2c;
-	sendUsartMsg("\n ", valor_leido);
+	//LEO el registro que escribi
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &bq.BQ29330_output_countrol);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &bq.BQ29330_state_countrol);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, &bq.BQ29330_function_control);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_CELL, &bq.BQ29330_cell);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLV, &bq.BQ29330_OLV);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &bq.BQ29330_OLD);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &bq.BQ29330_SCC);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &bq.BQ29330_SCD);
 
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
 	sendUsartMsg("statusI2c : ", statusI2c);
-	sendUsartMsg("Estatus del bms : ", valor_leido);
+	sendUsartMsg("celda medida : ", n + 1);
 
-	//si es una falla de whatchog apagar
+	/*
+	sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
+	sendUsartMsg("OUTPUT_CONTROL : ", bq.BQ29330_output_countrol);
 
-	if(valor_leido & (1U << 4) || (valor_leido && valor_leido != 16)){
+
+	//sendUsartMsg("STATE_CONTROL : ", bq.BQ29330_state_countrol);
+
+	sendUsartMsg("FUNCTION_CONTROL : ", bq.BQ29330_function_control);
+	sendUsartMsg("CELL : ", bq.BQ29330_cell);
+	sendUsartMsg("OLV (Overload voltage threshold): ", bq.BQ29330_OLV);
+	sendUsartMsg("OLD (Overload delay time): ", bq.BQ29330_OLD);
+	sendUsartMsg("SCC (Short circuit in charge): ", bq.BQ29330_SCC);
+	sendUsartMsg("SCD (Short circuit in discharge): ", bq.BQ29330_SCD);
+	 */
+
+	//si hay una fall reiniciar el bq
+	if(bq.BQ29330_status & (1U << 4) || (bq.BQ29330_status && bq.BQ29330_status != 16)){
 	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x07);
 	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
-		statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &valor_leido);
-	    sendUsartMsg("Estatus del bms despues del latch: ", valor_leido);
+		statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+	    sendUsartMsg("Estatus del bms despues del latch: ", bq.BQ29330_status);
     }
 
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &valor_leido);
-	sendUsartMsg("OUTPUT_CONTROL : ", valor_leido);
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &valor_leido);
-	sendUsartMsg("STATE_CONTROL : ", valor_leido);
-
-	//mido el registro que escribi
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, &valor_leido);
-	sendUsartMsg("FUNCTION_CONTROL : ", valor_leido);
-
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_CELL, &valor_leido);
-	sendUsartMsg("CELL : ", valor_leido);
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLV, &valor_leido);
-	sendUsartMsg("OLV (Overload voltage threshold): ", valor_leido);
-
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &valor_leido);
-	sendUsartMsg("OLD (Overload delay time): ", valor_leido);
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &valor_leido);
-	sendUsartMsg("SCC (Short circuit in charge): ", valor_leido);
-
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &valor_leido);
-	sendUsartMsg("SCD (Short circuit in discharge): ", valor_leido);
-
-
-
-
+	sendUsartMsg(" ", 9999); //renglon en blanco
 
 
 

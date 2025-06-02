@@ -44,3 +44,19 @@ void configurarPWM_400kHz() {
   TCCR1B = (1 << WGM12) | (1 << CS10);  // CTC Mode, prescaler = 1
   OCR1A = 19;                           // (16MHz / (2 * (OCR1A + 1))) = 400kHz
 }
+212223242526272829303132333435363738394041424344454647
+}
+
+// 🟢 Función para recibir datos desde el STM32
+void receiveEvent(int numBytes) {
+  //Serial.print("Mensaje #: ");
+  //Serial.println(i++);
+  //Serial.print("Dato recibido: ");
+  while (Wire.available()) {
+    char receivedChar = Wire.read();
+    Serial.write(receivedChar);
+
+Message (Enter to send message to 'Arduino Uno' on '/dev/cu.usbserial-130')
+New Line
+9600 baud
+

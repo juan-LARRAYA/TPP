@@ -46,39 +46,22 @@ typedef struct {
     // Voltajes generales
     uint16_t stack_voltage;      // Voltaje total del pack
 
-    // Temperatura
-    int16_t internal_temperature; // Temperatura interna del BQ29330
-    uint16_t ts_measurement;      // Medición del sensor térmico externo
-
-    // Corriente
-    int32_t raw_current;         // Medición de corriente cruda en 32 bits
-    int16_t current;             // Medición de corriente CC2 en 16 bits
 
     // Estados y protecciones
-    uint8_t battery_status;      // Estado general de la batería
-    uint8_t alarm_status;        // Estado de alarmas activas
-    uint8_t alarm_raw_status;    // Estado crudo de alarmas
-    uint8_t enabled_protections; // Protecciones activas
+    uint8_t BQ29330_status;           // Estado de fallas
+    uint8_t BQ29330_output_countrol;  // Control de salidas
+    uint8_t BQ29330_state_countrol;   // Control de modos
+    uint8_t BQ29330_function_control;   // Control de modos
+    uint8_t BQ29330_cell;             // Celda o modo seleccionado
+    uint8_t BQ29330_OLV;              // Umbral de sobrecorriente
+    uint8_t BQ29330_OLD;              // Retardo sobrecorriente
+    uint8_t BQ29330_SCC;              // Corte por cortocircuito en carga
+    uint8_t BQ29330_SCD;              // Corte por cortocircuito en descarga
 
-    // Configuración de protección por voltaje
-    uint16_t cell_undervoltage_threshold;
-    uint16_t cell_overvoltage_threshold;
-
-    // Protección por sobrecorriente
-    uint8_t overcurrent_charge_threshold;
-    uint8_t overcurrent_discharge_1;
-    uint8_t overcurrent_discharge_2;
-    uint8_t short_circuit_discharge;
-
-    // Protección por temperatura
-    uint8_t overtemp_charge_threshold;
-    uint8_t undertemp_charge_threshold;
-    uint8_t overtemp_discharge_threshold;
-    uint8_t undertemp_discharge_threshold;
-    uint8_t internal_overtemp_threshold;
-
-    //registros
-    uint8_t fet_control;
+    // Corrientes de protección
+    uint8_t CC_charge;                // Umbral de carga
+    uint8_t CC_discharge;             // Umbral de descarga
+    uint8_t overload_voltage;         // Sobrevoltaje
 
 
 } BQ29330_Device;
