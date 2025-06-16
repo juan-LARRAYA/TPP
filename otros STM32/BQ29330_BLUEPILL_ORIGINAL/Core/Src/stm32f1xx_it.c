@@ -55,7 +55,6 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern PCD_HandleTypeDef hpcd_USB_FS;
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
 /* USER CODE BEGIN EV */
@@ -76,6 +75,8 @@ void NMI_Handler(void)
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
    while (1)
   {
+	sendUsartMsg("Estoy en NMI_Handler ", 404);
+
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
@@ -91,6 +92,8 @@ void HardFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+	sendUsartMsg("Estoy en HardFault_Handler ", 404);
+
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }
@@ -106,6 +109,8 @@ void MemManage_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_MemoryManagement_IRQn 0 */
+	sendUsartMsg("Estoy en MemManage_Handler ", 404);
+
     /* USER CODE END W1_MemoryManagement_IRQn 0 */
   }
 }
@@ -121,6 +126,8 @@ void BusFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_BusFault_IRQn 0 */
+	sendUsartMsg("Estoy en BusFault_Handler ", 404);
+
     /* USER CODE END W1_BusFault_IRQn 0 */
   }
 }
@@ -136,6 +143,8 @@ void UsageFault_Handler(void)
   while (1)
   {
     /* USER CODE BEGIN W1_UsageFault_IRQn 0 */
+	sendUsartMsg("Estoy en UsageFault_Handler ", 404);
+
     /* USER CODE END W1_UsageFault_IRQn 0 */
   }
 }
@@ -226,20 +235,6 @@ void ADC1_2_IRQHandler(void)
   /* USER CODE BEGIN ADC1_2_IRQn 1 */
 
   /* USER CODE END ADC1_2_IRQn 1 */
-}
-
-/**
-  * @brief This function handles USB low priority or CAN RX0 interrupts.
-  */
-void USB_LP_CAN1_RX0_IRQHandler(void)
-{
-  /* USER CODE BEGIN USB_LP_CAN1_RX0_IRQn 0 */
-
-  /* USER CODE END USB_LP_CAN1_RX0_IRQn 0 */
-  HAL_PCD_IRQHandler(&hpcd_USB_FS);
-  /* USER CODE BEGIN USB_LP_CAN1_RX0_IRQn 1 */
-
-  /* USER CODE END USB_LP_CAN1_RX0_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

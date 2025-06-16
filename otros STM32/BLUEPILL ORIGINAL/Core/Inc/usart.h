@@ -41,6 +41,7 @@ extern UART_HandleTypeDef huart1;
 void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void sendUsartMsg(const char* label, uint16_t value);
 
 /* USER CODE END Prototypes */
 

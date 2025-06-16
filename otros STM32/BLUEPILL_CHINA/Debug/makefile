@@ -34,40 +34,40 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := BLUEPILL_CHINA_128k
+BUILD_ARTIFACT_NAME := BLUEPILL_CHINA
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-BLUEPILL_CHINA_128k.elf \
+BLUEPILL_CHINA.elf \
 
 MAP_FILES += \
-BLUEPILL_CHINA_128k.map \
+BLUEPILL_CHINA.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-BLUEPILL_CHINA_128k.list \
+BLUEPILL_CHINA.list \
 
 OBJCOPY_HEX += \
-BLUEPILL_CHINA_128k.hex \
+BLUEPILL_CHINA.hex \
 
 OBJCOPY_BIN += \
-BLUEPILL_CHINA_128k.bin \
+BLUEPILL_CHINA.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: BLUEPILL_CHINA_128k.elf secondary-outputs
+main-build: BLUEPILL_CHINA.elf secondary-outputs
 
 # Tool invocations
-BLUEPILL_CHINA_128k.elf BLUEPILL_CHINA_128k.map: $(OBJS) $(USER_OBJS) /Users/apple/STM32CubeIDE/BLUEPILL_CHINA_128k/STM32F103CBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BLUEPILL_CHINA_128k.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/BLUEPILL_CHINA_128k/STM32F103CBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL_CHINA_128k.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+BLUEPILL_CHINA.elf BLUEPILL_CHINA.map: $(OBJS) $(USER_OBJS) /Users/apple/STM32CubeIDE/otros\ STM32/BLUEPILL_CHINA/STM32F103CBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BLUEPILL_CHINA.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA/STM32F103CBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL_CHINA.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,24 +76,24 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BLUEPILL_CHINA_128k.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BLUEPILL_CHINA_128k.list"
+BLUEPILL_CHINA.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BLUEPILL_CHINA.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BLUEPILL_CHINA_128k.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "BLUEPILL_CHINA_128k.hex"
+BLUEPILL_CHINA.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "BLUEPILL_CHINA.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BLUEPILL_CHINA_128k.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "BLUEPILL_CHINA_128k.bin"
+BLUEPILL_CHINA.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "BLUEPILL_CHINA.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) BLUEPILL_CHINA_128k.bin BLUEPILL_CHINA_128k.elf BLUEPILL_CHINA_128k.hex BLUEPILL_CHINA_128k.list BLUEPILL_CHINA_128k.map default.size.stdout
+	-$(RM) BLUEPILL_CHINA.bin BLUEPILL_CHINA.elf BLUEPILL_CHINA.hex BLUEPILL_CHINA.list BLUEPILL_CHINA.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)

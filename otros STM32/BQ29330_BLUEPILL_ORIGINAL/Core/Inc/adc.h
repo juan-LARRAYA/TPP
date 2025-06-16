@@ -35,7 +35,7 @@ extern "C" {
 extern ADC_HandleTypeDef hadc1;
 
 /* USER CODE BEGIN Private defines */
-#define CONVERSION_FACTOR (3.3 / 4.095)
+#define CONVERSION_FACTOR (3.000 / 4.095)
 
 /* USER CODE END Private defines */
 

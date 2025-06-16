@@ -34,6 +34,7 @@ extern "C" {
 #include <string.h>
 #include <stdio.h>
 #include "bms.h"
+#include "usart.h"
 
 
 /* USER CODE END Includes */
@@ -66,8 +67,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define activador_Pin GPIO_PIN_13
 #define activador_GPIO_Port GPIOC
-#define Curr_bats_Pin GPIO_PIN_0
-#define Curr_bats_GPIO_Port GPIOA
 #define Vbat1_Pin GPIO_PIN_1
 #define Vbat1_GPIO_Port GPIOA
 #define Vbat2_Pin GPIO_PIN_2

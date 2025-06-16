@@ -1,0 +1,10 @@
+16:02:39 **** Build of configuration Debug for project st405 64patas ****
+make -j7 all 
+arm-none-eabi-size  st405\ 64patas.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7772	     12	   1788	   9572	   2564	st405 64patas.elf
+Finished building: default.size.stdout
+ 
+
+16:02:39 Build Finished. 0 errors, 0 warnings. (took 245ms)
+

@@ -19,17 +19,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "string.h"
-#include "usbd_cdc_if.h"
-#include "string.h"
+#include "ina219.h"
+
 
 
 /* USER CODE END Includes */
@@ -49,6 +50,11 @@
 #define IPANEL_CHANNEL ADC_CHANNEL_6
 
 #define PWM_TIMER &htim1
+#define NUM_SAMPLES 200
+
+
+
+
 
 /* USER CODE END PD */
 
@@ -60,25 +66,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-//defini aca las varaibles privadas
-const int pwmPin = PwmMppt_Pin;    // Cambia por el pin que estés usando
-const int pinVoltageInput = Vpanel_Pin; // Entrada analógica para medir el voltaje de entrada A0
-const int pinCurrentInput = Ipanel_Pin; // Entrada analógica para medir la corriente de entrada A1
-
-// Variables globales
-float V_in = 0;
-float I_in = 0;
-float power = 0;
-float previousPower = 0;
-int dutyCycle = 255 * 0.5; // Valor inicial del Duty Cycle (50% para PWM de 8 bits)
-
-
-int myNum = 2024; // Integer (whole number)
-float myFloatNum = 5.98; // Floating point number
-char myLetter = 'D';
-uint8_t myUint = 21; // Same way for uint16_t or uint32_t
-uint8_t myArray[20] = {0};
-char charData[15]; // Data holder
 
 
 /* USER CODE END PV */
@@ -86,6 +73,22 @@ char charData[15]; // Data holder
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+uint8_t conv_complete = 0;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	conv_complete=1;
+}
+
+uint32_t leer_promediado(void) {
+    uint32_t suma = 0;
+    for (int i = 0; i < NUM_SAMPLES; i++) {
+        HAL_ADC_Start(&hadc1);
+        HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+        suma += HAL_ADC_GetValue(&hadc1);
+    }
+    return suma / NUM_SAMPLES;
+}
+
 
 /* USER CODE END PFP */
 
@@ -123,52 +126,132 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART1_UART_Init();
   MX_ADC1_Init();
-  MX_TIM1_Init();
   MX_TIM3_Init();
-  MX_USB_DEVICE_Init();
+  MX_I2C1_Init();
+  MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
+//timer
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, htim3.Init.Period/2);
+
+
+  //bms
+
+  uint16_t rawValues[2];
+  HAL_ADC_Start_DMA(&hadc1, (uint32_t *) rawValues, 2);
+  uint16_t cell_mas;
+  uint16_t cell_menos;
+  BQ29330_Device bq = { .hi2c = &hi2c1 };
+
+// INA219
+  INA219_t ina219;
+  uint16_t vbus, vshunt, current;
+  //while(!INA219_Init(&ina219, &hi2c2, INA219_ADDRESS));
+
+  INA219_Init(&ina219, &hi2c2, INA219_ADDRESS);
+
+  //INA219_setCalibration_32V_2A(&ina219);
+  INA219_setCalibration_32V_1A(&ina219);
+  //INA219_setCalibration_16V_400mA(&ina219);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 while (1) {
+	uint32_t cell_mas_total = 0;
+	uint32_t cell_menos_total = 0;
 
-	sprintf(charData, "%s\n", "While reached");
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	for(uint8_t i = 0; i < NUM_SAMPLES ; i++) {
+	    while(!conv_complete);
 
-	sprintf(charData, "%d\n", myNum);
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	    cell_mas = (uint16_t) rawValues[0];
+	    cell_menos = (uint16_t) rawValues[1];
 
-	sprintf(charData, "%f\n", myFloatNum);
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	    cell_mas_total += cell_mas;
+	    cell_menos_total += cell_menos;
 
-	sprintf(charData, "%c\n", myLetter);
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	    conv_complete = 0;
+	}
 
-	sprintf(charData, "%d\n", myUint);
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	// Promedio final
+	cell_mas = cell_mas_total / NUM_SAMPLES;
+	cell_menos = cell_menos_total / NUM_SAMPLES;
+	cell_menos = cell_menos * 3.3 / 4.096 * 1.1;
 
-	myArray[5]=7;
-	sprintf(charData, "%d\n", myArray[5]);
-	CDC_Transmit_FS((uint8_t *) charData, strlen(charData));
-	HAL_Delay(100);
+	//escribo
+	BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
+	BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 4);   // WDDIS = 1, all else = 0
+	BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x05); // BAT = 1 y vmem 1
+	BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
+    BQ29330_WriteRegister(BQ29330_OLV, 0x1F);              // 50 mV 0x00
+    BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
+    BQ29330_WriteRegister(BQ29330_SCC, 0x0F);              // 475 mV y 915 μs
+    BQ29330_WriteRegister(BQ29330_SCD, 0x0F);              // idem for discharge
+/*
+*/
+    //leo
+	HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &bq.BQ29330_output_countrol);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &bq.BQ29330_state_countrol);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, &bq.BQ29330_function_control);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_CELL, &bq.BQ29330_cell);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLV, &bq.BQ29330_OLV);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &bq.BQ29330_OLD);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &bq.BQ29330_SCC);
+	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &bq.BQ29330_SCD);
 
-	myNum++;
+	sendUsartMsg("statusI2c : ", statusI2c);
+
+	sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
+	sendUsartMsg("OUTPUT_CONTROL : ", bq.BQ29330_output_countrol);
+	sendUsartMsg("STATE_CONTROL : ", bq.BQ29330_state_countrol);
+	sendUsartMsg("FUNCTION_CONTROL : ", bq.BQ29330_function_control);
+	sendUsartMsg("CELL : ", bq.BQ29330_cell);
+	sendUsartMsg("OLV (Overload voltage threshold): ", bq.BQ29330_OLV);
+	sendUsartMsg("OLD (Overload delay time): ", bq.BQ29330_OLD);
+	sendUsartMsg("SCC (Short circuit in charge): ", bq.BQ29330_SCC);
+	sendUsartMsg("SCD (Short circuit in discharge): ", bq.BQ29330_SCD);
+
+
+	sendUsartMsg("\ncell_mas: ", cell_mas);
+	sendUsartMsg("\ncell_menos: ", cell_menos);
+
+    if(bq.BQ29330_status != 0){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x06);
+        HAL_Delay(10);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
+    }
+
+
+
+
+    //INA219_setPowerMode(&ina219, INA219_CONFIG_MODE_ADCOFF);
+
+    vbus = INA219_ReadBusVoltage(&ina219);
+    vshunt = INA219_ReadShuntVolage(&ina219);
+    current = INA219_ReadCurrent_raw(&ina219) ;
+	sendUsartMsg("vbus", vbus);
+	sendUsartMsg("shunt", vshunt * 4);
+	sendUsartMsg("current", current * 0.95);
+
+
+
+
+
 
 
 //		Para prender y apagar el led que viene en la bluepil
 	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
-	HAL_Delay(500); // 1 segundo de delay
+	HAL_Delay(1000); // 1 segundo de delay
 	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
 	HAL_Delay(500); // 1 segundo de delay
+
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -195,7 +278,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL2;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -208,15 +291,14 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
-  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV4;
-  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV8;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();

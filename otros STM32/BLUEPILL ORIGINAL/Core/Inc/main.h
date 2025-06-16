@@ -31,6 +31,11 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "bms.h"
+#include "usart.h"
+#include <string.h>
+#include <stdio.h>
+
 
 /* USER CODE END Includes */
 
@@ -59,16 +64,19 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define activador_Pin GPIO_PIN_13
 #define activador_GPIO_Port GPIOC
-#define Vpanel_Pin GPIO_PIN_1
-#define Vpanel_GPIO_Port GPIOA
-#define prueba_adc_Pin GPIO_PIN_5
-#define prueba_adc_GPIO_Port GPIOA
-#define Ipanel_Pin GPIO_PIN_6
-#define Ipanel_GPIO_Port GPIOA
-#define PwmMppt_Pin GPIO_PIN_8
-#define PwmMppt_GPIO_Port GPIOA
+#define VCellMas_Pin GPIO_PIN_0
+#define VCellMas_GPIO_Port GPIOA
+#define VCellMenos_Pin GPIO_PIN_1
+#define VCellMenos_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
+
+#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
+#define BMS_I2C_ADDRESS (0x20 << 1)			// Dirección I2C del BMS
+#define STR_LEN 200
+
+#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
+
 
 /* USER CODE END Private defines */
 

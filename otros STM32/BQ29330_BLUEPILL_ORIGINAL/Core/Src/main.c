@@ -23,7 +23,6 @@
 #include "i2c.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -102,7 +101,6 @@ int main(void)
   MX_USART1_UART_Init();
   MX_ADC1_Init();
   MX_TIM1_Init();
-  MX_USB_DEVICE_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
@@ -114,11 +112,12 @@ int main(void)
 
   //ADC Variables
    uint16_t rawValues[2];
-   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 3);
+   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 2);
 
    //BMS
    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
    BQ29330_Device bq = { .hi2c = &hi2c1 };
+   int n = 0;
 
   /* USER CODE END 2 */
 
@@ -132,34 +131,32 @@ int main(void)
 
 	//read all adcs
 	while(!convCompleted);
-	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
-	//las tensiones se multiplican x2
+
 	uint16_t cell_mas = rawValues[0] * CONVERSION_FACTOR;
 	uint16_t cell_menos = rawValues[1] * CONVERSION_FACTOR;
 	uint16_t difference = BMSVoltageCorrection(cell_mas - cell_menos); //correcion tener la tension de la celda
+	//sendUsartMsg("Tension cell +: ", rawValues[0]);
+	sendUsartMsg("Tension cell -: ", rawValues[1]);
+//	sendUsartMsg("Tension celda: ", difference);
 
-	// Imprimo cosas
+
+/*
+	// Imprimo cosas por i2c al arduino
 	char buffer[STR_LEN];
 	snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
 	HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
-/*
     sprintf(buffer,"Corriente: %u \n", current);
 	HAL_I2C_Master_Transmit(&hi2c1, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 */
 	//FORMA NUEVA DE IMPRIMIR LLAMANDO A UNA FUNCION SI NO ANDA USAR LA FORMA VIEJA
-	sendUsartMsg("Tension cell +: ", rawValues[0]);
-	sendUsartMsg("Tension cell -: ", rawValues[1]);
-	sendUsartMsg("Tension celda: ", difference);
-
 
 
 	//BMS 29330
 
     //escribo
     BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 0x0C);   // WDDIS = 1, all else = 0
-
     BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x01); // VMEN||BAT = 0
-    BQ29330_WriteRegister(BQ29330_CELL, n); 			   //
+    BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
     BQ29330_WriteRegister(BQ29330_OLV, 0x00);              // 50 mV 0x00
     BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
     BQ29330_WriteRegister(BQ29330_SCC, 0x00);              // 475 mV y 915 μs
@@ -171,6 +168,8 @@ int main(void)
     //leo
 	HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
 
+
+
 	//LEO el registro que escribi
 	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &bq.BQ29330_output_countrol);
 	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &bq.BQ29330_state_countrol);
@@ -180,39 +179,34 @@ int main(void)
 	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &bq.BQ29330_OLD);
 	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &bq.BQ29330_SCC);
 	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &bq.BQ29330_SCD);
-
+/*
 	sendUsartMsg("statusI2c : ", statusI2c);
 	sendUsartMsg("celda medida : ", n + 1);
 
-	/*
 	sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
 	sendUsartMsg("OUTPUT_CONTROL : ", bq.BQ29330_output_countrol);
-
-
-	//sendUsartMsg("STATE_CONTROL : ", bq.BQ29330_state_countrol);
-
+	sendUsartMsg("STATE_CONTROL : ", bq.BQ29330_state_countrol);
 	sendUsartMsg("FUNCTION_CONTROL : ", bq.BQ29330_function_control);
 	sendUsartMsg("CELL : ", bq.BQ29330_cell);
 	sendUsartMsg("OLV (Overload voltage threshold): ", bq.BQ29330_OLV);
 	sendUsartMsg("OLD (Overload delay time): ", bq.BQ29330_OLD);
 	sendUsartMsg("SCC (Short circuit in charge): ", bq.BQ29330_SCC);
 	sendUsartMsg("SCD (Short circuit in discharge): ", bq.BQ29330_SCD);
-	 */
 
+*/
 	//si hay una fall reiniciar el bq
 	if(bq.BQ29330_status & (1U << 4) || (bq.BQ29330_status && bq.BQ29330_status != 16)){
 	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x07);
 	    BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL,0x06);
-		statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+		statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
 	    sendUsartMsg("Estatus del bms despues del latch: ", bq.BQ29330_status);
     }
 
-	sendUsartMsg(" ", 9999); //renglon en blanco
+	sendUsartMsg("\n", 1);
 
 
 
 /*
-
 	uint16_t shuntVoltage = INA219_ReadShuntVoltage();
 	uint16_t busVoltage = INA219_ReadBusVoltage();
 	uint16_t current_mA = INA219_ReadCurrent();
@@ -223,14 +217,15 @@ int main(void)
 	sendI2CMsg("Load Voltage: ", loadVoltage);
 	sendI2CMsg("Current: ", current_mA);
 	sendI2CMsg("Power: ", power_mW);
-
 */
 
 
 
 
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+
 	HAL_Delay(DELAY);
+
 
   }
   /* USER CODE END 3 */
@@ -274,9 +269,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_USB;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV4;
-  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -298,6 +292,8 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+		sendUsartMsg("Estoy en error handle ", 404);
+
   }
   /* USER CODE END Error_Handler_Debug */
 }
@@ -315,6 +311,8 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+	sendUsartMsg("Parametros de assert fallidos ", 404);
+
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
