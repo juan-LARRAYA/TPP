@@ -1,4 +1,4 @@
-16:02:38 **** Incremental Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+10:59:08 **** Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
 make -j7 all 
 arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf
 Finished building: default.size.stdout
  
 
-16:02:39 Build Finished. 0 errors, 0 warnings. (took 289ms)
+10:59:08 Build Finished. 0 errors, 0 warnings. (took 309ms)
 

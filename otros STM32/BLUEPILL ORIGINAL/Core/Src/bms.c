@@ -62,5 +62,17 @@ HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data)
     return HAL_I2C_Master_Transmit(&hi2c1, BMS_I2C_ADDRESS, buffer, 2, HAL_MAX_DELAY);
 }
 
+HAL_StatusTypeDef BQ29330_config(){
+	BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
+	BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 4);   // WDDIS = 1, all else = 0
+	BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x05); // BAT = 1 y vmem 1
+	BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
+    BQ29330_WriteRegister(BQ29330_OLV, 0x1F);              // 50 mV 0x00
+    BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
+    BQ29330_WriteRegister(BQ29330_SCC, 0x0F);              // 475 mV y 915 μs
+    BQ29330_WriteRegister(BQ29330_SCD, 0x0F);              // idem for discharge
+
+}
+
 
 

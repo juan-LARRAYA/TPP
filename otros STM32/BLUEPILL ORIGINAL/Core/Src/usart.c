@@ -120,4 +120,10 @@ void sendUsartMsg(const char* label, uint16_t value) {
 	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
     HAL_Delay(10);
 }
+
+
+
+
+
+
 /* USER CODE END 1 */

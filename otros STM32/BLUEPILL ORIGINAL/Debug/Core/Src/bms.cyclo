@@ -2,3 +2,4 @@
 ../Core/Src/bms.c:32:19:BQ29330_ReadRegister	2
 ../Core/Src/bms.c:43:19:BQ29330_ReadFunctionControl	2
 ../Core/Src/bms.c:57:19:BQ29330_WriteRegister	1
+../Core/Src/bms.c:65:19:BQ29330_config	1

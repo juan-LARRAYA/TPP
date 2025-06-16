@@ -826,3 +826,830 @@ Finished building: BLUEPILL ORIGINAL.hex
  
 Finished building: BLUEPILL ORIGINAL.list
  
+10:55:57 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:84: error: 'bq' undeclared (first use in this function)
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/bms.c:78:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/bms.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:199:9: warning: implicit declaration of function 'BQ29330_config' [-Wimplicit-function-declaration]
+  199 |         BQ29330_config();
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:203:9: warning: implicit declaration of function 'BQ29330_readAll' [-Wimplicit-function-declaration]
+  203 |         BQ29330_readAll();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:205:38: error: 'statusI2c' undeclared (first use in this function)
+  205 |         sendUsartMsg("statusI2c : ", statusI2c);
+      |                                      ^~~~~~~~~
+../Core/Src/main.c:205:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:229:37: warning: statement with no effect [-Wunused-value]
+  229 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:234:37: warning: statement with no effect [-Wunused-value]
+  234 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+10:58:38 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:79:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   79 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:76:1: warning: control reaches end of non-void function [-Wreturn-type]
+   76 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:88:1: warning: control reaches end of non-void function [-Wreturn-type]
+   88 | }
+      | ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:198:9: warning: implicit declaration of function 'BQ29330_config' [-Wimplicit-function-declaration]
+  198 |         BQ29330_config();
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:202:9: warning: implicit declaration of function 'BQ29330_readAll' [-Wimplicit-function-declaration]
+  202 |         BQ29330_readAll();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:204:38: error: 'statusI2c' undeclared (first use in this function)
+  204 |         sendUsartMsg("statusI2c : ", statusI2c);
+      |                                      ^~~~~~~~~
+../Core/Src/main.c:204:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:205:44: error: 'bq' undeclared (first use in this function)
+  205 |         sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
+      |                                            ^~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+10:59:05 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:84: error: 'bq' undeclared (first use in this function)
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/bms.c:78:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/bms.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:198:9: warning: implicit declaration of function 'BQ29330_config' [-Wimplicit-function-declaration]
+  198 |         BQ29330_config();
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:202:9: warning: implicit declaration of function 'BQ29330_readAll' [-Wimplicit-function-declaration]
+  202 |         BQ29330_readAll();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:204:38: error: 'statusI2c' undeclared (first use in this function)
+  204 |         sendUsartMsg("statusI2c : ", statusI2c);
+      |                                      ^~~~~~~~~
+../Core/Src/main.c:204:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:205:44: error: 'bq' undeclared (first use in this function)
+  205 |         sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
+      |                                            ^~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+10:59:07 **** Build of configuration Debug for project BLUEPILL_CHINA ****
+make -j7 all 
+arm-none-eabi-size  BLUEPILL_CHINA.elf 
+   text	   data	    bss	    dec	    hex	filename
+  35308	    472	   2112	  37892	   9404	BLUEPILL_CHINA.elf
+Finished building: default.size.stdout
+ 
+10:59:08 **** Build of configuration Debug for project BQ29330_BLUEPILL_ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BQ29330_BLUEPILL_ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23052	     92	   2332	  25476	   6384	BQ29330_BLUEPILL_ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+10:59:09 **** Build of configuration Debug for project Prueba ADC ****
+make -j7 all 
+arm-none-eabi-size  Prueba\ ADC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13352	     92	   2124	  15568	   3cd0	Prueba ADC.elf
+Finished building: default.size.stdout
+ 
+10:59:09 **** Build of configuration Debug for project st405 64patas ****
+make -j7 all 
+arm-none-eabi-size  st405\ 64patas.elf 
+   text	   data	    bss	    dec	    hex	filename
+   7772	     12	   1788	   9572	   2564	st405 64patas.elf
+Finished building: default.size.stdout
+ 
+10:59:18 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/ina219.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ina219.d" -MT"Core/Src/ina219.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/ina219.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Inc/main.h:34,
+                 from ../Core/Inc/i2c.h:29,
+                 from ../Core/Src/i2c.c:21:
+../Core/Inc/bms.h:74:32: error: 'hi2c1' undeclared here (not in a function)
+   74 | BQ29330_Device bq = { .hi2c = &hi2c1 };
+      |                                ^~~~~
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/i2c.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:198:9: warning: implicit declaration of function 'BQ29330_config' [-Wimplicit-function-declaration]
+  198 |         BQ29330_config();
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:202:9: warning: implicit declaration of function 'BQ29330_readAll' [-Wimplicit-function-declaration]
+  202 |         BQ29330_readAll();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:204:38: error: 'statusI2c' undeclared (first use in this function)
+  204 |         sendUsartMsg("statusI2c : ", statusI2c);
+      |                                      ^~~~~~~~~
+../Core/Src/main.c:204:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:228:37: warning: statement with no effect [-Wunused-value]
+  228 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:233:37: warning: statement with no effect [-Wunused-value]
+  233 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:00:14 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/ina219.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ina219.d" -MT"Core/Src/ina219.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/ina219.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c:148:8: error: expected expression before '{' token
+  148 |   bq = { .hi2c = &hi2c1 };
+      |        ^
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+../Core/Src/main.c:199:9: warning: implicit declaration of function 'BQ29330_config' [-Wimplicit-function-declaration]
+  199 |         BQ29330_config();
+      |         ^~~~~~~~~~~~~~
+../Core/Src/main.c:203:9: warning: implicit declaration of function 'BQ29330_readAll' [-Wimplicit-function-declaration]
+  203 |         BQ29330_readAll();
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/main.c:205:38: error: 'statusI2c' undeclared (first use in this function)
+  205 |         sendUsartMsg("statusI2c : ", statusI2c);
+      |                                      ^~~~~~~~~
+../Core/Src/main.c:205:38: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:229:37: warning: statement with no effect [-Wunused-value]
+  229 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:234:37: warning: statement with no effect [-Wunused-value]
+  234 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:01:20 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/ina219.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ina219.d" -MT"Core/Src/ina219.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/ina219.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+      | ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:148:8: error: expected expression before '{' token
+  148 |   bq = { .hi2c = &hi2c1 };
+      |        ^
+../Core/Src/main.c:228:37: warning: statement with no effect [-Wunused-value]
+  228 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:233:37: warning: statement with no effect [-Wunused-value]
+  233 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:02:39 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/ina219.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ina219.d" -MT"Core/Src/ina219.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/ina219.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:227:37: warning: statement with no effect [-Wunused-value]
+  227 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:232:37: warning: statement with no effect [-Wunused-value]
+  232 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:78:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   78 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+../Core/Src/bms.c: In function 'BQ29330_readAll':
+../Core/Src/bms.c:87:1: warning: control reaches end of non-void function [-Wreturn-type]
+   87 | }
+      | ^
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/bms.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/dma.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/gpio.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/i2c.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/ina219.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/stm32f1xx_hal_msp.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/stm32f1xx_it.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/tim.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+/Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.200.202406191456/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/usart.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: multiple definition of `bq'; ./Core/Src/adc.o:/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/../Core/Inc/bms.h:77: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [makefile:71: BLUEPILL ORIGINAL.elf] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:04:35 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/adc.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/adc.d" -MT"Core/Src/adc.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/adc.o"
+arm-none-eabi-gcc "../Core/Src/bms.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/bms.d" -MT"Core/Src/bms.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/bms.o"
+arm-none-eabi-gcc "../Core/Src/dma.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/dma.d" -MT"Core/Src/dma.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/dma.o"
+arm-none-eabi-gcc "../Core/Src/gpio.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/gpio.d" -MT"Core/Src/gpio.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/gpio.o"
+arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/i2c.o"
+arm-none-eabi-gcc "../Core/Src/ina219.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ina219.d" -MT"Core/Src/ina219.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/ina219.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:93:84: error: 'bq' undeclared (first use in this function)
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/main.c:93:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:93:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:163:32: error: incompatible types when initializing type 'I2C_HandleTypeDef *' using type 'I2C_HandleTypeDef'
+  163 |   BQ29330_Device bq = {.hi2c = hi2c1};
+      |                                ^~~~~
+../Core/Src/main.c:243:37: warning: statement with no effect [-Wunused-value]
+  243 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:248:37: warning: statement with no effect [-Wunused-value]
+  248 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:102:1: warning: control reaches end of non-void function [-Wreturn-type]
+  102 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/bms.c: In function 'BQ29330_config':
+../Core/Src/bms.c:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:05:33 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_hal_msp.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_hal_msp.d" -MT"Core/Src/stm32f1xx_hal_msp.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f1xx_it.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f1xx_it.d" -MT"Core/Src/stm32f1xx_it.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/stm32f1xx_it.o"
+arm-none-eabi-gcc "../Core/Src/tim.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tim.d" -MT"Core/Src/tim.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/tim.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:93:84: error: 'bq' undeclared (first use in this function)
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/main.c:93:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:93:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:243:37: warning: statement with no effect [-Wunused-value]
+  243 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:248:37: warning: statement with no effect [-Wunused-value]
+  248 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:102:1: warning: control reaches end of non-void function [-Wreturn-type]
+  102 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:06:01 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:93:84: error: 'bq' undeclared (first use in this function)
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/main.c:93:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:93:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+   93 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c: In function 'sendMSGS':
+../Core/Src/main.c:182:30: error: 'vbus' undeclared (first use in this function)
+  182 |         sendUsartMsg("vbus", vbus);
+      |                              ^~~~
+../Core/Src/main.c:183:31: error: 'vshunt' undeclared (first use in this function)
+  183 |         sendUsartMsg("shunt", vshunt * 4);
+      |                               ^~~~~~
+../Core/Src/main.c:184:33: error: 'current' undeclared (first use in this function)
+  184 |         sendUsartMsg("current", current * 0.95);
+      |                                 ^~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:243:37: warning: statement with no effect [-Wunused-value]
+  243 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:248:37: warning: statement with no effect [-Wunused-value]
+  248 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:186:26: warning: variable 'current' set but not used [-Wunused-but-set-variable]
+  186 |   uint16_t vbus, vshunt, current;
+      |                          ^~~~~~~
+../Core/Src/main.c:186:18: warning: variable 'vshunt' set but not used [-Wunused-but-set-variable]
+  186 |   uint16_t vbus, vshunt, current;
+      |                  ^~~~~~
+../Core/Src/main.c:186:12: warning: variable 'vbus' set but not used [-Wunused-but-set-variable]
+  186 |   uint16_t vbus, vshunt, current;
+      |            ^~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:102:1: warning: control reaches end of non-void function [-Wreturn-type]
+  102 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:08:10 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:170:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+  170 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c:179:3: warning: no return statement in function returning non-void [-Wreturn-type]
+  179 |   }
+      |   ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:242:37: warning: statement with no effect [-Wunused-value]
+  242 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:247:37: warning: statement with no effect [-Wunused-value]
+  247 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45044	    468	   2340	  47852	   baec	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:09:08 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:163:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+  163 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c:172:3: warning: no return statement in function returning non-void [-Wreturn-type]
+  172 |   }
+      |   ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:235:37: warning: statement with no effect [-Wunused-value]
+  235 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:240:37: warning: statement with no effect [-Wunused-value]
+  240 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:258:34: error: 'ACTIVADOR_PIN' undeclared (first use in this function)
+  258 |         HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
+      |                                  ^~~~~~~~~~~~~
+../Core/Src/main.c:258:34: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:09:35 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:163:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+  163 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c:172:3: warning: no return statement in function returning non-void [-Wreturn-type]
+  172 |   }
+      |   ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:235:37: warning: statement with no effect [-Wunused-value]
+  235 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:240:37: warning: statement with no effect [-Wunused-value]
+  240 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45044	    468	   2340	  47852	   baec	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:13:04 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:37: warning: statement with no effect [-Wunused-value]
+  181 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:186:37: warning: statement with no effect [-Wunused-value]
+  186 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:129:26: warning: variable 'current' set but not used [-Wunused-but-set-variable]
+  129 |   uint16_t vbus, vshunt, current;
+      |                          ^~~~~~~
+../Core/Src/main.c:129:18: warning: variable 'vshunt' set but not used [-Wunused-but-set-variable]
+  129 |   uint16_t vbus, vshunt, current;
+      |                  ^~~~~~
+../Core/Src/main.c:129:12: warning: variable 'vbus' set but not used [-Wunused-but-set-variable]
+  129 |   uint16_t vbus, vshunt, current;
+      |            ^~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:279:84: error: 'bq' undeclared (first use in this function)
+  279 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                                                                                    ^~
+../Core/Src/main.c:279:84: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:279:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+  279 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c: In function 'sendMSGS':
+../Core/Src/main.c:291:30: error: 'vbus' undeclared (first use in this function)
+  291 |         sendUsartMsg("vbus", vbus);
+      |                              ^~~~
+../Core/Src/main.c:292:31: error: 'vshunt' undeclared (first use in this function)
+  292 |         sendUsartMsg("shunt", vshunt * 4);
+      |                               ^~~~~~
+../Core/Src/main.c:293:33: error: 'current' undeclared (first use in this function)
+  293 |         sendUsartMsg("current", current * 0.95);
+      |                                 ^~~~~~~
+../Core/Src/main.c:294:44: error: 'bq' undeclared (first use in this function)
+  294 |         sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
+      |                                            ^~
+../Core/Src/main.c:305:38: error: 'cell_mas' undeclared (first use in this function)
+  305 |         sendUsartMsg("\ncell_mas: ", cell_mas);
+      |                                      ^~~~~~~~
+../Core/Src/main.c:306:40: error: 'cell_menos' undeclared (first use in this function)
+  306 |         sendUsartMsg("\ncell_menos: ", cell_menos);
+      |                                        ^~~~~~~~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:288:1: warning: control reaches end of non-void function [-Wreturn-type]
+  288 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:15:17 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:184:37: warning: statement with no effect [-Wunused-value]
+  184 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:189:37: warning: statement with no effect [-Wunused-value]
+  189 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c: In function 'BQ29330_readAll':
+../Core/Src/main.c:282:27: warning: variable 'statusI2c' set but not used [-Wunused-but-set-variable]
+  282 |         HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
+      |                           ^~~~~~~~~
+../Core/Src/main.c:291:1: warning: control reaches end of non-void function [-Wreturn-type]
+  291 | }
+      | ^
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45076	    496	   2360	  47932	   bb3c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:18:07 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:184:37: warning: statement with no effect [-Wunused-value]
+  184 |         bq.BQ29330_output_countrol  & ~(1 << 1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+../Core/Src/main.c:189:37: warning: statement with no effect [-Wunused-value]
+  189 |         bq.BQ29330_output_countrol  & ~(1 << 2);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45132	    496	   2360	  47988	   bb74	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:19:43 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45164	    496	   2360	  48020	   bb94	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:31:41 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:147:9: warning: implicit declaration of function 'BMSreadAll' [-Wimplicit-function-declaration]
+  147 |         BMSreadAll();
+      |         ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:253:25: error: conflicting types for 'BMSreadAll'; have 'HAL_StatusTypeDef()'
+  253 | HAL_StatusTypeDef       BMSreadAll(){
+      |                         ^~~~~~~~~~
+../Core/Src/main.c:147:9: note: previous implicit declaration of 'BMSreadAll' with type 'int()'
+  147 |         BMSreadAll();
+      |         ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:31:59 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45228	    496	   2368	  48092	   bbdc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:34:45 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45332	    496	   2368	  48196	   bc44	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:38:09 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45412	    496	   2368	  48276	   bc94	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:40:06 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45428	    496	   2368	  48292	   bca4	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:50:59 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'BMSreadAll':
+../Core/Src/main.c:232:9: error: 'statusI2c' undeclared (first use in this function)
+  232 |         statusI2c = 0x00;
+      |         ^~~~~~~~~
+../Core/Src/main.c:232:9: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:244:1: warning: control reaches end of non-void function [-Wreturn-type]
+  244 | }
+      | ^
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+11:51:28 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45396	    496	   2368	  48260	   bc84	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:53:10 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45172	    496	   2368	  48036	   bba4	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:58:43 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'sendMSGS':
+../Core/Src/main.c:268:54: warning: unknown escape sequence: '\m'
+  268 |                 sendUsartMsg("\m tension de celda : ",                          celda);
+      |                                                      ^
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45196	    496	   2368	  48060	   bbbc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+11:59:20 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  45196	    496	   2368	  48060	   bbbc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 

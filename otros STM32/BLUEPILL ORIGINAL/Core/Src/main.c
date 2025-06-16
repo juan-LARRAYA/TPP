@@ -1,20 +1,3 @@
-/* USER CODE BEGIN Header */
-/**
- ******************************************************************************
- * @file           : main.c
- * @brief          : Main program body
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2024 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
- */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -31,8 +14,6 @@
 #include "string.h"
 #include "ina219.h"
 
-
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,19 +23,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-//definir macros #define
-#define ACTIVADOR_PIN GPIO_PIN_13
-#define ACTIVADOR_PORT GPIOC
-
-#define VPANEL_CHANNEL ADC_CHANNEL_1
-#define IPANEL_CHANNEL ADC_CHANNEL_6
-
-#define PWM_TIMER &htim1
 #define NUM_SAMPLES 200
-
-
-
-
 
 /* USER CODE END PD */
 
@@ -67,27 +36,29 @@
 
 /* USER CODE BEGIN PV */
 
+  uint16_t rawValues[2];
+
+  uint16_t cell_mas;
+  uint16_t cell_menos;
+  BQ29330_Device bq = { .hi2c = &hi2c1 };
+
+  INA219_t ina219;
+  uint16_t vbus, vshunt, current;
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-uint8_t conv_complete = 0;
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
-{
-	conv_complete=1;
-}
 
-uint32_t leer_promediado(void) {
-    uint32_t suma = 0;
-    for (int i = 0; i < NUM_SAMPLES; i++) {
-        HAL_ADC_Start(&hadc1);
-        HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
-        suma += HAL_ADC_GetValue(&hadc1);
-    }
-    return suma / NUM_SAMPLES;
-}
+
+uint8_t conv_complete = 0;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){ conv_complete=1; }
+void leer_promediado(uint16_t *cell_mas,uint16_t *cell_menos);
+HAL_StatusTypeDef BMSreadAll();
+void sendMSGS(HAL_StatusTypeDef statusI2c);
+void BMSlogic();
 
 
 /* USER CODE END PFP */
@@ -105,6 +76,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
 
   /* USER CODE END 1 */
 
@@ -137,121 +109,46 @@ int main(void)
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, htim3.Init.Period/2);
 
-
-  //bms
-
-  uint16_t rawValues[2];
+  //adc
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *) rawValues, 2);
-  uint16_t cell_mas;
-  uint16_t cell_menos;
-  BQ29330_Device bq = { .hi2c = &hi2c1 };
 
 // INA219
-  INA219_t ina219;
-  uint16_t vbus, vshunt, current;
   //while(!INA219_Init(&ina219, &hi2c2, INA219_ADDRESS));
-
   INA219_Init(&ina219, &hi2c2, INA219_ADDRESS);
-
   //INA219_setCalibration_32V_2A(&ina219);
   INA219_setCalibration_32V_1A(&ina219);
   //INA219_setCalibration_16V_400mA(&ina219);
+  HAL_StatusTypeDef statusI2c = 0x00;
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 while (1) {
-	uint32_t cell_mas_total = 0;
-	uint32_t cell_menos_total = 0;
 
-	for(uint8_t i = 0; i < NUM_SAMPLES ; i++) {
-	    while(!conv_complete);
-
-	    cell_mas = (uint16_t) rawValues[0];
-	    cell_menos = (uint16_t) rawValues[1];
-
-	    cell_mas_total += cell_mas;
-	    cell_menos_total += cell_menos;
-
-	    conv_complete = 0;
-	}
-
-	// Promedio final
-	cell_mas = cell_mas_total / NUM_SAMPLES;
-	cell_menos = cell_menos_total / NUM_SAMPLES;
+	leer_promediado(&cell_mas, &cell_menos);
 	cell_menos = cell_menos * 3.3 / 4.096 * 1.1;
+	cell_mas = cell_mas * 3.3 / 4.096 * 1.1;
 
 	//escribo
-	BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
-	BQ29330_WriteRegister(BQ29330_STATE_CONTROL, 4);   // WDDIS = 1, all else = 0
-	BQ29330_WriteRegister(BQ29330_FUNCTION_CONTROL, 0x05); // BAT = 1 y vmem 1
-	BQ29330_WriteRegister(BQ29330_CELL, 0x01); 			   //
-    BQ29330_WriteRegister(BQ29330_OLV, 0x1F);              // 50 mV 0x00
-    BQ29330_WriteRegister(BQ29330_OLD, 0x0F);              // 31 ms
-    BQ29330_WriteRegister(BQ29330_SCC, 0x0F);              // 475 mV y 915 μs
-    BQ29330_WriteRegister(BQ29330_SCD, 0x0F);              // idem for discharge
-/*
-*/
-    //leo
-	HAL_StatusTypeDef statusI2c = BQ29330_ReadFunctionControl(BQ29330_STATUS, &bq.BQ29330_status);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, &bq.BQ29330_output_countrol);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, &bq.BQ29330_state_countrol);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, &bq.BQ29330_function_control);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_CELL, &bq.BQ29330_cell);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLV, &bq.BQ29330_OLV);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_OLD, &bq.BQ29330_OLD);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCC, &bq.BQ29330_SCC);
-	statusI2c =  BQ29330_ReadFunctionControl(BQ29330_SCD, &bq.BQ29330_SCD);
+	BQ29330_config();
 
-	sendUsartMsg("statusI2c : ", statusI2c);
+    //update the struct with the values in the bq reading them with I2c
+	statusI2c = BMSreadAll();
 
-	sendUsartMsg("Estatus del bms : ", bq.BQ29330_status);
-	sendUsartMsg("OUTPUT_CONTROL : ", bq.BQ29330_output_countrol);
-	sendUsartMsg("STATE_CONTROL : ", bq.BQ29330_state_countrol);
-	sendUsartMsg("FUNCTION_CONTROL : ", bq.BQ29330_function_control);
-	sendUsartMsg("CELL : ", bq.BQ29330_cell);
-	sendUsartMsg("OLV (Overload voltage threshold): ", bq.BQ29330_OLV);
-	sendUsartMsg("OLD (Overload delay time): ", bq.BQ29330_OLD);
-	sendUsartMsg("SCC (Short circuit in charge): ", bq.BQ29330_SCC);
-	sendUsartMsg("SCD (Short circuit in discharge): ", bq.BQ29330_SCD);
+	BMSlogic();
 
-
-	sendUsartMsg("\ncell_mas: ", cell_mas);
-	sendUsartMsg("\ncell_menos: ", cell_menos);
-
-    if(bq.BQ29330_status != 0){
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x06);
-        HAL_Delay(10);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
-    }
-
-
-
-
-    //INA219_setPowerMode(&ina219, INA219_CONFIG_MODE_ADCOFF);
-
+    //INA219_setPowerMode(&ina219, INA219_CONFIG_MODE_ADCOFF);//apago el adc para guardar energia
     vbus = INA219_ReadBusVoltage(&ina219);
     vshunt = INA219_ReadShuntVolage(&ina219);
     current = INA219_ReadCurrent_raw(&ina219) ;
-	sendUsartMsg("vbus", vbus);
-	sendUsartMsg("shunt", vshunt * 4);
-	sendUsartMsg("current", current * 0.95);
+
+	sendMSGS(statusI2c);
 
 
-
-
-
-
-
-//		Para prender y apagar el led que viene en la bluepil
-	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_SET);
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	HAL_Delay(1000); // 1 segundo de delay
-	HAL_GPIO_WritePin(GPIOC, ACTIVADOR_PIN, GPIO_PIN_RESET);
-	HAL_Delay(500); // 1 segundo de delay
-
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -306,6 +203,104 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+void leer_promediado(uint16_t *cell_mas,uint16_t *cell_menos) {
+	uint32_t cell_mas_total = 0;
+	uint32_t cell_menos_total = 0;
+
+	for(uint8_t i = 0; i < NUM_SAMPLES ; i++) {
+	    while(!conv_complete);
+
+	    *cell_mas = (uint16_t) rawValues[0];
+	    *cell_menos = (uint16_t) rawValues[1];
+
+	    cell_mas_total += *cell_mas;
+	    cell_menos_total += *cell_menos;
+
+	    conv_complete = 0;
+	}
+
+	// Promedio final
+	*cell_mas = cell_mas_total / NUM_SAMPLES;
+	*cell_menos = cell_menos_total / NUM_SAMPLES;
+
+}
+
+
+HAL_StatusTypeDef BMSreadAll(){
+	HAL_StatusTypeDef statusI2c = 0x00;
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_STATUS, 					&bq.BQ29330_status);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_OUTPUT_CONTROL, 			&bq.BQ29330_output_countrol);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_STATE_CONTROL, 			&bq.BQ29330_state_countrol);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_FUNCTION_CONTROL, 		&bq.BQ29330_function_control);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_CELL, 					&bq.BQ29330_cell);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_OLV, 						&bq.BQ29330_OLV);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_OLD, 						&bq.BQ29330_OLD);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_SCC, 						&bq.BQ29330_SCC);
+	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_SCD, 						&bq.BQ29330_SCD);
+
+	return statusI2c;
+}
+
+void sendMSGS(HAL_StatusTypeDef statusI2c) {
+	//bms
+	sendUsartMsg("\nstatusI2c ", statusI2c);
+
+	sendUsartMsg("\nEstatus del bms : ", 					bq.BQ29330_status);
+	sendUsartMsg("OUTPUT_CONTROL : ", 					bq.BQ29330_output_countrol);
+	sendUsartMsg("STATE_CONTROL : ", 					bq.BQ29330_state_countrol);
+	sendUsartMsg("FUNCTION_CONTROL : ", 				bq.BQ29330_function_control);
+/*
+	sendUsartMsg("CELL : ", 							bq.BQ29330_cell);
+	sendUsartMsg("OLV (Overload voltage threshold): ", 	bq.BQ29330_OLV);
+	sendUsartMsg("OLD (Overload delay time): ", 		bq.BQ29330_OLD);
+	sendUsartMsg("SCC (Short circuit in charge): ", 	bq.BQ29330_SCC);
+	sendUsartMsg("SCD (Short circuit in discharge): ", 	bq.BQ29330_SCD);
+*/
+
+	if(BQ29330_FUNCTION_CONTROL == 0x03 || BQ29330_FUNCTION_CONTROL == 0x05){
+		sendUsartMsg("\ncell_mas: ", 						cell_mas * 18);
+		sendUsartMsg("cell_menos: ", 						cell_menos * 18);
+	}else{
+		uint16_t celda = (975 - (cell_menos -cell_mas)/0.15 );
+		sendUsartMsg("\m tension de celda : ", 				celda);
+	}
+
+	//ina219
+	sendUsartMsg("\nvbus ", 								vbus);
+	sendUsartMsg("shunt ", 								vshunt * 4);
+	sendUsartMsg("current ", 							current * 0.95);
+}
+
+void BMSlogic(){
+	//reseteo el estatus register
+    if(bq.BQ29330_status != 0){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x06);
+        HAL_Delay(10);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
+    }
+
+    //cierro las llaves por OV o UV
+    if(cell_mas - cell_menos < 6000/18){
+    	bq.BQ29330_output_countrol  &= ~(1U << 1);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+    }
+
+    if(cell_mas - cell_menos > 8400/18){
+    	bq.BQ29330_output_countrol &= ~(1U << 2);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+    }
+
+}
+
+
+
+
+
+
+
+
 
 /* USER CODE END 4 */
 
