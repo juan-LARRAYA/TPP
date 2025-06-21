@@ -38,8 +38,8 @@
 
   uint16_t rawValues[2];
 
-  uint16_t cell_mas;
-  uint16_t cell_menos;
+  uint16_t cell_mas =0 ;
+  uint16_t cell_menos = 0;
   BQ29330_Device bq = { .hi2c = &hi2c1 };
 
   INA219_t ina219;
@@ -134,8 +134,17 @@ while (1) {
 	//escribo
 	BQ29330_config();
 
+    char buffer[BUFFER_SIZE];
+    snprintf(buffer, BUFFER_SIZE, "%u \n", cell_mas);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+    snprintf(buffer, BUFFER_SIZE, "%u \n", current);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
     //update the struct with the values in the bq reading them with I2c
 	statusI2c = BMSreadAll();
+
+	sendMSGS(statusI2c);
 
 	BMSlogic();
 
@@ -144,11 +153,10 @@ while (1) {
     vshunt = INA219_ReadShuntVolage(&ina219);
     current = INA219_ReadCurrent_raw(&ina219) ;
 
-	sendMSGS(statusI2c);
 
 
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	HAL_Delay(1000); // 1 segundo de delay
+	HAL_Delay(2000); // 1 segundo de delay
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -245,13 +253,16 @@ HAL_StatusTypeDef BMSreadAll(){
 
 void sendMSGS(HAL_StatusTypeDef statusI2c) {
 	//bms
+
+	/*
 	sendUsartMsg("\nstatusI2c ", statusI2c);
 
-	sendUsartMsg("\nEstatus del bms : ", 					bq.BQ29330_status);
+	sendUsartMsg("\nstatusI2c ", statusI2c);
+
+	sendUsartMsg("\nEstatus del bms : ", 				bq.BQ29330_status);
 	sendUsartMsg("OUTPUT_CONTROL : ", 					bq.BQ29330_output_countrol);
 	sendUsartMsg("STATE_CONTROL : ", 					bq.BQ29330_state_countrol);
 	sendUsartMsg("FUNCTION_CONTROL : ", 				bq.BQ29330_function_control);
-/*
 	sendUsartMsg("CELL : ", 							bq.BQ29330_cell);
 	sendUsartMsg("OLV (Overload voltage threshold): ", 	bq.BQ29330_OLV);
 	sendUsartMsg("OLD (Overload delay time): ", 		bq.BQ29330_OLD);
@@ -259,18 +270,20 @@ void sendMSGS(HAL_StatusTypeDef statusI2c) {
 	sendUsartMsg("SCD (Short circuit in discharge): ", 	bq.BQ29330_SCD);
 */
 
+	/*
 	if(BQ29330_FUNCTION_CONTROL == 0x03 || BQ29330_FUNCTION_CONTROL == 0x05){
 		sendUsartMsg("\ncell_mas: ", 						cell_mas * 18);
 		sendUsartMsg("cell_menos: ", 						cell_menos * 18);
 	}else{
 		uint16_t celda = (975 - (cell_menos -cell_mas)/0.15 );
-		sendUsartMsg("\m tension de celda : ", 				celda);
+		sendUsartMsg("\n tension de celda : ", 				celda);
 	}
 
 	//ina219
 	sendUsartMsg("\nvbus ", 								vbus);
 	sendUsartMsg("shunt ", 								vshunt * 4);
 	sendUsartMsg("current ", 							current * 0.95);
+	*/
 }
 
 void BMSlogic(){

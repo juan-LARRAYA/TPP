@@ -1,26 +1,49 @@
 
-void setup() {
-  Serial.begin(9600); // Comunicación serial para monitorear
+int n = 0;
+
+void setup(void) {
+  Serial.begin(9600);
+
+  uint32_t currentFrequency;
+
+  Serial.println("Hello!");
+
 }
 
-void loop() {
+void loop(void) {
+  float adc1 = scaleValue(analogRead(A0));
+  float adc2 = scaleValue(analogRead(A1));
+  float Diference = adc2 - adc1;
 
-  float adc1Scaled = analogRead(A0);
-  float adc2Scaled = analogRead(A1);
-  // Mostrar resultados
-  Serial.print("ADC1: ");
-  Serial.println(adc1Scaled);
-  Serial.print(" ADC2: ");
-  Serial.println(adc2Scaled);
+  n++;
+  if (n == 10) {
+    Serial.print("ADC 1: ");
+    Serial.print(adc1);
+    Serial.println(" mV");
 
-  float Diference = scaleValue(adc2Scaled - adc1Scaled);
-   Serial.print("Diference: ");
-  Serial.println(Diference);
-  delay(500); // Espera 500 ms entre lecturas
+    Serial.print("ADC 2: ");
+    Serial.print(adc2);
+    Serial.println(" mV");
+    
+    Serial.println(" ");
+    
+    Serial.print("Diference: ");
+    Serial.print(Diference);
+    Serial.println(" mV");
+
+
+
+    Serial.println(" ");
+    n = 0;
+  }
+
+
+  delay(200);
 }
+
 
 // Función de mapeo para flotantes
 float scaleValue(float x) {
-   return (975 - x * 5.0/1.023)/0.15;
+  return (x * 4.88);  // 5.0/1.023);
+                      //(975 - x * 5.0/1.023)/0.15;
 }
-

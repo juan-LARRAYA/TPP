@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="4"/>
+		<item key="selection" value="ACTIVADOR_PIN"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ACTIVADOR_PIN"/>
+			<item value="NUM_SAMPLES"/>
+			<item value="PWM_TIMER"/>
+			<item value="VPANEL_CHANNEL"/>
 			<item value="4"/>
 			<item value="100"/>
 			<item value="RSHUNT"/>
@@ -19,10 +23,6 @@
 			<item value="bq"/>
 			<item value="conv_com"/>
 			<item value="conv_comple"/>
-			<item value="conv"/>
-			<item value="conComplete"/>
-			<item value="corrie"/>
-			<item value="cha"/>
 		</list>
 		<list key="replacehistory">
 			<item value="uint16_t"/>

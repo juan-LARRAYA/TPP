@@ -1653,3 +1653,328 @@ arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf
   45196	    496	   2368	  48060	   bbbc	BLUEPILL ORIGINAL.elf
 Finished building: default.size.stdout
  
+16:38:31 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'sendMSGS':
+../Core/Src/main.c:267:54: warning: unknown escape sequence: '\m'
+  267 |                 sendUsartMsg("\m tension de celda : ",                          celda);
+      |                                                      ^
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45196	    496	   2368	  48060	   bbbc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:40:42 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'sendMSGS':
+../Core/Src/main.c:274:54: warning: unknown escape sequence: '\m'
+  274 |                 sendUsartMsg("\m tension de celda : ",                          celda);
+      |                                                      ^
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45276	    496	   2368	  48140	   bc0c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:43:50 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  45196	    496	   2368	  48060	   bbbc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:44:36 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44972	    496	   2368	  47836	   badc	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:48:50 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44948	    496	   2368	  47812	   bac4	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:50:05 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44788	    496	   2368	  47652	   ba24	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:52:40 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44604	    496	   2368	  47468	   b96c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:54:05 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44708	    496	   2368	  47572	   b9d4	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+16:56:13 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44628	    496	   2368	  47492	   b984	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+17:35:45 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:138:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  138 |         HAL_UART_Transmit(&huart1, (uint8_t*)cell_mas, size(uint16_t), HAL_MAX_DELAY);
+      |                                    ^
+../Core/Src/main.c:138:56: warning: implicit declaration of function 'size' [-Wimplicit-function-declaration]
+  138 |         HAL_UART_Transmit(&huart1, (uint8_t*)cell_mas, size(uint16_t), HAL_MAX_DELAY);
+      |                                                        ^~~~
+../Core/Src/main.c:138:61: error: expected expression before 'uint16_t'
+  138 |         HAL_UART_Transmit(&huart1, (uint8_t*)cell_mas, size(uint16_t), HAL_MAX_DELAY);
+      |                                                             ^~~~~~~~
+../Core/Src/main.c:139:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  139 |         HAL_UART_Transmit(&huart1, (uint8_t*)current, size(uint16_t), HAL_MAX_DELAY);
+      |                                    ^
+../Core/Src/main.c:139:60: error: expected expression before 'uint16_t'
+  139 |         HAL_UART_Transmit(&huart1, (uint8_t*)current, size(uint16_t), HAL_MAX_DELAY);
+      |                                                            ^~~~~~~~
+make: *** [Core/Src/subdir.mk:58: Core/Src/main.o] Error 1
+"make -j7 all" terminated with exit code 2. Build might be incomplete.
+17:36:29 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:138:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  138 |         HAL_UART_Transmit(&huart1, (uint8_t*) cell_mas, 2, HAL_MAX_DELAY);
+      |                                    ^
+../Core/Src/main.c:139:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  139 |         HAL_UART_Transmit(&huart1, (uint8_t*) current, 2, HAL_MAX_DELAY);
+      |                                    ^
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44636	    496	   2368	  47500	   b98c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+17:37:39 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:138:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  138 |         HAL_UART_Transmit(&huart1, cell_mas, 2, HAL_MAX_DELAY);
+      |                                    ^~~~~~~~
+      |                                    |
+      |                                    uint16_t {aka short unsigned int}
+In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
+                 from ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:3:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint16_t' {aka 'short unsigned int'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:139:36: warning: passing argument 2 of 'HAL_UART_Transmit' makes pointer from integer without a cast [-Wint-conversion]
+  139 |         HAL_UART_Transmit(&huart1, current, 2, HAL_MAX_DELAY);
+      |                                    ^~~~~~~
+      |                                    |
+      |                                    uint16_t {aka short unsigned int}
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint16_t' {aka 'short unsigned int'}
+  749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44636	    496	   2368	  47500	   b98c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+17:37:56 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44636	    496	   2368	  47500	   b98c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+17:44:40 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44796	    496	   2368	  47660	   ba2c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.bin
+Finished building: BLUEPILL ORIGINAL.hex
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
+17:45:10 **** Incremental Build of configuration Debug for project BLUEPILL ORIGINAL ****
+make -j7 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "BLUEPILL ORIGINAL.elf" @"objects.list"   -mcpu=cortex-m3 -T"/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BLUEPILL ORIGINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BLUEPILL ORIGINAL.elf
+ 
+arm-none-eabi-size  BLUEPILL\ ORIGINAL.elf 
+arm-none-eabi-objdump -h -S BLUEPILL\ ORIGINAL.elf  > "BLUEPILL ORIGINAL.list"
+arm-none-eabi-objcopy  -O ihex BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.hex"
+arm-none-eabi-objcopy  -O binary BLUEPILL\ ORIGINAL.elf  "BLUEPILL ORIGINAL.bin"
+   text	   data	    bss	    dec	    hex	filename
+  44796	    496	   2368	  47660	   ba2c	BLUEPILL ORIGINAL.elf
+Finished building: default.size.stdout
+ 
+Finished building: BLUEPILL ORIGINAL.hex
+Finished building: BLUEPILL ORIGINAL.bin
+ 
+ 
+Finished building: BLUEPILL ORIGINAL.list
+ 
