@@ -50,7 +50,7 @@ void loop(void) {
   float adc1 = scaleValue(analogRead(A0));
   float adc2 = scaleValue(analogRead(A1));
   float Diference = scaleValue(adc1 - adc2);
- 
+
 
   float shuntvoltage = 0;
   float current_mA = 0;

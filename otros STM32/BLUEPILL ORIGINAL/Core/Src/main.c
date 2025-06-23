@@ -1,3 +1,20 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -18,12 +35,14 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
 //Aquí defines nuevos tipos de datos (typedef)
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define NUM_SAMPLES 200
+#define NUM_SAMPLES 150
+#define JUAN_NICOLS 0.89
 
 /* USER CODE END PD */
 
@@ -35,11 +54,17 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+  typedef enum { false, true } bool;
 
   uint16_t rawValues[2];
 
   uint16_t cell_mas =0 ;
   uint16_t cell_menos = 0;
+  uint16_t celdas = 0;
+  uint32_t totalizadoCoulomb = 0;         // Acumulador de carga
+  bool cortoEnclavamiento = false;
+
+
   BQ29330_Device bq = { .hi2c = &hi2c1 };
 
   INA219_t ina219;
@@ -104,10 +129,13 @@ int main(void)
   MX_TIM3_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 //timer
   HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_4, htim3.Init.Period/2);
+ // HAL_TIM_BASE_START_IT(&htim2);
+
 
   //adc
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *) rawValues, 2);
@@ -120,6 +148,8 @@ int main(void)
   //INA219_setCalibration_16V_400mA(&ina219);
   HAL_StatusTypeDef statusI2c = 0x00;
 
+  BQ29330_config();
+  BMSlogic();
 
   /* USER CODE END 2 */
 
@@ -127,36 +157,62 @@ int main(void)
   /* USER CODE BEGIN WHILE */
 while (1) {
 
+
+
+  //update the struct with the values in the bq reading them with I2c
+
+
+	// --- proceso a medir ---
 	leer_promediado(&cell_mas, &cell_menos);
 	cell_menos = cell_menos * 3.3 / 4.096 * 1.1;
 	cell_mas = cell_mas * 3.3 / 4.096 * 1.1;
 
+
 	//escribo
-	BQ29330_config();
+
+
+
+	//BMSlogic();
+
+
+    statusI2c = BMSreadAll();
+    sendMSGS(statusI2c);
+
+    //INA219_setPowerMode(&ina219, INA219_CONFIG_MODE_ADCOFF);//apago el adc para guardar energia
+//    vshunt = INA219_ReadShuntVolage(&ina219);
+//    vbus = INA219_ReadBusVoltage(&ina219);
+    current = INA219_ReadCurrent_raw(&ina219);
+	if(current > 60000){
+		current = 0;
+	}
+	totalizadoCoulomb = totalizadoCoulomb + current;
+    celdas = cell_mas - cell_menos;
+
 
     char buffer[BUFFER_SIZE];
-    snprintf(buffer, BUFFER_SIZE, "%u \n", cell_mas);
+    snprintf(buffer, BUFFER_SIZE, "%u \n", celdas);
 	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
     snprintf(buffer, BUFFER_SIZE, "%u \n", current);
 	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-    //update the struct with the values in the bq reading them with I2c
-	statusI2c = BMSreadAll();
+    snprintf(buffer, BUFFER_SIZE, "%lu \n", totalizadoCoulomb);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-	sendMSGS(statusI2c);
+	if(statusI2c){
+	    snprintf(buffer, BUFFER_SIZE, "%u \n", 1);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-	BMSlogic();
+	    snprintf(buffer, BUFFER_SIZE, "%u \n", 1);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
 
-    //INA219_setPowerMode(&ina219, INA219_CONFIG_MODE_ADCOFF);//apago el adc para guardar energia
-    vbus = INA219_ReadBusVoltage(&ina219);
-    vshunt = INA219_ReadShuntVolage(&ina219);
-    current = INA219_ReadCurrent_raw(&ina219) ;
-
-
+	    snprintf(buffer, BUFFER_SIZE, "%lu \n", 1);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+	}
 
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	HAL_Delay(2000); // 1 segundo de delay
+	HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -247,22 +303,18 @@ HAL_StatusTypeDef BMSreadAll(){
 	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_OLD, 						&bq.BQ29330_OLD);
 	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_SCC, 						&bq.BQ29330_SCC);
 	statusI2c |=  BQ29330_ReadFunctionControl(BQ29330_SCD, 						&bq.BQ29330_SCD);
-
 	return statusI2c;
 }
 
 void sendMSGS(HAL_StatusTypeDef statusI2c) {
 	//bms
 
-	/*
-	sendUsartMsg("\nstatusI2c ", statusI2c);
-
-	sendUsartMsg("\nstatusI2c ", statusI2c);
-
+	sendUsartMsg("\n statusI2c: ", 						statusI2c);
 	sendUsartMsg("\nEstatus del bms : ", 				bq.BQ29330_status);
 	sendUsartMsg("OUTPUT_CONTROL : ", 					bq.BQ29330_output_countrol);
 	sendUsartMsg("STATE_CONTROL : ", 					bq.BQ29330_state_countrol);
 	sendUsartMsg("FUNCTION_CONTROL : ", 				bq.BQ29330_function_control);
+	/*
 	sendUsartMsg("CELL : ", 							bq.BQ29330_cell);
 	sendUsartMsg("OLV (Overload voltage threshold): ", 	bq.BQ29330_OLV);
 	sendUsartMsg("OLD (Overload delay time): ", 		bq.BQ29330_OLD);
@@ -288,22 +340,41 @@ void sendMSGS(HAL_StatusTypeDef statusI2c) {
 
 void BMSlogic(){
 	//reseteo el estatus register
-    if(bq.BQ29330_status != 0){
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x06);
-        HAL_Delay(10);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, 0x07);
-    }
 
+	if(bq.BQ29330_status != 0){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol &= ~(1U));
+        HAL_Delay(10);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol |= (1U));
+        HAL_Delay(10);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol &= ~(1U));
+	}
+
+    /*
     //cierro las llaves por OV o UV
-    if(cell_mas - cell_menos < 6000/18){
+//corto la descarga
+    if((cell_mas - cell_menos) * JUAN_NICOLS < 6000/18 && cortoEnclavamiento == false){
     	bq.BQ29330_output_countrol  &= ~(1U << 1);
         BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+        cortoEnclavamiento = true;
+    }
+    if((cell_mas - cell_menos) * JUAN_NICOLS > 6300/18 && cortoEnclavamiento == true){
+    	bq.BQ29330_output_countrol  |= (1U << 1);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+        cortoEnclavamiento = false;
     }
 
-    if(cell_mas - cell_menos > 8400/18){
+//corto la carga
+    if((cell_mas - cell_menos) * JUAN_NICOLS > 8300/18 && cortoEnclavamiento == false){
     	bq.BQ29330_output_countrol &= ~(1U << 2);
         BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+        cortoEnclavamiento = true;
     }
+    if((cell_mas - cell_menos) * JUAN_NICOLS < 7600/18 && cortoEnclavamiento == true){
+    	bq.BQ29330_output_countrol  |= (1U << 2);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_countrol);
+        cortoEnclavamiento = false;
+    }
+    */
 
 }
 

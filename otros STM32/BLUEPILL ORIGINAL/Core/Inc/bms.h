@@ -70,7 +70,7 @@ void sendBMSDataI2C(BQ29330_Device *bms);
 HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData);
 HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data);
 HAL_StatusTypeDef BQ29330_ReadFunctionControl(BQ29330_Registers reg, uint8_t *valor_leido);
-HAL_StatusTypeDef BQ29330_config();
+void BQ29330_config();
 
 
 

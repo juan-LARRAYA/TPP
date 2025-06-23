@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ACTIVADOR_PIN"/>
+		<item key="selection" value="H"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="h"/>
+			<item value="han"/>
+			<item value="hand"/>
+			<item value="HAL_Delay"/>
+			<item value="dela"/>
+			<item value="del"/>
 			<item value="ACTIVADOR_PIN"/>
 			<item value="NUM_SAMPLES"/>
 			<item value="PWM_TIMER"/>
@@ -17,12 +23,6 @@
 			<item value="RSHUNT"/>
 			<item value="ina"/>
 			<item value="INA219_ADDRESS"/>
-			<item value="ina219_calibrationValue"/>
-			<item value="INA219_ReadBusVoltage"/>
-			<item value="basic"/>
-			<item value="bq"/>
-			<item value="conv_com"/>
-			<item value="conv_comple"/>
 		</list>
 		<list key="replacehistory">
 			<item value="uint16_t"/>

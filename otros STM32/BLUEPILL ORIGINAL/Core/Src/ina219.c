@@ -16,7 +16,19 @@ uint16_t Read16(INA219_t *ina219, uint8_t Register)
 {
 	uint8_t Value[2];
 
-	HAL_I2C_Mem_Read(ina219->ina219_i2c, (INA219_ADDRESS<<1), Register, 1, Value, 2, 1000);
+	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(ina219->ina219_i2c, (INA219_ADDRESS<<1), Register, 1, Value, 2, 1000);
+
+	if(status){
+		char buffer[BUFFER_SIZE];
+		snprintf(buffer, BUFFER_SIZE, "%u \n", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		snprintf(buffer, BUFFER_SIZE, "%u \n", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+
+		snprintf(buffer, BUFFER_SIZE, "%lu \n", 2);
+		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+	}
 
 	return ((Value[0] << 8) | Value[1]);
 }
