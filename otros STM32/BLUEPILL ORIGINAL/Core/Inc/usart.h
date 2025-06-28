@@ -29,19 +29,24 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
+#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
 
 /* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN Private defines */
+void sendUsartMsgLongUint(const char* label, int32_t value);
+void sendUsartMsgInt(const char* label, int16_t value);
+void sendUsartMsg(const char* label, uint16_t value);
+
+
 
 /* USER CODE END Private defines */
 
 void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void sendUsartMsg(const char* label, uint16_t value);
 
 /* USER CODE END Prototypes */
 

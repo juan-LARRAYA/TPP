@@ -31,10 +31,20 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "bms.h"
-#include "usart.h"
 #include <string.h>
 #include <stdio.h>
+
+
+#include "adc.h"
+#include "dma.h"
+#include "i2c.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
+
+#include "bms.h"
+#include "ina219.h"
 
 
 /* USER CODE END Includes */
@@ -77,6 +87,8 @@ void Error_Handler(void);
 
 #define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
 
+#define NUM_SAMPLES 200
+#define JUAN_NICOLS 0.89
 
 /* USER CODE END Private defines */
 

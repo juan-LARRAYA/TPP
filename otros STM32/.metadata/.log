@@ -8663,3 +8663,284 @@ java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL OR
 !MESSAGE OK
 !SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-22 18:01:01.696
 !MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL overlaps the location of another project: 'BLUEPILL ORIGINAL'
+!SESSION 2025-06-23 22:57:08.392 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-23 22:57:20.748
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/otros STM32/.metadata/.log4j2.xml
+
+!ENTRY org.eclipse.urischeme 4 0 2025-06-23 22:57:29.040
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-23 22:57:31.236
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-06-25 21:30:25.890 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-25 21:30:40.125
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/otros STM32/.metadata/.log4j2.xml
+
+!ENTRY org.eclipse.urischeme 4 0 2025-06-25 21:30:48.596
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-25 21:30:53.437
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-25 22:42:52.318
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-25 22:42:52.322
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-25 22:42:52.322
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-25 22:42:52.331
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-25 22:43:42.737
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-25 22:43:42.737
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-25 22:43:42.737
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-25 22:43:42.738
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-25 22:54:36.839
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-25 22:54:36.841
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-25 22:54:36.842
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL overlaps the location of another project: 'BLUEPILL ORIGINAL'
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-25 23:03:55.866
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-25 23:03:55.866
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-25 23:03:55.866
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-25 23:03:55.867
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-25 23:04:01.420
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-25 23:04:01.420
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-25 23:04:01.420
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-25 23:04:01.421
+!MESSAGE Project is null
+!SESSION 2025-06-28 12:17:06.957 -----------------------------------------------
+eclipse.buildId=Version 1.16.1
+java.version=17.0.11
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/apple/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/apple/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-06-28 12:20:01.239
+!MESSAGE Log4j2 initialized with config file /Users/apple/STM32CubeIDE/otros STM32/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-06-28 12:20:12.310
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.urischeme 4 0 2025-06-28 12:20:14.070
+!MESSAGE org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+!STACK 0
+java.lang.IllegalArgumentException: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:221)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.<init>(PlistFileWriter.java:69)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.getPlistFileWriter(RegistrationMacOsX.java:122)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.changePlistFile(RegistrationMacOsX.java:139)
+	at org.eclipse.urischeme.internal.registration.RegistrationMacOsX.handleSchemes(RegistrationMacOsX.java:55)
+	at org.eclipse.urischeme.AutoRegisterSchemeHandlersJob.run(AutoRegisterSchemeHandlersJob.java:95)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 2; columnNumber: 10; DOCTYPE is disallowed when the feature "http://apache.org/xml/features/disallow-doctype-decl" set to true.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:262)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:342)
+	at org.eclipse.core.internal.runtime.XmlProcessorFactory.parseWithErrorOnDOCTYPE(XmlProcessorFactory.java:246)
+	at org.eclipse.urischeme.internal.registration.PlistFileWriter.getDom(PlistFileWriter.java:219)
+	... 6 more
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2025-06-28 12:58:26.640
+!MESSAGE Error in final launch sequence:
+
+Failed to execute MI command:
+load "/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf" 
+
+Error message from debugger back end:
+Error finishing flash operation
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to execute MI command:
+load "/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf" 
+
+Error message from debugger back end:
+Error finishing flash operation
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:252)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: Failed to execute MI command:
+load "/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf" 
+
+Error message from debugger back end:
+Error finishing flash operation
+java.lang.Exception: Error finishing flash operation
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1024)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:853)
+!SUBENTRY 1 org.eclipse.cdt.dsf 4 10004 2025-06-28 12:58:26.644
+!MESSAGE Failed to execute MI command:
+load "/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf" 
+
+Error message from debugger back end:
+Error finishing flash operation
+!SUBENTRY 2 org.eclipse.cdt.dsf.gdb 4 10004 2025-06-28 12:58:26.644
+!MESSAGE Failed to execute MI command:
+load "/Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf" 
+
+Error message from debugger back end:
+Error finishing flash operation
+!STACK 0
+java.lang.Exception: Error finishing flash operation
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1024)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:853)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2025-06-28 14:08:36.513
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2025-06-28 14:08:36.513
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL ORIGINAL/Debug/BLUEPILL ORIGINAL.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1040)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1243)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-28 19:12:31.114
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-28 19:12:31.115
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-28 19:12:31.115
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-28 19:12:31.117
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-28 19:23:46.681
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-28 19:23:46.681
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-28 19:23:46.681
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-28 19:23:46.682
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-28 19:27:08.543
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-28 19:27:08.544
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-28 19:27:08.544
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-28 19:27:08.545
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.core.resources 4 77 2025-06-28 19:53:42.940
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2025-06-28 19:53:42.944
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2025-06-28 19:53:42.944
+!MESSAGE /Users/apple/STM32CubeIDE/otros STM32/BLUEPILL_CHINA overlaps the location of another project: 'BLUEPILL_CHINA'
+
+!ENTRY com.st.stm32cube.common.projectcreation 4 0 2025-06-28 19:53:42.947
+!MESSAGE Project is null
+
+!ENTRY org.eclipse.cdt.ui 4 0 2025-06-28 20:06:41.328
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element main.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:485)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:583)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:65)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:346)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:613)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:641)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:365)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:79)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:78)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:207)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2025-06-28 20:06:41.330
+!MESSAGE Element main.c does not exist.

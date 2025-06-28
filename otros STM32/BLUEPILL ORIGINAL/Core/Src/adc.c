@@ -156,4 +156,8 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 
 /* USER CODE BEGIN 1 */
 
+
+
+
+
 /* USER CODE END 1 */

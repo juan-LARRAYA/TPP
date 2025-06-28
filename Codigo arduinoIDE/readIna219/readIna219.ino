@@ -9,7 +9,7 @@ volatile double totalizadoCoulomb = 0;         // Acumulador de carga
 int n = 0;
 
 void setup(void) {
-  Serial.begin(9600);
+  Serial.begin(9600); 
   noInterrupts();           // Desactivar interrupciones globales
 
   TCCR1A = 0;               // Timer en modo normal

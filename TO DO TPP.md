@@ -114,3 +114,7 @@ problemas y soluciones con la plca
 problemas y falta de gaus gauge
 
 describriemiento del ina219 y su bus i2c
+
+
+
+- No se si es por tiempo o porque pero el bq tarda en regular a veces lo mejor e sreiniciar varias veces la fuente de alimentacion para que entre a regular sus funetes y ande el I2c o descaregar con las puntas del tester alguno de sus caps

@@ -31,6 +31,16 @@ typedef enum {
     BQ29330_SCD     			= 0x08
 } BQ29330_Registers;
 
+
+typedef enum {
+    LTCLR_BIT      				= 0x00,
+    DSG_BIT     				= 0x01,
+	CHG_BIT					    = 0x02,
+	XZV_BIT						= 0x03,
+	GPOD_BIT					= 0x04,
+	PMS_CHG_BIT					= 0x05
+} BQ29330_OUTPUT_CONTROL_BITS;
+
 // Estructura para almacenar datos del BQ29330
 typedef struct {
     I2C_HandleTypeDef *hi2c;  // Interfaz I2C utilizada
@@ -44,8 +54,8 @@ typedef struct {
 
     // Estados y protecciones
     uint8_t BQ29330_status;           // Estado de fallas
-    uint8_t BQ29330_output_countrol;  // Control de salidas
-    uint8_t BQ29330_state_countrol;   // Control de modos
+    uint8_t BQ29330_output_control;  // Control de salidas
+    uint8_t BQ29330_state_control;   // Control de modos
     uint8_t BQ29330_function_control;   // Control de modos
     uint8_t BQ29330_cell;             // Celda o modo seleccionado
     uint8_t BQ29330_OLV;              // Umbral de sobrecorriente
@@ -73,6 +83,8 @@ HAL_StatusTypeDef BQ29330_ReadFunctionControl(BQ29330_Registers reg, uint8_t *va
 void BQ29330_config();
 
 
+
+extern BQ29330_Device bq;  // ← declaración externa
 
 
 #ifdef __cplusplus

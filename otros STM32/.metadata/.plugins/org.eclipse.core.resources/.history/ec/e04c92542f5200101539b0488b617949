@@ -1,0 +1,87 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file    usart.h
+  * @brief   This file contains all the function prototypes for
+  *          the usart.c file
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2024 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __USART_H__
+#define __USART_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include <inttypes.h>
+
+
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+extern UART_HandleTypeDef huart1;
+
+/* USER CODE BEGIN Private defines */
+
+/* USER CODE END Private defines */
+
+void MX_USART1_UART_Init(void);
+
+/* USER CODE BEGIN Prototypes */
+//void sendUsartMsg(const char* label, uint16_t value);
+/* ──────────────── 2.1  Funciones base ──────────────── */
+static inline void _send_usart_signed(const char *lbl,
+                                      int32_t v,
+                                      const char *fmt)        // fmt = PRId*
+{
+    char buf[BUFFER_SIZE];
+    int n = snprintf(buf, sizeof buf, "%s %" /* espacio obligatorio */
+                     /* formato */ "%s\n", lbl, fmt, v);       // véase macro más abajo
+    HAL_UART_Transmit(&huart1, (uint8_t *)buf, n, HAL_MAX_DELAY);
+    HAL_Delay(10);
+}
+
+static inline void _send_usart_unsigned(const char *lbl,
+                                        uint32_t v,
+                                        const char *fmt)      // fmt = PRIu*
+{
+    char buf[BUFFER_SIZE];
+    int n = snprintf(buf, sizeof buf, "%s %s\n", lbl, fmt, v);
+    HAL_UART_Transmit(&huart1, (uint8_t *)buf, n, HAL_MAX_DELAY);
+    HAL_Delay(10);
+}
+
+/* ──────────────── 2.2  Macro pública ──────────────── */
+#define sendUsartMsg(label, value)                                             \
+    _Generic((value),                                                          \
+        int8_t   : _send_usart_signed   (label, (int32_t)(value), PRId8),      \
+        int16_t  : _send_usart_signed   (label, (int32_t)(value), PRId16),     \
+        int32_t  : _send_usart_signed   (label, (int32_t)(value), PRId32),     \
+        uint8_t  : _send_usart_unsigned (label, (uint32_t)(value), PRIu8),     \
+        uint16_t : _send_usart_unsigned (label, (uint32_t)(value), PRIu16),    \
+        uint32_t : _send_usart_unsigned (label, (uint32_t)(value), PRIu32),    \
+        default  : _send_usart_signed   (label, (int32_t)(value), PRId32)      \
+    )
+/* USER CODE END Prototypes */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __USART_H__ */
+

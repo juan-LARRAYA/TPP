@@ -114,12 +114,26 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+
+void sendUsartMsgLongUint(const char* label, int32_t value) {
+	char buffer[BUFFER_SIZE];
+	snprintf(buffer, BUFFER_SIZE, "%s %li \n", label, value);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+}
+
+void sendUsartMsgInt(const char* label, int16_t value) {
+    char buffer[BUFFER_SIZE];
+    snprintf(buffer, BUFFER_SIZE, "%s %i \n", label, value);
+	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+}
+
 void sendUsartMsg(const char* label, uint16_t value) {
     char buffer[BUFFER_SIZE];
     snprintf(buffer, BUFFER_SIZE, "%s %u \n", label, value);
 	HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-    HAL_Delay(10);
 }
+
+
 
 
 

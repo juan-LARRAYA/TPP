@@ -1,9 +1,20 @@
 import serial
 import csv
 import datetime
+import os
 
 port = "/dev/cu.usbserial-130"
-csv_filename = "sensor_data.csv"
+
+# Función para encontrar el siguiente número de archivo disponible
+def get_next_filename():
+    counter = 0
+    while True:
+        filename = f"sensor_data_{counter}.csv"
+        if not os.path.exists(filename):
+            return filename
+        counter += 1
+
+csv_filename = get_next_filename()
 
 try:
     # Configurar y abrir el puerto serie

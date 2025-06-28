@@ -8,6 +8,8 @@
 #include "main.h"
 #include "ina219.h"
 
+
+
 uint16_t ina219_calibrationValue;
 int16_t  ina219_currentDivider_mA;
 int16_t  ina219_powerMultiplier_mW;
@@ -17,17 +19,12 @@ uint16_t Read16(INA219_t *ina219, uint8_t Register)
 	uint8_t Value[2];
 
 	HAL_StatusTypeDef status = HAL_I2C_Mem_Read(ina219->ina219_i2c, (INA219_ADDRESS<<1), Register, 1, Value, 2, 1000);
-
 	if(status){
-		char buffer[BUFFER_SIZE];
-		snprintf(buffer, BUFFER_SIZE, "%u \n", 2);
-		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		snprintf(buffer, BUFFER_SIZE, "%u \n", 2);
-		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
-
-		snprintf(buffer, BUFFER_SIZE, "%lu \n", 2);
-		HAL_UART_Transmit(&huart1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
+		// si hay error de i2c mando unos
+		sendUsartMsg("", 						2);
+		sendUsartMsg("", 						2);
+		sendUsartMsg("", 						2);
+		//sendUsartMsg("status I2c INA219", 						status);
 	}
 
 	return ((Value[0] << 8) | Value[1]);
@@ -122,6 +119,7 @@ void INA219_setCalibration_32V_1A(INA219_t *ina219)
 	INA219_setCalibration(ina219, ina219_calibrationValue);
 	INA219_setConfig(ina219, config);
 }
+
 
 void INA219_setCalibration_16V_400mA(INA219_t *ina219)
 {

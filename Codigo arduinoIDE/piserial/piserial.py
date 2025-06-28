@@ -7,10 +7,12 @@ while True:
     try:
         data_sensor = data.decode('utf-8')
         print(data_sensor)
+        """
         n += 1
-        if n == 4:
+        if n == 3:
             print("-----------------------------")
             n = 0
+        """
     except UnicodeDecodeError:
         print("Error decoding data")
 

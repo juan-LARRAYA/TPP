@@ -1,4 +1,4 @@
-19:06:41 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA ****
+19:53:42 **** Incremental Build of configuration Debug for project BLUEPILL_CHINA ****
 make -j7 all 
 arm-none-eabi-size  BLUEPILL_CHINA.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  BLUEPILL_CHINA.elf
 Finished building: default.size.stdout
  
 
-19:06:41 Build Finished. 0 errors, 0 warnings. (took 334ms)
+19:53:43 Build Finished. 0 errors, 0 warnings. (took 234ms)
 
