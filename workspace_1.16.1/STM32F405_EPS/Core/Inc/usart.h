@@ -41,6 +41,10 @@ extern UART_HandleTypeDef huart4;
 void MX_UART4_Init(void);
 
 /* USER CODE BEGIN Prototypes */
+void sendUsartMsgLongUint(const char* label, int32_t value);
+void sendUsartMsgInt(const char* label, int16_t value);
+void sendUsartMsg(const char* label, uint16_t value);
+
 
 /* USER CODE END Prototypes */
 

@@ -1,20 +1,28 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "adc.h"
-#include "dma.h"
-#include "i2c.h"
-#include "tim.h"
-#include "usart.h"
-#include "usb_otg.h"
-#include "gpio.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "mppt.h"
-#include "bms.h"
-#include "pdu.h"
-#include <stdio.h>
-#include <string.h>
+
 
 /* USER CODE END Includes */
 
@@ -37,7 +45,24 @@
 
 /* USER CODE BEGIN PV */
 
-/* Private function prototypes -----------------------------------------------*/
+
+  typedef enum { false, true } bool;
+
+  uint16_t rawValues[14];
+
+  uint16_t cell_mas =0;
+  uint16_t cell_menos = 0;
+  uint16_t celdas = 0;
+  int32_t totalizadoCoulomb = 0;         // Acumulador de carga
+  bool cortoEnclavamientoDSG = false;
+  bool cortoEnclavamientoCHG = false;
+
+
+  BQ29330_Device bq = { .hi2c = &hi2c1 };
+
+  INA219_t ina219;
+  uint16_t vbus, vshunt;
+  int16_t current = 0;
 
 
 /* USER CODE END PV */
@@ -51,13 +76,15 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t convCompleted=0;
-
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
-{
-	convCompleted=1;
-}
-
+uint8_t conv_complete = 0;
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){ conv_complete=1; }
+void leer_promediado(MPPT_Channel *mpptZ, PDU_Channel * pdu_V5bis, PDU_Channel * pdu_V3, MPPT_Channel * mpptX, MPPT_Channel * mpptY, uint16_t *cell_mas,uint16_t *cell_menos, int16_t *current);
+HAL_StatusTypeDef BMSreadAll();
+void sendMSGS(HAL_StatusTypeDef statusI2c);
+uint16_t escalar_tension_adc(uint16_t cell_mas,uint16_t cell_menos);
+void BMSlogic(uint16_t batery);
+void batteryProtection(uint16_t batery);
+void status_reset();
 
 
 /* USER CODE END 0 */
@@ -68,16 +95,20 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
+
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
+
   /* Configure the system clock */
   SystemClock_Config();
 
@@ -96,7 +127,13 @@ int main(void)
   MX_UART4_Init();
   MX_USB_OTG_FS_PCD_Init();
   MX_I2C1_Init();
+  MX_RTC_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  //timer 32Khz
+  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+  __HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, htim3.Init.Period/2);
+
 
   //MPPT Variables
   MPPT_Channel mpptX = MPPT_Create("Eje_x", &hadc1, ADC_CHANNEL_11, ADC_CHANNEL_10, &htim4, TIM_CHANNEL_4);
@@ -104,35 +141,32 @@ int main(void)
   MPPT_Channel mpptZ = MPPT_Create("Eje_z", &hadc1, ADC_CHANNEL_2, ADC_CHANNEL_1, &htim5, TIM_CHANNEL_1);
 
   //PDU Variables
-  PDU_Channel pdu_V5 = PDU_Create("V5", &hadc1, ADC_CHANNEL_14, ADC_CHANNEL_15, GPIOB, GPIO_PIN_2);
+  // PDU_Channel pdu_V5 = PDU_Create("V5", &hadc1, ADC_CHANNEL_14, ADC_CHANNEL_15, GPIOB, GPIO_PIN_2); //no existen mas en el IOC
   PDU_Channel pdu_V5bis = PDU_Create("V5Bis", &hadc1, ADC_CHANNEL_5, ADC_CHANNEL_4, GPIOB, GPIO_PIN_12);
   PDU_Channel pdu_V3 = PDU_Create("V3", &hadc1, ADC_CHANNEL_6, ADC_CHANNEL_7, GPIOB, GPIO_PIN_11);
-  PDU_Channel pdu_V3bis = PDU_Create("V3Bis", &hadc1, ADC_CHANNEL_8, ADC_CHANNEL_9, GPIOB, GPIO_PIN_10);
+  //PDU_Channel pdu_V3bis = PDU_Create("V3Bis", &hadc1, ADC_CHANNEL_8, ADC_CHANNEL_9, GPIOB, GPIO_PIN_10);//no existen mas en el IOC
   PDU_Channel pdu_BatOut = PDU_Create("VBatOut", NULL, 0, 0, GPIOA, GPIO_PIN_9);
 
   // BMS Variables
   //BQ29330_Device bms = { .hi2c = &hi2c1 };
 
   //ADC Variables
-  uint16_t rawValues[14];
   HAL_ADC_Start_DMA(&hadc1,(uint32_t *) rawValues, 14);
 
 
-  //start PWMs
-  //HAL_TIM_PWM_Start(mpptZ.htim, mpptZ.tim_channel);
-  HAL_TIM_PWM_Start(mpptY.htim, mpptY.tim_channel);
-  //HAL_TIM_PWM_Start(mpptX.htim, mpptX.tim_channel);
-  //__HAL_TIM_SET_COMPARE(mpptX.htim, mpptX.tim_channel, mpptX.dutyCycle); //mpptX.htim->CCR4=255*0.5 (SI ES TIMER 4)
-  __HAL_TIM_SET_COMPARE(mpptY.htim, mpptY.tim_channel, mpptY.dutyCycle); //mpptY.htim->CCR1=255*0.5 (SI ES TIMER 1)
-  //__HAL_TIM_SET_COMPARE(mpptZ.htim, mpptZ.tim_channel, mpptZ.dutyCycle); //mpptZ.htim->CCR1=255*0.5 (SI ES TIMER 1)
 
-  //Configuro las salidas
-  enablePDU(&pdu_V3);
-  enablePDU(&pdu_V5bis);
-  enablePDU(&pdu_BatOut);
-  disablePDU(&pdu_V5);
-  disablePDU(&pdu_V3bis);
+  // INA219
+    while(!INA219_Init(&ina219, &hi2c3, INA219_ADDRESS));
 
+
+    //INA219_Init(&ina219, &hi2c2, INA219_ADDRESS);
+    //INA219_setCalibration_32V_2A(&ina219);
+    INA219_setCalibration_32V_1A(&ina219);
+    //INA219_setCalibration_16V_400mA(&ina219);
+    HAL_StatusTypeDef statusI2c = 0x00;
+
+    //escribo al bq
+    BMSlogic(celdas);
 
   /* USER CODE END 2 */
 
@@ -141,32 +175,18 @@ int main(void)
   while (1)
   {
 
-	//read all adcs
-	while(!convCompleted);
-	//factor de multiplicacion de la corriente en entradas mppt (50 x 33mohm)^-1
-	//las tensiones se multiplican x2
-	mpptZ.current = currentScale(rawValues[0]);
-	mpptZ.voltage = voltageScale(rawValues[1]);
+	leer_promediado(&mpptZ, &pdu_V5bis, &pdu_V3, &mpptX, &mpptY, &cell_mas, &cell_menos, &current);
+	celdas = escalar_tension_adc(cell_mas, cell_menos);
+	totalizadoCoulomb = totalizadoCoulomb + current;
 
-	pdu_V5bis.current = currentScale(rawValues[2]);
-	pdu_V5bis.voltage = voltageScale(rawValues[3]);
-	pdu_V3.voltage = voltageScale(rawValues[4]);
-	pdu_V3.current = currentScale(rawValues[5]);
-	pdu_V3bis.voltage = voltageScale(rawValues[6]);
-	pdu_V3bis.current = currentScale(rawValues[7]);
 
-	mpptX.current = currentScale(rawValues[8]);
-	mpptX.voltage = voltageScale(rawValues[9]);
-	mpptY.current = currentScale(rawValues[10]);
-	mpptY.voltage = voltageScale(rawValues[11]);
+	statusI2c = BMSreadAll();
+	//sendMSGS(statusI2c);
 
-	pdu_V5.voltage = voltageScale(rawValues[12]);
-	pdu_V5.current =  currentScale(rawValues[13]);
+	BMSlogic(celdas);
 
-	// Imprimo cosas
-	char buffer[STR_LEN];
-	snprintf(buffer, STR_LEN, "\n \n I LIKE THE WAY YOU WORKING \n");
-	HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t *) buffer, strlen(buffer), HAL_MAX_DELAY);
+	// Imprimo cosas I2C
+	sendUsartMsg("\n \n I LIKE THE WAY YOU WORKING \n", 0);
 	//imprimo el bit de alarma del bms
 	// sprintf(buffer,"LA alarma esta en %u \n", HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8));
 	//HAL_I2C_Master_Transmit(&hi2c3, ARDUINO_I2C_ADDRESS << 1, (uint8_t*)buffer, strlen(buffer), HAL_MAX_DELAY);
@@ -193,25 +213,13 @@ int main(void)
 
 	//BMS 29330
 
-	float shuntVoltage = INA219_ReadShuntVoltage();
-	float busVoltage = INA219_ReadBusVoltage();
-	float current_mA = INA219_ReadCurrent();
-	float power_mW = INA219_ReadPower();
-	float loadVoltage = busVoltage + (shuntVoltage / 1000.0f);
-	sendI2CMsg("Bus Voltage: ", busVoltage);
-	sendI2CMsg("Shunt Voltage: ", shuntVoltage);
-	sendI2CMsg("Load Voltage: ", loadVoltage);
-	sendI2CMsg("Current: ", current_mA);
-	sendI2CMsg("Power: ", power_mW);
 
 
 	//CALENTAMIENTO Y CONTROL DE TEMPERATURA //por ahora prendo un led para debuging
 	//MODO BAJO CONSUMO
 
 
-	//prendo y apago el led
-	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-	//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);
 
 	HAL_Delay(DELAY);
 
@@ -239,8 +247,9 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 4;
@@ -268,6 +277,57 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+
+
+void leer_promediado(MPPT_Channel *mpptZ, PDU_Channel * pdu_V5bis, PDU_Channel * pdu_V3, MPPT_Channel * mpptX, MPPT_Channel * mpptY, uint16_t *cell_mas,uint16_t *cell_menos, int16_t *current) {
+	uint32_t cell_mas_total = 0;
+	uint32_t cell_menos_total = 0;
+	int32_t current_total = 0;
+
+
+	for(uint8_t i = 0; i < NUM_SAMPLES ; i++) {
+	    while(!conv_complete);
+
+		mpptZ->current = rawValues[0];
+		mpptZ->voltage = rawValues[1];
+
+		pdu_V5bis->current = rawValues[2];
+		pdu_V5bis->voltage = rawValues[3];
+		pdu_V3->voltage = rawValues[4];
+		pdu_V3->current = rawValues[5];
+	    *cell_menos = (uint16_t) rawValues[6];
+		//pdu_V3bis->current = rawValues[7]; //basura este no se usa mas
+
+		mpptX->current = rawValues[8];
+		mpptX->voltage = rawValues[9];
+		mpptY->current = rawValues[10];
+		mpptY->voltage = rawValues[11];
+
+	    *cell_mas = (uint16_t) rawValues[12];
+		//pdu_V5->current =  rawValues[13]; //basura este no se usa mas
+
+
+	    *current = INA219_ReadCurrent_raw(&ina219);
+
+	    cell_mas_total += *cell_mas;
+	    cell_menos_total += *cell_menos;
+	    current_total += *current;
+	    conv_complete = 0;
+	}
+
+	// Promedio final
+	*cell_mas = cell_mas_total / NUM_SAMPLES;
+	*cell_menos = cell_menos_total / NUM_SAMPLES;
+	*current = current_total / NUM_SAMPLES;
+}
+
+
+
+
+
+
+
 
 
 /* USER CODE END 4 */

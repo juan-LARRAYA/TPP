@@ -5,11 +5,7 @@
  *      Author: apple
  */
 #include "pdu.h"
-#include "adc.h"
-#include "usart.h"
-#include "i2c.h"
-#include <stdio.h>
-#include <string.h>
+
 
 #define VOLTAGE_STM32 3.3
 #define ADC_RESOLUTION 4095.0 	//2^12 - 1

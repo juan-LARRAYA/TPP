@@ -34,6 +34,20 @@ extern "C" {
 #include <string.h>
 #include <stdio.h>
 
+#include "adc.h"
+#include "dma.h"
+#include "i2c.h"
+#include "tim.h"
+#include "usart.h"
+#include "usb_otg.h"
+#include "gpio.h"
+
+#include "mppt.h"
+#include "pdu.h"
+#include "bms.h"
+#include <ina219.h>
+
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -48,8 +62,6 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
-#define STR_LEN 200
 
 
 /* USER CODE END EM */
@@ -62,14 +74,36 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define MPPX_CUR_Pin GPIO_PIN_0
+#define MPPX_CUR_GPIO_Port GPIOC
+#define MPPX_VOL_Pin GPIO_PIN_1
+#define MPPX_VOL_GPIO_Port GPIOC
+#define MPPY_CUR_Pin GPIO_PIN_2
+#define MPPY_CUR_GPIO_Port GPIOC
+#define MPPY_VOL_Pin GPIO_PIN_3
+#define MPPY_VOL_GPIO_Port GPIOC
 #define MPPTYControl_Pin GPIO_PIN_0
 #define MPPTYControl_GPIO_Port GPIOA
+#define MPPZ_CUR_Pin GPIO_PIN_1
+#define MPPZ_CUR_GPIO_Port GPIOA
+#define MPPZ_VOL_Pin GPIO_PIN_2
+#define MPPZ_VOL_GPIO_Port GPIOA
 #define MPPTZControl_Pin GPIO_PIN_3
 #define MPPTZControl_GPIO_Port GPIOA
-#define Enable5V_Pin GPIO_PIN_2
-#define Enable5V_GPIO_Port GPIOB
-#define Enable3_3VBis_Pin GPIO_PIN_10
-#define Enable3_3VBis_GPIO_Port GPIOB
+#define CUR_5BIS_Pin GPIO_PIN_4
+#define CUR_5BIS_GPIO_Port GPIOA
+#define VOL_5BIS_Pin GPIO_PIN_5
+#define VOL_5BIS_GPIO_Port GPIOA
+#define VOL_3_3V_Pin GPIO_PIN_6
+#define VOL_3_3V_GPIO_Port GPIOA
+#define CUR_3_3V_Pin GPIO_PIN_7
+#define CUR_3_3V_GPIO_Port GPIOA
+#define CELL_MAS_Pin GPIO_PIN_4
+#define CELL_MAS_GPIO_Port GPIOC
+#define CURR_BQ29330_Pin GPIO_PIN_5
+#define CURR_BQ29330_GPIO_Port GPIOC
+#define CELL_MENOS_Pin GPIO_PIN_0
+#define CELL_MENOS_GPIO_Port GPIOB
 #define Enable3_3V_Pin GPIO_PIN_11
 #define Enable3_3V_GPIO_Port GPIOB
 #define Enable5VBis_Pin GPIO_PIN_12
@@ -100,6 +134,16 @@ void Error_Handler(void);
 #define MPPTXControl_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+
+#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
+#define ARDUINO_I2C_ADDRESS 0x08  		// Dirección I2C del Arduino
+#define BMS_I2C_ADDRESS (0x20 << 1)			// Dirección I2C del BMS
+#define STR_LEN 200
+
+#define BUFFER_SIZE 64  				// Tamaño del buffer de transmisión
+
+#define NUM_SAMPLES 200
+#define JUAN_NICOLS 0.89
 
 /* USER CODE END Private defines */
 

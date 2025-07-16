@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="current"/>
+		<item key="selection" value="BQ29330_WriteRegister"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="BQ29330_WriteRegister"/>
+			<item value="BQ29330_output_control"/>
+			<item value="cortoEnclavamientoDSG"/>
+			<item value="BQ29330_Regist"/>
+			<item value="BQ29330_Registers"/>
+			<item value="countrol"/>
+			<item value="BQ29330_state_coun"/>
+			<item value="BQ29330_state_control"/>
+			<item value="bq"/>
+			<item value="OUTPUT_CONTROL"/>
+			<item value="BMSlogic"/>
 			<item value="current"/>
 			<item value="h"/>
 			<item value="han"/>
 			<item value="hand"/>
-			<item value="HAL_Delay"/>
-			<item value="dela"/>
-			<item value="del"/>
-			<item value="ACTIVADOR_PIN"/>
-			<item value="NUM_SAMPLES"/>
-			<item value="PWM_TIMER"/>
-			<item value="VPANEL_CHANNEL"/>
-			<item value="4"/>
-			<item value="100"/>
-			<item value="RSHUNT"/>
-			<item value="ina"/>
 		</list>
 		<list key="replacehistory">
+			<item value="control"/>
 			<item value="uint16_t"/>
 			<item value="hi2c2"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1100"/>
-		<item key="DIALOG_Y_ORIGIN" value="260"/>
+		<item key="DIALOG_X_ORIGIN" value="454"/>
+		<item key="DIALOG_Y_ORIGIN" value="391"/>
 		<item key="DIALOG_WIDTH" value="336"/>
 		<item key="DIALOG_HEIGHT" value="400"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>

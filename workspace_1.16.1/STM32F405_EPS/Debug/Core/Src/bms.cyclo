@@ -1,9 +1,5 @@
-../Core/Src/bms.c:9:19:BQ29330_ReadRegister	2
-../Core/Src/bms.c:17:6:BQ29330_Configure	1
-../Core/Src/bms.c:23:6:BQ29330_ReadData	1
-../Core/Src/bms.c:27:6:sendBMSDataI2C	1
-../Core/Src/bms.c:46:6:INA219_Init	1
-../Core/Src/bms.c:52:7:INA219_ReadBusVoltage	1
-../Core/Src/bms.c:63:7:INA219_ReadShuntVoltage	1
-../Core/Src/bms.c:73:7:INA219_ReadCurrent	1
-../Core/Src/bms.c:83:7:INA219_ReadPower	1
+../Core/Src/bms.c:4:6:BQ29330_Configure	1
+../Core/Src/bms.c:23:19:BQ29330_ReadRegister	2
+../Core/Src/bms.c:34:19:BQ29330_ReadFunctionControl	2
+../Core/Src/bms.c:48:19:BQ29330_WriteRegister	1
+../Core/Src/bms.c:56:6:BQ29330_config	1

@@ -16,31 +16,31 @@ extern "C" {
 #include "main.h"
 #include <stdint.h>
 
-#define BQ29330_I2C_ADDR 0x10			// Dirección I2C del BQ29330
-#define MAX_CELLS 5  					// Cantidad total de celdas
-#define INA219_ADDRESS         (0x40 << 1)  // Dirección 7-bit del INA219
-#define INA219_REG_BUS_VOLTAGE 0x02
-#define INA219_REG_SHUNT_VOLTAGE 0x01
-#define INA219_REG_CURRENT     0x04
-#define INA219_REG_POWER       0x03
 
 // Enumeración de registros con nombres representativos
 
 typedef enum {
-    BQ29330_STATUS_REG       = 0x00,
-    BQ29330_CONTROL_REG      = 0x01,
-    BQ29330_PROTECT1_REG     = 0x02,
-    BQ29330_PROTECT2_REG     = 0x03,
-    BQ29330_OVERCURRENT_REG  = 0x04,
-    BQ29330_CELLBAL_REG      = 0x05,
-    BQ29330_ADCONFIG_REG     = 0x06,
-    BQ29330_ADCIN1_REG       = 0x07,
-    BQ29330_ADCIN2_REG       = 0x08,
-    BQ29330_CELL1_REG        = 0x09,
-    BQ29330_CELL2_REG        = 0x0A,
-    BQ29330_CELL3_REG        = 0x0B,
-    BQ29330_CELL4_REG        = 0x0C
+    BQ29330_STATUS      		= 0x00,
+    BQ29330_OUTPUT_CONTROL     	= 0x01,
+    BQ29330_STATE_CONTROL    	= 0x02,
+    BQ29330_FUNCTION_CONTROL    = 0x03,
+    BQ29330_CELL  				= 0x04,
+    BQ29330_OLV      			= 0x05,
+    BQ29330_OLD     			= 0x06,
+	BQ29330_SCC     			= 0x07,
+    BQ29330_SCD     			= 0x08
 } BQ29330_Registers;
+
+
+typedef enum {
+    LTCLR_BIT      				= 0x00,
+    DSG_BIT     				= 0x01,
+	CHG_BIT					    = 0x02,
+	XZV_BIT						= 0x03,
+	GPOD_BIT					= 0x04,
+	PMS_CHG_BIT					= 0x05
+} BQ29330_OUTPUT_CONTROL_BITS;
+
 // Estructura para almacenar datos del BQ29330
 typedef struct {
     I2C_HandleTypeDef *hi2c;  // Interfaz I2C utilizada
@@ -51,39 +51,22 @@ typedef struct {
     // Voltajes generales
     uint16_t stack_voltage;      // Voltaje total del pack
 
-    // Temperatura
-    int16_t internal_temperature; // Temperatura interna del BQ29330
-    uint16_t ts_measurement;      // Medición del sensor térmico externo
-
-    // Corriente
-    int32_t raw_current;         // Medición de corriente cruda en 32 bits
-    int16_t current;             // Medición de corriente CC2 en 16 bits
 
     // Estados y protecciones
-    uint8_t battery_status;      // Estado general de la batería
-    uint8_t alarm_status;        // Estado de alarmas activas
-    uint8_t alarm_raw_status;    // Estado crudo de alarmas
-    uint8_t enabled_protections; // Protecciones activas
+    uint8_t BQ29330_status;           // Estado de fallas
+    uint8_t BQ29330_output_control;  // Control de salidas
+    uint8_t BQ29330_state_control;   // Control de modos
+    uint8_t BQ29330_function_control;   // Control de modos
+    uint8_t BQ29330_cell;             // Celda o modo seleccionado
+    uint8_t BQ29330_OLV;              // Umbral de sobrecorriente
+    uint8_t BQ29330_OLD;              // Retardo sobrecorriente
+    uint8_t BQ29330_SCC;              // Corte por cortocircuito en carga
+    uint8_t BQ29330_SCD;              // Corte por cortocircuito en descarga
 
-    // Configuración de protección por voltaje
-    uint16_t cell_undervoltage_threshold;
-    uint16_t cell_overvoltage_threshold;
-
-    // Protección por sobrecorriente
-    uint8_t overcurrent_charge_threshold;
-    uint8_t overcurrent_discharge_1;
-    uint8_t overcurrent_discharge_2;
-    uint8_t short_circuit_discharge;
-
-    // Protección por temperatura
-    uint8_t overtemp_charge_threshold;
-    uint8_t undertemp_charge_threshold;
-    uint8_t overtemp_discharge_threshold;
-    uint8_t undertemp_discharge_threshold;
-    uint8_t internal_overtemp_threshold;
-
-    //registros
-    uint8_t fet_control;
+    // Corrientes de protección
+    uint8_t CC_charge;                // Umbral de carga
+    uint8_t CC_discharge;             // Umbral de descarga
+    uint8_t overload_voltage;         // Sobrevoltaje
 
 
 } BQ29330_Device;
@@ -93,13 +76,15 @@ typedef struct {
 // Funciones para configurar y leer datos del BQ29330
 
 void sendBMSDataI2C(BQ29330_Device *bms);
-float INA219_ReadBusVoltage(void);
-float INA219_ReadShuntVoltage(void);
-float INA219_ReadCurrent(void);
-float INA219_ReadPower(void);
+
+HAL_StatusTypeDef BQ29330_ReadRegister(BQ29330_Registers reg, uint8_t *rxData);
+HAL_StatusTypeDef BQ29330_WriteRegister(BQ29330_Registers reg, uint8_t data);
+HAL_StatusTypeDef BQ29330_ReadFunctionControl(BQ29330_Registers reg, uint8_t *valor_leido);
+void BQ29330_config();
 
 
 
+extern BQ29330_Device bq;  // ← declaración externa
 
 
 #ifdef __cplusplus

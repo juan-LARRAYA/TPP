@@ -59,9 +59,9 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){ conv_complete=1; }
 void leer_promediado(uint16_t *cell_mas,uint16_t *cell_menos, int16_t *current);
 HAL_StatusTypeDef BMSreadAll();
 void sendMSGS(HAL_StatusTypeDef statusI2c);
-void BMSlogic();
 uint16_t escalar_tension_adc(uint16_t cell_mas,uint16_t cell_menos);
-void batteryProtection(uint16_t Vbat_mV);
+void BMSlogic(uint16_t batery);
+void batteryProtection(uint16_t batery);
 void status_reset();
 
 
@@ -130,10 +130,10 @@ int main(void)
   HAL_StatusTypeDef statusI2c = 0x00;
 
   //escribo al bq
-  BMSlogic();
+  BMSlogic(celdas);
 
   /* USER CODE END 2 */
-	BQ29330_config();
+   BQ29330_config();
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -147,10 +147,11 @@ while (1) {
     statusI2c = BMSreadAll();
     //sendMSGS(statusI2c);
 
+	BMSlogic(celdas);
 
 	if(statusI2c == 0){
 		sendUsartMsg("", 						celdas);
-		sendUsartMsgInt("", 					current);
+		sendUsartMsgInt("", 					current/11.3);
 		sendUsartMsgLongUint("", 				totalizadoCoulomb);
 	} else{
 		// si hay error de i2c del bq mando unos
@@ -159,7 +160,12 @@ while (1) {
 		sendUsartMsg("", 						1);
 	}
 
-	BMSlogic();
+
+    if(celdas > 8100){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control &= ~(1U << CHG_BIT));
+        cortoEnclavamientoCHG = true;
+    }
+
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	HAL_Delay(300);
 
@@ -287,41 +293,37 @@ void sendMSGS(HAL_StatusTypeDef statusI2c) {
 
 }
 
-void BMSlogic(){
+void BMSlogic(uint16_t batery){
 	status_reset();
-	batteryProtection(celdas);
+	//batteryProtection(batery);
 }
 
 //cierro las llaves por OV o UV
-void batteryProtection(uint16_t Vbat_mV){
+void batteryProtection(uint16_t batery){
 	//corto la descarga
-    if( celdas < 6000){
+    if( batery < 6000){
     //if( celdas < 6000 && cortoEnclavamientoDSG == false){
-    	bq.BQ29330_output_control  &= ~(1U << DSG_BIT);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control);
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control &= ~(1U << DSG_BIT) );
         cortoEnclavamientoDSG = true;
-    }/*
+    }
 
     //agrego histeresis para volver a descargar
-    if( celdas > 6700 && cortoEnclavamientoDSG == true){
-    	bq.BQ29330_output_control  |= (1U << DSG_BIT);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control);
+    if( celdas > 6800 && cortoEnclavamientoDSG == true){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control |= (1U << DSG_BIT));
         cortoEnclavamientoDSG = false;
     }
 
     //corto la carga
-    if( celdas > 8300 && cortoEnclavamientoCHG == false){
-    	bq.BQ29330_output_control &= ~(1U << CHG_BIT);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control);
+    if(celdas > 8300){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control &= ~(1U << CHG_BIT));
         cortoEnclavamientoCHG = true;
     }
     //agrego histeresis para volver a cargar
-    if( celdas < 7600 && cortoEnclavamientoCHG == true){
-    	bq.BQ29330_output_control  |= (1U << CHG_BIT);
-        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control);
+    if( celdas < 7500 && cortoEnclavamientoCHG == true){
+        BQ29330_WriteRegister(BQ29330_OUTPUT_CONTROL, bq.BQ29330_output_control |= (1U << CHG_BIT));
         cortoEnclavamientoCHG = false;
     }
-*/
+
 
 }
 

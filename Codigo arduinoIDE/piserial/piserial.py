@@ -1,5 +1,5 @@
 import serial
-port = "/dev/cu.usbserial-130"
+port = "/dev/cu.usbserial-1140"
 n = 0
 ser = serial.Serial(port, 9600, timeout=100)
 while True:
