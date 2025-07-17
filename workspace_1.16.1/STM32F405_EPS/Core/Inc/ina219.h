@@ -7,8 +7,12 @@
 
 #ifndef INC_INA219_H_
 #define INC_INA219_H_
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
 
-#define INA219_ADDRESS 							(0x40)
+#define INA219_ADDRESS                         (0x40)
 #include <stdint.h>
 #include "i2c.h"
 
@@ -29,7 +33,7 @@
 
 #define	INA219_CONFIG_GAIN_1_40MV				(0x0000)  // Gain 1, 40mV Range
 #define	INA219_CONFIG_GAIN_2_80MV				(0x0800)  // Gain 2, 80mV Range
-#define	NA219_CONFIG_GAIN_4_160MV				(0x1000) // Gain 4, 160mV Range
+#define	INA219_CONFIG_GAIN_4_160MV				(0x1000) // Gain 4, 160mV Range
 #define	INA219_CONFIG_GAIN_8_320MV				(0x1800) // Gain 8, 320mV Range
 
 #define	INA219_CONFIG_BADCRES_9BIT				(0x0000)  // 9-bit bus res = 0..511
@@ -69,7 +73,10 @@
 typedef struct
 {
 	I2C_HandleTypeDef 	*ina219_i2c;
-	uint8_t				Address;
+    uint8_t           Address;
+    uint16_t          calibrationValue;
+    int16_t           currentDivider_mA;
+    int16_t           powerMultiplier_mW;
 } INA219_t;
 
 
@@ -81,7 +88,7 @@ uint8_t INA219_Init(INA219_t *ina219, I2C_HandleTypeDef *i2c, uint8_t Address);
 uint16_t INA219_ReadBusVoltage(INA219_t *ina219);
 int16_t INA219_ReadCurrent(INA219_t *ina219);
 int16_t INA219_ReadCurrent_raw(INA219_t *ina219);
-uint16_t INA219_ReadShuntVolage(INA219_t *ina219);
+uint16_t INA219_ReadShuntVoltage(INA219_t *ina219);
 
 void INA219_Reset(INA219_t *ina219);
 void INA219_setCalibration(INA219_t *ina219, uint16_t CalibrationData);
@@ -92,9 +99,10 @@ void INA219_setCalibration_32V_1A(INA219_t *ina219);
 void INA219_setCalibration_16V_400mA(INA219_t *ina219);
 void INA219_setPowerMode(INA219_t *ina219, uint8_t Mode);
 
-uint16_t Read16(INA219_t *ina219, uint8_t Register);
-void Write16(INA219_t *ina219, uint8_t Register, uint16_t Value);
 
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* INC_INA219_H_ */
