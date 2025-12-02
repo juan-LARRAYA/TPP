@@ -1,0 +1,28 @@
+# STM32CubeIDE & build artifacts
+/Debug/
+/Release/
+/build/
+*.o
+*.su
+*.cyclo
+*.d
+*.elf
+*.map
+*.list
+*.hex
+*.bin
+*.bak
+*.lck
+
+# KiCad
+*.kicad_prl
+*.kicad_pcb-bak
+*-cache.lib
+fp-info-cache
+*-backups/
+
+# macOS
+.DS_Store
+
+# STM32CubeIDE workspace
+.metadata/
