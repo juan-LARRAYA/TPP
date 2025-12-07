@@ -67,6 +67,42 @@ El sistema EPS desarrollado cuenta con las siguientes características:
 - Comandos y lectura de registros de estado de todos los módulos
 - Bus I²C para sensores y periféricos
 
+## Desarrollo del Proyecto
+
+### Prototipo Final
+
+<p align="center">
+  <img src="utilidades/fotos/1.png" alt="Prototipo EPS CubeSat - Vista Principal" width="600"/>
+</p>
+
+<p align="center">
+  <img src="utilidades/fotos/5.png" alt="Prototipo EPS CubeSat - Detalle del Sistema" width="600"/>
+</p>
+
+### Fallos Encontrados y Soluciones Implementadas
+
+Durante el desarrollo del proyecto se enfrentaron desafíos significativos que requirieron cambios en la metodología y arquitectura del sistema:
+
+#### 1. Fallo Funcional del Primer Prototipo Monolítico
+
+**Problema:** El diseño inicial, concebido como una solución "todo en uno" y fabricado profesionalmente, falló en las pruebas iniciales. Esto se debió a la complejidad inherente de un sistema monolítico, donde la interdependencia de los componentes dificulta la depuración y la identificación de la causa raíz de los fallos.
+
+<p align="center">
+  <img src="utilidades/fotos/3.png" alt="Primer prototipo monolítico - Fallo" width="600"/>
+</p>
+
+**Solución:** Se adoptó una metodología de desarrollo modular e incremental. El sistema EPS se descompuso en sus bloques funcionales principales (PPC, BMS, PDU), y cada módulo se implementó y probó de forma aislada utilizando prototipos de bajo costo. Esta estrategia permitió una depuración más controlada y económica.
+
+#### 2. Ineficiencia en la Adquisición de Datos (Mapeo Directo por ADC)
+
+**Problema:** El enfoque preliminar utilizaba divisores de tensión y amplificadores operacionales conectados directamente a las entradas ADC del microcontrolador. Esto resultaba en un alto consumo de pines, complejidad del circuito debido a la circuitería de acondicionamiento de señal para cada medición, y susceptibilidad al ruido en las largas pistas analógicas.
+
+<p align="center">
+  <img src="utilidades/fotos/2.png" alt="Sistema de adquisición con ADC directo" width="600"/>
+</p>
+
+**Solución:** Se migró a una arquitectura de monitoreo digital y distribuida basada en el bus I²C, utilizando sensores de corriente y potencia INA219. Estos dispositivos integran un amplificador de precisión y un ADC de 12 bits, transmitiendo mediciones de forma digital. Esta solución redujo drásticamente el uso de pines del microcontrolador, simplificó la interconexión, aumentó la precisión y la robustez frente al ruido.
+
 ## Estructura del Repositorio
 
 ```

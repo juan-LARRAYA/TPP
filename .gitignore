@@ -20,6 +20,8 @@
 *-cache.lib
 fp-info-cache
 *-backups/
+.claude
+.gitignore
 
 # macOS
 .DS_Store
